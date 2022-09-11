@@ -18,4 +18,4 @@ import { USERS_SERVICE } from './users.interface';
     },
   ],
 })
-export class UsersModule { }
+export class UsersModule {}

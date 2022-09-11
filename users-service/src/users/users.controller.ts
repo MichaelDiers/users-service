@@ -26,7 +26,7 @@ export class UsersController {
   constructor(
     @Inject(USERS_SERVICE)
     private readonly usersService: IUsersService,
-  ) { }
+  ) {}
 
   /**
    * Create a new user.
@@ -53,7 +53,9 @@ export class UsersController {
    * @returns A Promise<T> whose result is a User.
    */
   @Get(':guid')
-  findOne(@Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string): Promise<User> {
+  findOne(
+    @Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string,
+  ): Promise<User> {
     return this.usersService.findOne(guid);
   }
 
@@ -77,7 +79,9 @@ export class UsersController {
    * @returns A Promise<T> with an empty result.
    */
   @Delete(':guid')
-  remove(@Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string): Promise<void> {
+  remove(
+    @Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string,
+  ): Promise<void> {
     return this.usersService.remove(guid);
   }
 }

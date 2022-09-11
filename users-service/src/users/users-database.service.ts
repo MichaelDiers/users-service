@@ -13,7 +13,7 @@ export class UsersDatabaseService implements IUsersDatabaseService {
   /**
    * Create a new user in the database.
    * @param user The user to be created.
-   * @returns A Promise<T> whose result is the User if the user is 
+   * @returns A Promise<T> whose result is the User if the user is
    *  created and undefined otherwise.
    */
   async create(user: User): Promise<User | undefined> {
