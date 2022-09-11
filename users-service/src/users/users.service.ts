@@ -19,7 +19,9 @@ export class UsersService {
   }
 
   update(guid: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${guid} user`;
+    return `This action updates a #${guid} user ${JSON.stringify(
+      updateUserDto,
+    )}`;
   }
 
   remove(guid: string) {

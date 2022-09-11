@@ -1,5 +1,15 @@
 import { validate } from 'class-validator';
-import { ClassConstructor, plainToInstance } from "class-transformer";
+import { ClassConstructor, plainToInstance } from 'class-transformer';
+
+/**
+ * Create a string of the given length.
+ * @param length The length of the output string.
+ * @param defaultCharacter The resulting string contains length * defaultCharacter.
+ * @returns A string.
+ */
+export function stringOfLength(length: number, defaultCharacter = 'a'): string {
+  return [...new Array(length)].map(() => defaultCharacter).join('');
+}
 
 /**
  * Test the dto validation for the given data.
@@ -9,21 +19,21 @@ import { ClassConstructor, plainToInstance } from "class-transformer";
  * @param error The expected error string or a part of it.
  */
 export async function testDtoValidation<Type>(
-    cls: ClassConstructor<Type>,
-    plain: any,
-    hasError: boolean = false,
-    error?: string,
-) : Promise<void> {
-    const dto = plainToInstance(cls, plain);
-    const errors = await validate(dto as object);
-    if (hasError) {
-        expect(errors.length).not.toBe(0);
-        if (error) {
-            expect(JSON.stringify(errors)).toContain(error);
-        }        
-    } else {
-        expect(errors.length).toBe(0);
+  cls: ClassConstructor<Type>,
+  plain: any,
+  hasError = false,
+  error?: string,
+): Promise<void> {
+  const dto = plainToInstance(cls, plain);
+  const errors = await validate(dto as object);
+  if (hasError) {
+    expect(errors.length).not.toBe(0);
+    if (error) {
+      expect(JSON.stringify(errors)).toContain(error);
     }
+  } else {
+    expect(errors.length).toBe(0);
+  }
 }
 
 /**
@@ -36,62 +46,62 @@ export async function testDtoValidation<Type>(
  * @param param0.maxLength The maximal length of the field value.
  */
 export function testDtoValidationForLength<Type>({
-    cls,
-    factory,
-    name,
-    minLength,
-    maxLength,
-} : {
-    cls: ClassConstructor<Type>,
-    factory: () => any,
-    name: string,
-    minLength?: number,
-    maxLength?: number,
-}) : void {    
-    describe(`validate length of ${name}`, () => {
-        if (minLength) {
-            it(`validation should fail if ${name} is too short`, async () => {
-                const obj = factory();
-                obj[name] = [...new Array(minLength - 1)].map(x => 'a').join('');
-                
-                await testDtoValidation(
-                    cls,
-                    obj,
-                    true,
-                    `isLength\":\"${name} must be longer than or equal to ${minLength} characters`,
-                );
-            });
+  cls,
+  factory,
+  name,
+  minLength,
+  maxLength,
+}: {
+  cls: ClassConstructor<Type>;
+  factory: () => any;
+  name: string;
+  minLength?: number;
+  maxLength?: number;
+}): void {
+  describe(`validate length of ${name}`, () => {
+    if (minLength) {
+      it(`validation should fail if ${name} is too short`, async () => {
+        const obj = factory();
+        obj[name] = stringOfLength(minLength - 1);
 
-            it(`validation should succeed if length of ${name} equals min length`, async () => {
-                const obj = factory();
-                obj[name] = [...new Array(minLength)].map(x => 'a').join('');
-                
-                await testDtoValidation(cls, obj);
-            });
-        }
+        await testDtoValidation(
+          cls,
+          obj,
+          true,
+          `isLength\":\"${name} must be longer than or equal to ${minLength} characters`,
+        );
+      });
 
-        if (maxLength) {
-            it(`validation should succeed if length of ${name} equals max length`, async () => {
-                const obj = factory();
-                obj[name] = [...new Array(maxLength)].map(x => 'a').join('');
+      it(`validation should succeed if length of ${name} equals min length`, async () => {
+        const obj = factory();
+        obj[name] = stringOfLength(minLength);
 
-                await testDtoValidation(cls, obj);
-            });
+        await testDtoValidation(cls, obj);
+      });
+    }
 
-            it(`validation should fail if ${name} is too long`, async () => {
-                const obj = factory();
-                obj[name] = [...new Array(maxLength + 1)].map(x => 'a').join('');
+    if (maxLength) {
+      it(`validation should succeed if length of ${name} equals max length`, async () => {
+        const obj = factory();
+        obj[name] = stringOfLength(maxLength);
 
-                await testDtoValidation(
-                    cls,
-                    obj,
-                    true,
-                    `\"isLength\":\"${name} must be shorter than or equal to ${maxLength} characters`,
-                );
-            });
-        }
-    });
-};
+        await testDtoValidation(cls, obj);
+      });
+
+      it(`validation should fail if ${name} is too long`, async () => {
+        const obj = factory();
+        obj[name] = stringOfLength(maxLength + 1);
+
+        await testDtoValidation(
+          cls,
+          obj,
+          true,
+          `\"isLength\":\"${name} must be shorter than or equal to ${maxLength} characters`,
+        );
+      });
+    }
+  });
+}
 
 /**
  * Tests if the dto validation fails if a field is missing.
@@ -99,16 +109,16 @@ export function testDtoValidationForLength<Type>({
  * @param factory A factory method for creating a new plain test object.
  */
 export function testDtoValidationForMissingField<Type>(
-    cls: ClassConstructor<Type>,
-    factory: () => any,
-) : void {
-    describe('validation should fail if field is missing', () => {
-        Object.keys(factory()).forEach((key) => {
-            it(`validation should fail without ${key}`, async () => {
-                const obj = factory();
-                delete obj[key];
-                testDtoValidation(cls, obj, true);
-            });
-        });
+  cls: ClassConstructor<Type>,
+  factory: () => any,
+): void {
+  describe('validation should fail if field is missing', () => {
+    Object.keys(factory()).forEach((key) => {
+      it(`validation should fail without ${key}`, async () => {
+        const obj = factory();
+        delete obj[key];
+        testDtoValidation(cls, obj, true);
+      });
     });
+  });
 }

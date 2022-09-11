@@ -4,5 +4,4 @@ import { CreateUserDto } from './create-user.dto';
 /**
  * DTO for updating an user.
  */
-export class UpdateUserDto extends PartialType(CreateUserDto) {
-}
+export class UpdateUserDto extends PartialType(CreateUserDto) {}

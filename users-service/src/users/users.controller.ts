@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -12,9 +21,7 @@ export class UsersController {
    * Creates a new instance of UserController.
    * @param usersService Service that provides crud operations on users.
    */
-  constructor(
-    private readonly usersService: UsersService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   /**
    * Create a new user.
@@ -28,7 +35,7 @@ export class UsersController {
 
   /**
    * Find all users of the application.
-   * @returns 
+   * @returns
    */
   @Get()
   findAll() {
@@ -38,7 +45,7 @@ export class UsersController {
   /**
    * Get a user by its id.
    * @param guid The id of the user.
-   * @returns 
+   * @returns
    */
   @Get(':guid')
   findOne(@Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string) {
@@ -49,17 +56,20 @@ export class UsersController {
    * Update the data of a user.
    * @param guid The id of the user.
    * @param updateUserDto The data that should be updated.
-   * @returns 
+   * @returns
    */
   @Patch(':guid')
-  update(@Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string, @Body() updateUserDto: UpdateUserDto) {
+  update(
+    @Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
     return this.usersService.update(guid, updateUserDto);
   }
 
   /**
    * Delete a user by its id.
    * @param guid The id of the user.
-   * @returns 
+   * @returns
    */
   @Delete(':guid')
   remove(@Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string) {

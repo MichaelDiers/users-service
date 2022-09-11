@@ -12,9 +12,7 @@ async function bootstrap() {
     }),
     new HashPipe(),
   );
-  app.useGlobalInterceptors(
-    new ClassSerializerInterceptor(app.get(Reflector)),
-  );
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   await app.listen(3000);
 }
 

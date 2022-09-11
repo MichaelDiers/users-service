@@ -1,4 +1,4 @@
-import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
+import { PipeTransform, Injectable } from '@nestjs/common';
 import { hashSync } from 'bcrypt';
 
 /**
@@ -6,17 +6,20 @@ import { hashSync } from 'bcrypt';
  */
 @Injectable()
 export class HashPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
-    const data = value as { email, password };
-    
+  transform(value: any) {
+    const data = value as { email; password };
+
     if (data.email) {
       data.email = hashSync(data.email, parseInt(process.env.HASH_ROUNDS));
     }
 
     if (data.password) {
-      data.password = hashSync(data.password, parseInt(process.env.HASH_ROUNDS));
+      data.password = hashSync(
+        data.password,
+        parseInt(process.env.HASH_ROUNDS),
+      );
     }
-    
+
     return value;
   }
 }
