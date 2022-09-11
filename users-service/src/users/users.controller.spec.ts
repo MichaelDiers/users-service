@@ -17,4 +17,10 @@ describe('UsersController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('validate displayName', () => {
+    it('displayName is too short', () => {
+      controller.create({ displayName: '', email: '', password: ''});   
+    });
+  })
 });
