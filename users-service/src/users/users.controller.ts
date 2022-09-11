@@ -19,7 +19,7 @@ export class UsersController {
   /**
    * Create a new user.
    * @param createUserDto DTO that contains the validated user data.
-   * @returns 
+   * @returns A User entity.
    */
   @Post()
   create(@Body() createUserDto: CreateUserDto) {

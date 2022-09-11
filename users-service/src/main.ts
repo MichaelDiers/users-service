@@ -1,5 +1,5 @@
-import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HashPipe } from './pipes/hash-pipe';
 
@@ -11,6 +11,9 @@ async function bootstrap() {
       whitelist: true, // remove all unknown fields
     }),
     new HashPipe(),
+  );
+  app.useGlobalInterceptors(
+    new ClassSerializerInterceptor(app.get(Reflector)),
   );
   await app.listen(3000);
 }
