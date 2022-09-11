@@ -1,30 +1,105 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { IUsersDatabaseService, USERS_DATABASE_SERVICE } from './users-database.interface';
 
+/**
+ * Service that provides CRUD logic for Users.
+ */
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
+  /**
+   * Ceeates a new UsersService instance.
+   * @param databaseService Service for accessing the database.
+   */
+  constructor(
+    @Inject(USERS_DATABASE_SERVICE)
+    private readonly databaseService: IUsersDatabaseService) { }
+
+  /**
+   * Create a new user.
+   * @param createUserDto The data of the new user.
+   * @returns A Promise<T> whose result is a User.
+   * @throws {ConflictException} Is thrown if a user with the id already exists.
+   */
+  async create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User(createUserDto);
-    return user;
+    const result = await this.databaseService.create(user);
+    if (!result) {
+      throw new ConflictException();
+    }
+
+    return result;
   }
 
-  findAll() {
-    return `This action returns all users`;
+  /**
+   * Find all users.
+   * @returns A Promise<T> whose result is an array of User.
+   */
+  findAll(): Promise<User[]> {
+    return this.databaseService.findAll();
   }
 
-  findOne(guid: string) {
-    return `This action returns a #${guid} user`;
+  /**
+   * Find a User by its id.
+   * @param guid The id of the user.
+   * @returns A Promise<T> whose result is a User.
+   * @throws {NotFoundException} Is thrown if no user with the given guid exists.
+   */
+  async findOne(guid: string): Promise<User> {
+    const result = await this.databaseService.findOne(guid);
+    if (!result) {
+      throw new NotFoundException();
+    }
+
+    return result;
   }
 
-  update(guid: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${guid} user ${JSON.stringify(
-      updateUserDto,
-    )}`;
+  /**
+   * Update a user.
+   * @param guid The id of the user.
+   * @param updateUserDto The data of the user to be updated.
+   * @throws {BadRequestException} Is thrown if no update data is provided.
+   * @throws {NotFoundException} Is thrown if no user with the given guid exists.
+   */
+  async update(guid: string, updateUserDto: UpdateUserDto): Promise<void> {
+    const data: any = {};
+    let hasUpdate = false;
+
+    Object.entries(updateUserDto).forEach(([key, value]) => {
+      if (value || value === false) {
+        data[key] = value;
+        hasUpdate = true;
+      }
+    });
+
+    if (!hasUpdate) {
+      throw new BadRequestException();
+    }
+
+    const result = await this.databaseService.update(guid, data);
+
+    if (!result) {
+      throw new NotFoundException();
+    }
   }
 
-  remove(guid: string) {
-    return `This action removes a #${guid} user`;
+  /**
+   * Delete a user.
+   * @param guid The id of the user.
+   * @throws {NotFoundException} Is thrown if no user with the given id exists.
+   */
+  async remove(guid: string): Promise<void> {
+    const result = await this.databaseService.remove(guid);
+    if (!result) {
+      throw new NotFoundException();
+    }
   }
 }
