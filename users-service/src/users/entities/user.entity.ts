@@ -2,6 +2,7 @@ import { Exclude } from 'class-transformer';
 import { v4 } from 'uuid';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { User as UserDatabase } from '../database/user.schema';
+import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * Describes a user entity.
@@ -25,6 +26,10 @@ export class User {
   /**
    * The display name of the user.
    */
+  @ApiProperty({
+    example: 'Jane Doe',
+    description: 'The unique display name of the user.',
+  })
   displayName: string;
 
   /**
@@ -36,6 +41,10 @@ export class User {
   /**
    * The unqiue id of the user.
    */
+  @ApiProperty({
+    example: 'ccac5fc4-304f-4027-ba47-ef3aa7fd1bc5',
+    description: 'The unique id of the user.',
+  })
   guid: string;
 
   /**
