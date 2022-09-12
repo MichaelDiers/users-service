@@ -27,7 +27,7 @@ export class UsersDatabaseService implements IUsersDatabaseService {
       await document.save();
       return new UserEntity(document);
     } catch (err) {
-      if (err.name === 'MongoError' && err.code === 11000) {
+      if (err.name === 'MongoServerError' && err.code === 11000) {
         return;
       }
 
