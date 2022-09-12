@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Observable } from 'rxjs';
 import { EnvNames } from 'src/env-names';
 import { HeaderNames } from 'src/header-names';
+import { Metadata } from '@grpc/grpc-js';
 
 /**
  * Guard for validating the provided api key.
@@ -28,14 +29,8 @@ export class ApiKeyGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const request = context.switchToHttp().getRequest();
-    const headers = request?.headers;
+    const apiKey = this.readApiKey(context);
 
-    if (!headers) {
-      return false;
-    }
-
-    const apiKey = headers[HeaderNames.X_API_KEY];
     if (!apiKey) {
       return false;
     }
@@ -45,5 +40,39 @@ export class ApiKeyGuard implements CanActivate {
     }
 
     return this.serviceApiKey === apiKey;
+  }
+
+  /**
+   * Read the api key from http and rcp requests.
+   * @param context The current execution context.
+   * @returns The api key if it is included in the request and undefined otherwise.
+   */
+  private readApiKey(context: ExecutionContext): string | undefined {
+    if (context.getType() === 'http') {
+      const request = context.switchToHttp().getRequest();
+      const headers = request?.headers;
+
+      if (!headers) {
+        return;
+      }
+
+      return headers[HeaderNames.X_API_KEY];
+    } else if (context.getType() === 'rpc') {
+      const metadata: Metadata = context
+        .getArgs()
+        .find((arg) => arg instanceof Metadata);
+      if (!metadata) {
+        return;
+      }
+
+      const apiKeys = metadata.get(HeaderNames.X_API_KEY);
+      if (!apiKeys || apiKeys.length !== 1) {
+        return;
+      }
+
+      return apiKeys[0].toString();
+    }
+
+    return;
   }
 }

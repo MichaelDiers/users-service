@@ -6,9 +6,10 @@ import { USERS_DATABASE_SERVICE } from './interfaces/users-database.interface';
 import { USERS_SERVICE } from './interfaces/users.interface';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './database/user.schema';
+import { GrpcUsersService } from './users-grpc.controller';
 
 @Module({
-  controllers: [UsersController],
+  controllers: [UsersController, GrpcUsersService],
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],

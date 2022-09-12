@@ -72,7 +72,7 @@ export class UsersDatabaseService implements IUsersDatabaseService {
         throw new ConflictException();
       }
 
-      throw (err);
+      throw err;
     }
   }
 

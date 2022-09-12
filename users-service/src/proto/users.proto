@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package users;
+
+service GrpcUsersService {
+  rpc Create (CreateUserDto) returns (User) {}
+  rpc FindAll (Empty) returns (UserList) {}
+  rpc FindOne (Guid) returns (User) {}
+  rpc Update (UpdateUserDto) returns (Empty) {}
+  rpc Remove (Guid) returns (Empty) {}
+}
+
+message CreateUserDto {
+  string displayName = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message Empty {
+}
+
+message Guid {
+  string guid = 1;
+}
+
+message UpdateUserDto {
+  string displayName = 1;
+  string email = 2;
+  string password = 3;
+  string guid = 4;
+}
+
+message User {
+  string displayName = 1;
+  string guid = 2;
+}
+
+message UserList {
+  repeated User users = 1;
+}
