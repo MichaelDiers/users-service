@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { LOGGING_SERVICE } from './logging.interface';
 import LoggingService from './logging.service';
+import { MongodbConfigService } from './mongodb-config.service';
 import { SECRET_MANAGER_SERVICE } from './secret-manager.interface';
 import { SecretManagerService } from './secret-manager.service';
 
@@ -8,6 +9,7 @@ import { SecretManagerService } from './secret-manager.service';
   exports: [
     LOGGING_SERVICE,
     SECRET_MANAGER_SERVICE,
+    MongodbConfigService,
   ],
   providers: [
     {
