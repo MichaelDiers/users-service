@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { ISecretManagerService } from './secret-manager.interface';
 import { ILoggingService, LOGGING_SERVICE } from './logging.interface';
-import { EnvNames } from 'src/env-names';
+import { EnvNames } from '../env-names';
 
 /**
  * The names of secrets.

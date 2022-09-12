@@ -1,6 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { v4 } from 'uuid';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { User as UserDatabase } from '../database/user.schema';
 
 /**
  * Describes a user entity.
@@ -8,11 +9,17 @@ import { CreateUserDto } from '../dto/create-user.dto';
 export class User {
   /**
    * Creates a new instance of User.
-   * @param createUserDto Data is initialized from the given dto data.
+   * @param user Data is initialized from the given data.
    */
-  constructor(createUserDto: CreateUserDto) {
-    Object.assign(this, createUserDto);
-    this.guid = v4();
+  constructor(user?: CreateUserDto | UserDatabase) {
+    if (user) {
+      this.displayName = user.displayName;
+      this.email = user.email;
+      this.password = user.password;
+
+      const userDatabase = user as UserDatabase;
+      this.guid = userDatabase.guid || v4();
+    }
   }
 
   /**

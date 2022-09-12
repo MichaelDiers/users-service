@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { User } from './entities/user.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { User as UserEntity } from './entities/user.entity';
+import { User as UserDatabase, UserDocument } from './database/user.schema';
 import { IUsersDatabaseService } from './users-database.interface';
 
 /**
@@ -7,8 +10,10 @@ import { IUsersDatabaseService } from './users-database.interface';
  */
 @Injectable()
 export class UsersDatabaseService implements IUsersDatabaseService {
-  // in memory database
-  private database: User[] = [];
+  constructor(
+    @InjectModel(UserDatabase.name)
+    private userModel: Model<UserDocument>,
+  ) { }
 
   /**
    * Create a new user in the database.
@@ -16,10 +21,11 @@ export class UsersDatabaseService implements IUsersDatabaseService {
    * @returns A Promise<T> whose result is the User if the user is
    *  created and undefined otherwise.
    */
-  async create(user: User): Promise<User | undefined> {
+  async create(user: UserEntity): Promise<UserEntity | undefined> {
     try {
-      this.database.push(user);
-      return user;
+      const document = new this.userModel(user);
+      await document.save();
+      return new UserEntity(document);
     } catch (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
         return;
@@ -33,8 +39,9 @@ export class UsersDatabaseService implements IUsersDatabaseService {
    * List all users in the database.
    * @returns A Promise<T> whose result is an array of User.
    */
-  async findAll(): Promise<User[]> {
-    return this.database;
+  async findAll(): Promise<UserEntity[]> {
+    const documents = await this.userModel.find().exec();
+    return documents.map((document) => new UserEntity(document));
   }
 
   /**
@@ -43,8 +50,11 @@ export class UsersDatabaseService implements IUsersDatabaseService {
    * @returns A Promise<T> whose result is the user if a user with the guid exists and
    *  undefined otherwise.
    */
-  async findOne(guid: string): Promise<User | undefined> {
-    return this.database.find((user) => user.guid === guid);
+  async findOne(guid: string): Promise<UserEntity | undefined> {
+    const document = await this.userModel.findOne({ guid }).exec();
+    if (document) {
+      return new UserEntity(document);
+    }
   }
 
   /**
@@ -54,13 +64,8 @@ export class UsersDatabaseService implements IUsersDatabaseService {
    * @returns A Promise<T> whose result is true if the user is updated and false otherwise.
    */
   async update(guid: string, data: any): Promise<boolean> {
-    const user = this.database.find(({ guid: dbGuid }) => guid === dbGuid);
-    if (!user) {
-      return false;
-    }
-
-    Object.assign(user, data);
-    return true;
+    const result = await this.userModel.updateOne({ guid }, data).exec();
+    return result.acknowledged && result.matchedCount === 1;
   }
 
   /**
@@ -69,8 +74,7 @@ export class UsersDatabaseService implements IUsersDatabaseService {
    * @returns A Promise<T> whose result is true if the user is deleted and false otherwise.
    */
   async remove(guid: string): Promise<boolean> {
-    const count = this.database.length;
-    this.database = this.database.filter((user) => user.guid !== guid);
-    return count === this.database.length + 1;
+    const result = await this.userModel.deleteOne({ guid }).exec();
+    return result.acknowledged && result.deletedCount === 1;
   }
 }

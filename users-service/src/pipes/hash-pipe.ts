@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { PipeTransform, Injectable } from '@nestjs/common';
 import { hashSync } from 'bcrypt';
-import { EnvNames } from 'src/env-names';
+import { EnvNames } from '../env-names';
 
 /**
  * Transform the email and password of the given object into its hashes.
