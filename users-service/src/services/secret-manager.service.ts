@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { ISecretManagerService } from './secret-manager.interface';
 import { ILoggingService, LOGGING_SERVICE } from './logging.interface';
+import { EnvNames } from 'src/env-names';
 
 /**
  * The names of secrets.
@@ -18,9 +20,11 @@ export class SecretManagerService implements ISecretManagerService {
   /**
    * Creates a new SecretManagerService instance.
    * @param loggingService An error logger.
+   * @param configService Access the configuration of the application.
    */
   constructor(
     @Inject(LOGGING_SERVICE) private readonly loggingService: ILoggingService,
+    private configService: ConfigService,
   ) { }
 
   /**
@@ -45,8 +49,8 @@ export class SecretManagerService implements ISecretManagerService {
     secretName: string,
   ): Promise<string | undefined> {
     // use .env instead of google cloud secret manager
-    if (process.env.SECRETS_FROM_ENV) {
-      return process.env[secretName];
+    if (this.configService.get(EnvNames.SECRETS_FROM_ENV)) {
+      return this.configService.get(secretName);
     }
 
     // use google cloud secret manager
@@ -54,7 +58,7 @@ export class SecretManagerService implements ISecretManagerService {
       this.client = new SecretManagerServiceClient();
     }
 
-    const name = `projects/${process.env.MH_PROJECT_NAME}/secrets/${secretName}/versions/latest`;
+    const name = `projects/${this.configService.get(EnvNames.PROJECT_NAME)}/secrets/${secretName}/versions/latest`;
     try {
       const [version] = await this.client.accessSecretVersion({ name });
       return version.payload.data.toString();

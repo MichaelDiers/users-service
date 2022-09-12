@@ -19,7 +19,8 @@ import { SecretManagerService } from './secret-manager.service';
     {
       provide: SECRET_MANAGER_SERVICE,
       useClass: SecretManagerService,
-    }
+    },
+    MongodbConfigService,
   ],
 })
 export class ServicesModule { }
