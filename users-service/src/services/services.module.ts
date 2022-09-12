@@ -6,11 +6,7 @@ import { SECRET_MANAGER_SERVICE } from './secret-manager.interface';
 import { SecretManagerService } from './secret-manager.service';
 
 @Module({
-  exports: [
-    LOGGING_SERVICE,
-    SECRET_MANAGER_SERVICE,
-    MongodbConfigService,
-  ],
+  exports: [LOGGING_SERVICE, SECRET_MANAGER_SERVICE, MongodbConfigService],
   providers: [
     {
       provide: LOGGING_SERVICE,
@@ -23,4 +19,4 @@ import { SecretManagerService } from './secret-manager.service';
     MongodbConfigService,
   ],
 })
-export class ServicesModule { }
+export class ServicesModule {}

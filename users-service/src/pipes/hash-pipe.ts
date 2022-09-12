@@ -12,7 +12,7 @@ export class HashPipe implements PipeTransform {
    * Creates a new instance of HashPipe.
    * @param configService Access the application configuration.
    */
-  constructor(private readonly configService: ConfigService) { }
+  constructor(private readonly configService: ConfigService) {}
 
   /**
    * Create hashes for email and password if the fields exists in the given value.
@@ -28,10 +28,7 @@ export class HashPipe implements PipeTransform {
     }
 
     if (data.password) {
-      data.password = hashSync(
-        data.password,
-        hashRounds,
-      );
+      data.password = hashSync(data.password, hashRounds);
     }
 
     return value;

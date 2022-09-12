@@ -13,7 +13,7 @@ export class UsersDatabaseService implements IUsersDatabaseService {
   constructor(
     @InjectModel(UserDatabase.name)
     private userModel: Model<UserDocument>,
-  ) { }
+  ) {}
 
   /**
    * Create a new user in the database.

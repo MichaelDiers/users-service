@@ -25,7 +25,7 @@ export class SecretManagerService implements ISecretManagerService {
   constructor(
     @Inject(LOGGING_SERVICE) private readonly loggingService: ILoggingService,
     private configService: ConfigService,
-  ) { }
+  ) {}
 
   /**
    * The client for accessing the google secret manager.
@@ -58,7 +58,9 @@ export class SecretManagerService implements ISecretManagerService {
       this.client = new SecretManagerServiceClient();
     }
 
-    const name = `projects/${this.configService.get(EnvNames.PROJECT_NAME)}/secrets/${secretName}/versions/latest`;
+    const name = `projects/${this.configService.get(
+      EnvNames.PROJECT_NAME,
+    )}/secrets/${secretName}/versions/latest`;
     try {
       const [version] = await this.client.accessSecretVersion({ name });
       return version.payload.data.toString();

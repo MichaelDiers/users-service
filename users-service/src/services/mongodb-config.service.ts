@@ -20,7 +20,7 @@ export class MongodbConfigService implements MongooseOptionsFactory {
   constructor(
     @Inject(SECRET_MANAGER_SERVICE)
     private readonly secretManagerService: ISecretManagerService,
-  ) { }
+  ) {}
 
   /**
    * Create the options for connecting to mongodb.

@@ -25,7 +25,9 @@ describe('user', () => {
     expect(user.displayName).toBe(data.displayName);
     expect(user.email).toBe(data.email);
     expect(user.password).toBe(data.password);
-    expect(uuid.validate(user.guid) && uuid.version(user.guid) === 4).toBe(true);
+    expect(uuid.validate(user.guid) && uuid.version(user.guid) === 4).toBe(
+      true,
+    );
     expect([...Object.keys(user)].length).toBe(4);
   });
 
