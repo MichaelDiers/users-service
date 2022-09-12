@@ -12,7 +12,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { IUsersService, USERS_SERVICE } from './users.interface';
+import { IUsersService, USERS_SERVICE } from './interfaces/users.interface';
 
 /**
  * CRUD Controller for users.
@@ -26,7 +26,7 @@ export class UsersController {
   constructor(
     @Inject(USERS_SERVICE)
     private readonly usersService: IUsersService,
-  ) {}
+  ) { }
 
   /**
    * Create a new user.

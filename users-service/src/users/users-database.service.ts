@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User as UserEntity } from './entities/user.entity';
 import { User as UserDatabase, UserDocument } from './database/user.schema';
-import { IUsersDatabaseService } from './users-database.interface';
+import { IUsersDatabaseService } from './interfaces/users-database.interface';
 
 /**
  * Database for users.
@@ -13,7 +13,7 @@ export class UsersDatabaseService implements IUsersDatabaseService {
   constructor(
     @InjectModel(UserDatabase.name)
     private userModel: Model<UserDocument>,
-  ) {}
+  ) { }
 
   /**
    * Create a new user in the database.

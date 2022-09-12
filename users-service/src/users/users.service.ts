@@ -11,7 +11,7 @@ import { User } from './entities/user.entity';
 import {
   IUsersDatabaseService,
   USERS_DATABASE_SERVICE,
-} from './users-database.interface';
+} from './interfaces/users-database.interface';
 
 /**
  * Service that provides CRUD logic for Users.
@@ -25,7 +25,7 @@ export class UsersService {
   constructor(
     @Inject(USERS_DATABASE_SERVICE)
     private readonly databaseService: IUsersDatabaseService,
-  ) {}
+  ) { }
 
   /**
    * Create a new user.

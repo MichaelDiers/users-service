@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { UsersDatabaseService } from './users-database.service';
-import { USERS_DATABASE_SERVICE } from './users-database.interface';
-import { USERS_SERVICE } from './users.interface';
+import { USERS_DATABASE_SERVICE } from './interfaces/users-database.interface';
+import { USERS_SERVICE } from './interfaces/users.interface';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './database/user.schema';
 
@@ -23,4 +23,4 @@ import { User, UserSchema } from './database/user.schema';
     },
   ],
 })
-export class UsersModule {}
+export class UsersModule { }

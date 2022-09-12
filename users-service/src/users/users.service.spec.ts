@@ -7,7 +7,7 @@ import {
 import { v4 } from 'uuid';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
-import { IUsersDatabaseService } from './users-database.interface';
+import { IUsersDatabaseService } from './interfaces/users-database.interface';
 import { UsersService } from './users.service';
 
 const createCreateDto = () => {
