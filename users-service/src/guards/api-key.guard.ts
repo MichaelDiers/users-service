@@ -1,8 +1,8 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Observable } from 'rxjs';
-import { EnvNames } from 'src/env-names';
-import { HeaderNames } from 'src/header-names';
+import { EnvNames } from '../env-names';
+import { HeaderNames } from '../header-names';
 import { Metadata } from '@grpc/grpc-js';
 
 /**

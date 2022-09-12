@@ -13,9 +13,9 @@ import { User } from './entities/user.entity';
 import { IUsersService, USERS_SERVICE } from './interfaces/users.interface';
 import GuidDto from './dto/guid.dto';
 import UserListDto from './dto/user-list.dto';
-import { HttpExceptionInterceptor } from 'src/interceptors/http-exception.interceptor';
-import { ApiKeyGuard } from 'src/guards/api-key.guard';
-import { HashPipe } from 'src/pipes/hash-pipe';
+import { HttpExceptionInterceptor } from '../interceptors/http-exception.interceptor';
+import { ApiKeyGuard } from '../guards/api-key.guard';
+import { HashPipe } from '../pipes/hash-pipe';
 
 /**
  * GRPC CRUD Controller for users.
