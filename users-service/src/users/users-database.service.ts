@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User as UserEntity } from './entities/user.entity';
@@ -64,8 +64,16 @@ export class UsersDatabaseService implements IUsersDatabaseService {
    * @returns A Promise<T> whose result is true if the user is updated and false otherwise.
    */
   async update(guid: string, data: any): Promise<boolean> {
-    const result = await this.userModel.updateOne({ guid }, data).exec();
-    return result.acknowledged && result.matchedCount === 1;
+    try {
+      const result = await this.userModel.updateOne({ guid }, data).exec();
+      return result.acknowledged && result.matchedCount === 1;
+    } catch (err) {
+      if (err.name === 'MongoServerError' && err.code === 11000) {
+        throw new ConflictException();
+      }
+
+      throw (err);
+    }
   }
 
   /**
