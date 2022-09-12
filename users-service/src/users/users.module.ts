@@ -23,4 +23,4 @@ import { User, UserSchema } from './database/user.schema';
     },
   ],
 })
-export class UsersModule { }
+export class UsersModule {}

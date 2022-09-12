@@ -25,7 +25,7 @@ export class UsersService {
   constructor(
     @Inject(USERS_DATABASE_SERVICE)
     private readonly databaseService: IUsersDatabaseService,
-  ) { }
+  ) {}
 
   /**
    * Create a new user.
