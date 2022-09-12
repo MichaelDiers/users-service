@@ -4,6 +4,13 @@ import { ISecretManagerService } from './secret-manager.interface';
 import { ILoggingService, LOGGING_SERVICE } from './logging.interface';
 
 /**
+ * The names of secrets.
+ */
+const enum SecretNames {
+  CONNECTION_STRING = 'UsersServiceConnectionString',
+}
+
+/**
  * Access for the google cloud secret manager.
  */
 @Injectable()
@@ -26,7 +33,7 @@ export class SecretManagerService implements ISecretManagerService {
    * @returns The mongodb connection string if the secret exists and undefined otherwise.
    */
   async getConnectionString(): Promise<string | undefined> {
-    return this.getSecretAsync('MiracleHidesTabletopConnectionString');
+    return this.getSecretAsync(SecretNames.CONNECTION_STRING);
   }
 
   /**
