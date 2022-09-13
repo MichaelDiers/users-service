@@ -1,29 +1,24 @@
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { join } from 'path';
 import { AppModule } from './app.module';
 import { EnvNames } from './env-names';
-import { ApiKeyGuard } from './guards/api-key.guard';
+import { ApiKeyHttpGuard } from './guards/api-key-http.guard';
 import { HeaderNames } from './header-names';
 import { HashPipe } from './pipes/hash-pipe';
+import * as configs from './configs/index';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.GRPC,
-    options: {
-      package: 'users',
-      protoPath: join(__dirname, 'proto/users.proto'),
-      url: 'localhost:3010',
-    },
-  });
-  await app.startAllMicroservices();
   const configService = app.get(ConfigService);
 
-  app.useGlobalGuards(new ApiKeyGuard(configService));
+  app.connectMicroservice(configs.grpcConfig(configService));
+  app.connectMicroservice(configs.tcpConfig(configService));
+
+  await app.startAllMicroservices();
+
+  app.useGlobalGuards(new ApiKeyHttpGuard(configService));
   app.useGlobalPipes(
     new ValidationPipe({
       stopAtFirstError: true,

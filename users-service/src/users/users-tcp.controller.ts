@@ -6,7 +6,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { GrpcMethod } from '@nestjs/microservices';
+import { MessagePattern } from '@nestjs/microservices';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -14,11 +14,12 @@ import { IUsersService, USERS_SERVICE } from './interfaces/users.interface';
 import GuidDto from './dto/guid.dto';
 import UserListDto from './dto/user-list.dto';
 import { HttpExceptionInterceptor } from '../interceptors/http-exception.interceptor';
-import { ApiKeyGrpcGuard } from '../guards/api-key-grpc.guard';
+import { ApiKeyTcpGuard } from '../guards/api-key-tcp.guard';
 import { HashPipe } from '../pipes/hash-pipe';
+import ApiKeyDto from './dto/api-key.dto';
 
 /**
- * GRPC CRUD Controller for users.
+ * TCP CRUD Controller for users.
  */
 @UsePipes(
   new ValidationPipe({
@@ -28,9 +29,9 @@ import { HashPipe } from '../pipes/hash-pipe';
   HashPipe,
 )
 @UseInterceptors(new HttpExceptionInterceptor())
-@UseGuards(ApiKeyGrpcGuard)
+@UseGuards(ApiKeyTcpGuard)
 @Controller()
-export class GrpcUsersService {
+export class UsersTcpController {
   /**
    * Creates a new instance of UserController.
    * @param usersService Service that provides crud operations on users.
@@ -45,8 +46,8 @@ export class GrpcUsersService {
    * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise<T> whose result is a User.
    */
-  @GrpcMethod()
-  create(data: CreateUserDto): Promise<User> {
+  @MessagePattern({ cmd: 'create' })
+  create(data: CreateUserDto & ApiKeyDto): Promise<User> {
     return this.usersService.create(data);
   }
 
@@ -54,8 +55,9 @@ export class GrpcUsersService {
    * Find all users of the application.
    * @returns A Promise<T> whose result is an array of User.
    */
-  @GrpcMethod()
-  async findAll(): Promise<UserListDto> {
+  @MessagePattern({ cmd: 'findAll' })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async findAll(data: ApiKeyDto): Promise<UserListDto> {
     const dto = new UserListDto();
     dto.users = await this.usersService.findAll();
     return dto;
@@ -66,8 +68,8 @@ export class GrpcUsersService {
    * @param guid The id of the user.
    * @returns A Promise<T> whose result is a User.
    */
-  @GrpcMethod()
-  findOne(data: GuidDto): Promise<User> {
+  @MessagePattern({ cmd: 'findOne' })
+  findOne(data: GuidDto & ApiKeyDto): Promise<User> {
     return this.usersService.findOne(data.guid);
   }
 
@@ -77,8 +79,8 @@ export class GrpcUsersService {
    * @param updateUserDto The data that should be updated.
    * @returns A Promise with an empty result.
    */
-  @GrpcMethod()
-  update(data: UpdateUserDto & GuidDto): Promise<void> {
+  @MessagePattern({ cmd: 'update' })
+  update(data: UpdateUserDto & GuidDto & ApiKeyDto): Promise<void> {
     return this.usersService.update(data.guid, data);
   }
 
@@ -87,8 +89,8 @@ export class GrpcUsersService {
    * @param guid The id of the user.
    * @returns A Promise<T> with an empty result.
    */
-  @GrpcMethod()
-  remove(data: GuidDto): Promise<void> {
+  @MessagePattern({ cmd: 'remove' })
+  remove(data: GuidDto & ApiKeyDto): Promise<void> {
     return this.usersService.remove(data.guid);
   }
 }
