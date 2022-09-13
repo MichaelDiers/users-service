@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >UserListDto</li>
+  <li >ApiKeyDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/dto/user-list.dto.ts</code>
+            <code>src/users/dto/api-key.dto.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>DTO for providing a list of User.</p>
+                <p>Describes an api key parameter.</p>
 
             </p>
 
@@ -90,7 +90,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#users" >users</a>
+                                <a href="#apiKey" >apiKey</a>
                             </li>
                         </ul>
                     </td>
@@ -115,28 +115,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="users"></a>
+                    <a name="apiKey"></a>
                     <span class="name">
-                        <span ><b>users</b></span>
-                        <a href="#users"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>apiKey</b></span>
+                        <a href="#apiKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>User[]</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsUUID()<br />
+                        </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/users/dto/user-list.dto.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/users/dto/api-key.dto.ts:12</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>All known users of the application.</p>
+                    <div class="io-description"><p>The value of the api key.</p>
 </div>
                 </td>
             </tr>
@@ -155,16 +164,18 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { User } from &#x27;../entities/user.entity&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsString, IsUUID } from &#x27;class-validator&#x27;;
 
 /**
- * DTO for providing a list of User.
+ * Describes an api key parameter.
  */
-export default class UserListDto {
+export default class ApiKeyDto {
   /**
-   * All known users of the application.
+   * The value of the api key.
    */
-  users: User[];
+  @IsString()
+  @IsUUID()
+  apiKey: string;
 }
 </code></pre>
     </div>
@@ -204,7 +215,7 @@ export default class UserListDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserListDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ApiKeyDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

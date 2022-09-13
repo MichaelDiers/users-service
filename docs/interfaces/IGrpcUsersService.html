@@ -28,16 +28,26 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content interface">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >GrpcUsersService</li>
+  <li>Interfaces</li>
+  <li
+  >
+  IGrpcUsersService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,62 +65,67 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/users-grpc.controller.ts</code>
+            <code>src/users/interfaces/users-grpc-controller.interface.ts</code>
         </p>
-
 
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>GRPC CRUD Controller for users.</p>
+                <p>Service interface for the GRPC service.</p>
 
             </p>
 
 
-
-
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#create" >create</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
-                            </li>
-                            <li>
-                                <a href="#findOne" >findOne</a>
-                            </li>
-                            <li>
-                                <a href="#remove" >remove</a>
-                            </li>
-                            <li>
-                                <a href="#update" >update</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Methods</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#create" 
+>
+                                        create
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#findAll" 
+>
+                                        findAll
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#findOne" 
+>
+                                        findOne
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#remove" 
+>
+                                        remove
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#update" 
+>
+                                        update
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
             <section>
     
@@ -130,22 +145,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>create(data: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+<code>create(data: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>, metadata: Metadata)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/users/interfaces/users-grpc-controller.interface.ts:17</a></div>
                 </td>
             </tr>
 
@@ -164,6 +172,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,6 +187,24 @@
                                     </td>
 
 
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>metadata</td>
+                                    <td>
+                                            <code>Metadata</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The request metadata that includes the api key.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -185,7 +212,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;User&gt;</code>
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -202,7 +229,6 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -210,23 +236,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+<code>findAll(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, metadata: Metadata)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/users/interfaces/users-grpc-controller.interface.ts:24</a></div>
                 </td>
             </tr>
 
@@ -236,10 +254,56 @@
                     <div class="io-description"><p>Find all users of the application.</p>
 </div>
 
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>metadata</td>
+                                    <td>
+                                            <code>Metadata</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The request metadata that includes the api key.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;UserListDto&gt;</code>
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -263,22 +327,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>findOne(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>, metadata: Metadata)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/users/interfaces/users-grpc-controller.interface.ts:32</a></div>
                 </td>
             </tr>
 
@@ -297,6 +354,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -311,6 +369,24 @@
                                     </td>
 
 
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>metadata</td>
+                                    <td>
+                                            <code>Metadata</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The request metadata that includes the api key.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -318,7 +394,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;User&gt;</code>
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -342,22 +418,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>remove(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>remove(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>, metadata: Metadata)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/users/interfaces/users-grpc-controller.interface.ts:49</a></div>
                 </td>
             </tr>
 
@@ -376,6 +445,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -390,6 +460,24 @@
                                     </td>
 
 
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>metadata</td>
+                                    <td>
+                                            <code>Metadata</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The request metadata that includes the api key.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -397,7 +485,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -421,22 +509,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(data)</code>
+<code>update(data, metadata: Metadata)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/users/interfaces/users-grpc-controller.interface.ts:41</a></div>
                 </td>
             </tr>
 
@@ -453,18 +534,40 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
+                                    <td>
+                                    </td>
 
                                     <td>
                                         No
                                     </td>
 
 
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>metadata</td>
+                                    <td>
+                                            <code>Metadata</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The request metadata that includes the api key.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -472,7 +575,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -483,115 +586,65 @@
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Inject,
-  UseGuards,
-  UseInterceptors,
-  UsePipes,
-  ValidationPipe,
-} from &#x27;@nestjs/common&#x27;;
-import { GrpcMethod } from &#x27;@nestjs/microservices&#x27;;
-import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
-import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
-import { User } from &#x27;./entities/user.entity&#x27;;
-import { IUsersService, USERS_SERVICE } from &#x27;./interfaces/users.interface&#x27;;
-import GuidDto from &#x27;./dto/guid.dto&#x27;;
-import UserListDto from &#x27;./dto/user-list.dto&#x27;;
-import { HttpExceptionInterceptor } from &#x27;../interceptors/http-exception.interceptor&#x27;;
-import { ApiKeyGrpcGuard } from &#x27;../guards/api-key-grpc.guard&#x27;;
-import { HashPipe } from &#x27;../pipes/hash-pipe&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
+import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
+import GuidDto from &#x27;../dto/guid.dto&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { Metadata } from &#x27;@grpc/grpc-js&#x27;;
 
 /**
- * GRPC CRUD Controller for users.
+ * Service interface for the GRPC service.
  */
-@UsePipes(
-  new ValidationPipe({
-    stopAtFirstError: true,
-    whitelist: true, // remove all unknown fields
-  }),
-  HashPipe,
-)
-@UseInterceptors(new HttpExceptionInterceptor())
-@UseGuards(ApiKeyGrpcGuard)
-@Controller()
-export class GrpcUsersService {
-  /**
-   * Creates a new instance of UserController.
-   * @param usersService Service that provides crud operations on users.
-   */
-  constructor(
-    @Inject(USERS_SERVICE)
-    private readonly usersService: IUsersService,
-  ) {}
-
+export interface IGrpcUsersService {
   /**
    * Create a new user.
    * @param createUserDto DTO that contains the validated user data.
+   * @param metadata The request metadata that includes the api key.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  create(data: CreateUserDto): Promise&lt;User&gt; {
-    return this.usersService.create(data);
-  }
+  create(data: CreateUserDto, metadata: Metadata): Observable&lt;any&gt;;
 
   /**
    * Find all users of the application.
+   * @param metadata The request metadata that includes the api key.
    * @returns A Promise&lt;T&gt; whose result is an array of User.
    */
-  @GrpcMethod()
-  async findAll(): Promise&lt;UserListDto&gt; {
-    const dto &#x3D; new UserListDto();
-    dto.users &#x3D; await this.usersService.findAll();
-    return dto;
-  }
+  findAll(data: any, metadata: Metadata): Observable&lt;any&gt;;
 
   /**
    * Get a user by its id.
    * @param guid The id of the user.
+   * @param metadata The request metadata that includes the api key.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  findOne(data: GuidDto): Promise&lt;User&gt; {
-    return this.usersService.findOne(data.guid);
-  }
+  findOne(data: GuidDto, metadata: Metadata): Observable&lt;any&gt;;
 
   /**
    * Update the data of a user.
    * @param guid The id of the user.
    * @param updateUserDto The data that should be updated.
+   * @param metadata The request metadata that includes the api key.
    * @returns A Promise with an empty result.
    */
-  @GrpcMethod()
-  update(data: UpdateUserDto &amp; GuidDto): Promise&lt;void&gt; {
-    return this.usersService.update(data.guid, data);
-  }
+  update(data: UpdateUserDto &amp; GuidDto, metadata: Metadata): Observable&lt;any&gt;;
 
   /**
    * Delete a user by its id.
    * @param guid The id of the user.
+   * @param metadata The request metadata that includes the api key.
    * @returns A Promise&lt;T&gt; with an empty result.
    */
-  @GrpcMethod()
-  remove(data: GuidDto): Promise&lt;void&gt; {
-    return this.usersService.remove(data.guid);
-  }
+  remove(data: GuidDto, metadata: Metadata): Observable&lt;any&gt;;
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -625,8 +678,8 @@ export class GrpcUsersService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'GrpcUsersService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'IGrpcUsersService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

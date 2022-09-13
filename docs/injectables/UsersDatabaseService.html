@@ -134,6 +134,8 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Create a new instance of UsersDatabaseService.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -142,6 +144,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -156,6 +159,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>The model for database operations on users.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -193,8 +200,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/users/users-database.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/users/users-database.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -274,8 +281,8 @@ created and undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/users/users-database.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/users/users-database.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -321,8 +328,8 @@ created and undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/users/users-database.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/users/users-database.service.ts:57</a></div>
                 </td>
             </tr>
 
@@ -402,8 +409,8 @@ undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/users/users-database.service.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/users/users-database.service.ts:88</a></div>
                 </td>
             </tr>
 
@@ -481,8 +488,8 @@ undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/users/users-database.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/users/users-database.service.ts:70</a></div>
                 </td>
             </tr>
 
@@ -572,6 +579,10 @@ import { IUsersDatabaseService } from &#x27;./interfaces/users-database.interfac
  */
 @Injectable()
 export class UsersDatabaseService implements IUsersDatabaseService {
+  /**
+   * Create a new instance of UsersDatabaseService.
+   * @param userModel The model for database operations on users.
+   */
   constructor(
     @InjectModel(UserDatabase.name)
     private userModel: Model&lt;UserDocument&gt;,

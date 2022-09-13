@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >GrpcUsersService</li>
+  <li >UsersTcpController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/users-grpc.controller.ts</code>
+            <code>src/users/users-tcp.controller.ts</code>
         </p>
 
 
@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>GRPC CRUD Controller for users.</p>
+                <p>TCP CRUD Controller for users.</p>
 
             </p>
 
@@ -130,7 +130,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>create(data: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+<code>create(data)</code>
                 </td>
             </tr>
 
@@ -138,14 +138,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@MessagePattern({cmd: &#x27;create&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/users/users-tcp.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -162,16 +162,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
-                                    </td>
 
                                     <td>
                                         No
@@ -211,7 +207,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+                    <code>findAll(data: <a href="../classes/ApiKeyDto.html" target="_self">ApiKeyDto</a>)</code>
                 </td>
             </tr>
 
@@ -219,14 +215,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@MessagePattern({cmd: &#x27;findAll&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/users/users-tcp.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -236,6 +232,33 @@
                     <div class="io-description"><p>Find all users of the application.</p>
 </div>
 
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../classes/ApiKeyDto.html" target="_self" >ApiKeyDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div>
                     </div>
                     <div class="io-description">
@@ -263,7 +286,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>findOne(data)</code>
                 </td>
             </tr>
 
@@ -271,14 +294,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@MessagePattern({cmd: &#x27;findOne&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/users/users-tcp.controller.ts:72</a></div>
                 </td>
             </tr>
 
@@ -295,16 +318,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/GuidDto.html" target="_self" >GuidDto</a></code>
-                                    </td>
 
                                     <td>
                                         No
@@ -342,7 +361,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>remove(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>remove(data)</code>
                 </td>
             </tr>
 
@@ -350,14 +369,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@MessagePattern({cmd: &#x27;remove&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/users/users-tcp.controller.ts:93</a></div>
                 </td>
             </tr>
 
@@ -374,16 +393,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/GuidDto.html" target="_self" >GuidDto</a></code>
-                                    </td>
 
                                     <td>
                                         No
@@ -429,14 +444,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@MessagePattern({cmd: &#x27;update&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/users/users-grpc.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/users/users-tcp.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -495,7 +510,7 @@
   UsePipes,
   ValidationPipe,
 } from &#x27;@nestjs/common&#x27;;
-import { GrpcMethod } from &#x27;@nestjs/microservices&#x27;;
+import { MessagePattern } from &#x27;@nestjs/microservices&#x27;;
 import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
 import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
 import { User } from &#x27;./entities/user.entity&#x27;;
@@ -503,11 +518,12 @@ import { IUsersService, USERS_SERVICE } from &#x27;./interfaces/users.interface&
 import GuidDto from &#x27;./dto/guid.dto&#x27;;
 import UserListDto from &#x27;./dto/user-list.dto&#x27;;
 import { HttpExceptionInterceptor } from &#x27;../interceptors/http-exception.interceptor&#x27;;
-import { ApiKeyGrpcGuard } from &#x27;../guards/api-key-grpc.guard&#x27;;
+import { ApiKeyTcpGuard } from &#x27;../guards/api-key-tcp.guard&#x27;;
 import { HashPipe } from &#x27;../pipes/hash-pipe&#x27;;
+import ApiKeyDto from &#x27;./dto/api-key.dto&#x27;;
 
 /**
- * GRPC CRUD Controller for users.
+ * TCP CRUD Controller for users.
  */
 @UsePipes(
   new ValidationPipe({
@@ -517,9 +533,9 @@ import { HashPipe } from &#x27;../pipes/hash-pipe&#x27;;
   HashPipe,
 )
 @UseInterceptors(new HttpExceptionInterceptor())
-@UseGuards(ApiKeyGrpcGuard)
+@UseGuards(ApiKeyTcpGuard)
 @Controller()
-export class GrpcUsersService {
+export class UsersTcpController {
   /**
    * Creates a new instance of UserController.
    * @param usersService Service that provides crud operations on users.
@@ -534,8 +550,8 @@ export class GrpcUsersService {
    * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  create(data: CreateUserDto): Promise&lt;User&gt; {
+  @MessagePattern({ cmd: &#x27;create&#x27; })
+  create(data: CreateUserDto &amp; ApiKeyDto): Promise&lt;User&gt; {
     return this.usersService.create(data);
   }
 
@@ -543,8 +559,9 @@ export class GrpcUsersService {
    * Find all users of the application.
    * @returns A Promise&lt;T&gt; whose result is an array of User.
    */
-  @GrpcMethod()
-  async findAll(): Promise&lt;UserListDto&gt; {
+  @MessagePattern({ cmd: &#x27;findAll&#x27; })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async findAll(data: ApiKeyDto): Promise&lt;UserListDto&gt; {
     const dto &#x3D; new UserListDto();
     dto.users &#x3D; await this.usersService.findAll();
     return dto;
@@ -555,8 +572,8 @@ export class GrpcUsersService {
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  findOne(data: GuidDto): Promise&lt;User&gt; {
+  @MessagePattern({ cmd: &#x27;findOne&#x27; })
+  findOne(data: GuidDto &amp; ApiKeyDto): Promise&lt;User&gt; {
     return this.usersService.findOne(data.guid);
   }
 
@@ -566,8 +583,8 @@ export class GrpcUsersService {
    * @param updateUserDto The data that should be updated.
    * @returns A Promise with an empty result.
    */
-  @GrpcMethod()
-  update(data: UpdateUserDto &amp; GuidDto): Promise&lt;void&gt; {
+  @MessagePattern({ cmd: &#x27;update&#x27; })
+  update(data: UpdateUserDto &amp; GuidDto &amp; ApiKeyDto): Promise&lt;void&gt; {
     return this.usersService.update(data.guid, data);
   }
 
@@ -576,8 +593,8 @@ export class GrpcUsersService {
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; with an empty result.
    */
-  @GrpcMethod()
-  remove(data: GuidDto): Promise&lt;void&gt; {
+  @MessagePattern({ cmd: &#x27;remove&#x27; })
+  remove(data: GuidDto &amp; ApiKeyDto): Promise&lt;void&gt; {
     return this.usersService.remove(data.guid);
   }
 }
@@ -626,7 +643,7 @@ export class GrpcUsersService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'GrpcUsersService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersTcpController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

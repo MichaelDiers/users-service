@@ -74,15 +74,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/UsersModule.html" data-type="entity-link" >UsersModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-UsersModule-0e6b12b5aa809804e99570a5a38943e2522539d013bdae5b4662360b088c4d5e60d00037fbdacb13422af111066a3b67ec9b3a49e90b7068647732f46a9b2544"' : 'data-target="#xs-controllers-links-module-UsersModule-0e6b12b5aa809804e99570a5a38943e2522539d013bdae5b4662360b088c4d5e60d00037fbdacb13422af111066a3b67ec9b3a49e90b7068647732f46a9b2544"' }>
+                                            'data-target="#controllers-links-module-UsersModule-4404b691f8ffa4f9203d39811a45290cb13f06702e987e2f90116add760ed950bf4058a4bc0ec051e636d59de96c41fd04706857ddff80c3e7b579e226bd4bf9"' : 'data-target="#xs-controllers-links-module-UsersModule-4404b691f8ffa4f9203d39811a45290cb13f06702e987e2f90116add760ed950bf4058a4bc0ec051e636d59de96c41fd04706857ddff80c3e7b579e226bd4bf9"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UsersModule-0e6b12b5aa809804e99570a5a38943e2522539d013bdae5b4662360b088c4d5e60d00037fbdacb13422af111066a3b67ec9b3a49e90b7068647732f46a9b2544"' :
-                                            'id="xs-controllers-links-module-UsersModule-0e6b12b5aa809804e99570a5a38943e2522539d013bdae5b4662360b088c4d5e60d00037fbdacb13422af111066a3b67ec9b3a49e90b7068647732f46a9b2544"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UsersModule-4404b691f8ffa4f9203d39811a45290cb13f06702e987e2f90116add760ed950bf4058a4bc0ec051e636d59de96c41fd04706857ddff80c3e7b579e226bd4bf9"' :
+                                            'id="xs-controllers-links-module-UsersModule-4404b691f8ffa4f9203d39811a45290cb13f06702e987e2f90116add760ed950bf4058a4bc0ec051e636d59de96c41fd04706857ddff80c3e7b579e226bd4bf9"' }>
                                             <li class="link">
                                                 <a href="controllers/UsersController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/UsersTcpController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersTcpController</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -103,6 +106,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="controllers/UsersController.html" data-type="entity-link" >UsersController</a>
                                 </li>
+                                <li class="link">
+                                    <a href="controllers/UsersTcpController.html" data-type="entity-link" >UsersTcpController</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -113,6 +119,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
+                            <li class="link">
+                                <a href="classes/ApiKeyDto.html" data-type="entity-link" >ApiKeyDto</a>
+                            </li>
                             <li class="link">
                                 <a href="classes/CreateUserDto.html" data-type="entity-link" >CreateUserDto</a>
                             </li>
@@ -173,7 +182,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="guards-links"' : 'id="xs-guards-links"' }>
                             <li class="link">
-                                <a href="guards/ApiKeyGuard.html" data-type="entity-link" >ApiKeyGuard</a>
+                                <a href="guards/ApiKeyGrpcGuard.html" data-type="entity-link" >ApiKeyGrpcGuard</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/ApiKeyHttpGuard.html" data-type="entity-link" >ApiKeyHttpGuard</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/ApiKeyTcpGuard.html" data-type="entity-link" >ApiKeyTcpGuard</a>
                             </li>
                         </ul>
                     </li>
@@ -185,6 +200,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/IGrpcUsersService.html" data-type="entity-link" >IGrpcUsersService</a>
+                            </li>
                             <li class="link">
                                 <a href="interfaces/ILoggingService.html" data-type="entity-link" >ILoggingService</a>
                             </li>
