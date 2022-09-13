@@ -13,6 +13,7 @@ import { ConfigService } from '@nestjs/config';
 import { EnvNames } from '../src/env-names';
 import UserListDto from 'src/users/dto/user-list.dto';
 import { User } from 'src/users/entities/user.entity';
+import { Constants } from 'src/validation/constants';
 
 describe('GRPC tests', () => {
   let app: INestApplication;
@@ -56,7 +57,8 @@ describe('GRPC tests', () => {
       const result = await firstValueFrom(await service.create(data, metadata));
       expect(result.displayName).toBe(data.displayName);
       expect(
-        uuid.validate(result.guid) && uuid.version(result.guid) === 4,
+        uuid.validate(result.guid) &&
+          uuid.version(result.guid) === Constants.UUID_VERSION,
       ).toBe(true);
     });
   });

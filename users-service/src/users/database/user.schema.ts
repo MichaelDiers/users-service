@@ -1,8 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+/**
+ * The document type for users.
+ */
 export type UserDocument = User & Document;
 
+/**
+ * Describes the schema for users.
+ */
 @Schema()
 export class User {
   /**
@@ -30,4 +36,7 @@ export class User {
   password: string;
 }
 
+/**
+ * The mongodb schema for users.
+ */
 export const UserSchema = SchemaFactory.createForClass(User);

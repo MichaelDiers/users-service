@@ -10,6 +10,10 @@ import { IUsersDatabaseService } from './interfaces/users-database.interface';
  */
 @Injectable()
 export class UsersDatabaseService implements IUsersDatabaseService {
+  /**
+   * Create a new instance of UsersDatabaseService.
+   * @param userModel The model for database operations on users.
+   */
   constructor(
     @InjectModel(UserDatabase.name)
     private userModel: Model<UserDocument>,

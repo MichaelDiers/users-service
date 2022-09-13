@@ -9,6 +9,9 @@ import { HeaderNames } from './header-names';
 import { HashPipe } from './pipes/hash-pipe';
 import * as configs from './configs/index';
 
+/**
+ * The application setup.
+ */
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);

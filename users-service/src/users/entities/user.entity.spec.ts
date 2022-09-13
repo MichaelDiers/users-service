@@ -2,6 +2,7 @@ import * as uuid from 'uuid';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from './user.entity';
 import { User as UserDatabase } from '../database/user.schema';
+import { Constants } from 'src/validation/constants';
 
 describe('user', () => {
   it('constructor should create an empty object', () => {
@@ -25,9 +26,10 @@ describe('user', () => {
     expect(user.displayName).toBe(data.displayName);
     expect(user.email).toBe(data.email);
     expect(user.password).toBe(data.password);
-    expect(uuid.validate(user.guid) && uuid.version(user.guid) === 4).toBe(
-      true,
-    );
+    expect(
+      uuid.validate(user.guid) &&
+        uuid.version(user.guid) === Constants.UUID_VERSION,
+    ).toBe(true);
     expect([...Object.keys(user)].length).toBe(4);
   });
 
