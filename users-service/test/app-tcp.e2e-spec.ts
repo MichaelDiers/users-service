@@ -15,7 +15,7 @@ import { User } from '../src/users/database/user.schema';
 import ApiKeyDto from '../src/users/dto/api-key.dto';
 import { ConfigService } from '@nestjs/config';
 import { EnvNames } from '../src/env-names';
-import { Constants } from 'src/validation/constants';
+import { Constants } from '../src/validation/constants';
 
 describe('TCP tests', () => {
   let app: INestApplication;
@@ -56,7 +56,8 @@ describe('TCP tests', () => {
       );
       expect(displayName).toBe(data.displayName);
       expect(
-        uuid.validate(guid) && uuid.version(guid) === Constants.UUID_VERSION,
+        uuid.validate(guid) &&
+          uuid.version(guid) === Number(Constants.UUID_VERSION),
       ).toBe(true);
     });
   });

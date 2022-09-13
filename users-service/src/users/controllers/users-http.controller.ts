@@ -16,18 +16,18 @@ import {
   ApiResponse,
   ApiSecurity,
 } from '@nestjs/swagger';
-import { HeaderNames } from '../header-names';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
-import { IUsersService, USERS_SERVICE } from './interfaces/users.interface';
+import { HeaderNames } from '../../header-names';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
+import { User } from '../entities/user.entity';
+import { IUsersService, USERS_SERVICE } from '../interfaces/users.interface';
 
 /**
  * CRUD Controller for users.
  */
 @ApiSecurity(HeaderNames.X_API_KEY)
 @Controller('users')
-export class UsersController {
+export class UsersHttpController {
   /**
    * Creates a new instance of UserController.
    * @param usersService Service that provides crud operations on users.

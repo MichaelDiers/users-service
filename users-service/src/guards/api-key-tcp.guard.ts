@@ -2,7 +2,7 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Observable } from 'rxjs';
 import { EnvNames } from '../env-names';
-import ApiKeyDto from 'src/users/dto/api-key.dto';
+import ApiKeyDto from '../users/dto/api-key.dto';
 
 /**
  * Guard for validating the provided api key for tcp services.

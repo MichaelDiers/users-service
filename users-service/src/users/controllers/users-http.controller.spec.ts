@@ -1,8 +1,8 @@
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
-import { UsersController } from './users-http.controller';
-import { IUsersService } from './interfaces/users.interface';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
+import { User } from '../entities/user.entity';
+import { UsersHttpController } from './users-http.controller';
+import { IUsersService } from '../interfaces/users.interface';
 
 class UsersService implements IUsersService {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -31,11 +31,11 @@ class UsersService implements IUsersService {
 }
 
 describe('UsersController', () => {
-  let controller: UsersController;
+  let controller: UsersHttpController;
   const usersService: IUsersService = new UsersService();
 
   beforeEach(async () => {
-    controller = new UsersController(usersService);
+    controller = new UsersHttpController(usersService);
   });
 
   it('should be defined', () => {
