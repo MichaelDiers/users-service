@@ -28,23 +28,16 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content controller">
                    <div class="content-data">
 
 
 
 
 
-
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >GuidDto</li>
+  <li>Controllers</li>
+  <li >HealthController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,15 +55,22 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/dto/guid.dto.ts</code>
+            <code>src/health/health.controller.ts</code>
         </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>health</code>
+            </p>
 
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>DTO for a single guid.</p>
+                <p>A controller for checking the application health.</p>
 
             </p>
 
@@ -81,16 +81,17 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
+                        <h6><b>Methods</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#guid" >guid</a>
+                                <a href="#check" >check</a>
                             </li>
                         </ul>
                     </td>
@@ -100,87 +101,148 @@
 
 
 
-
         </tbody>
     </table>
 </section>
 
-
             <section>
     
-    <h3 id="inputs">
-        Properties
+    <h3 id="methods">
+        Methods
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="guid"></a>
+                    <a name="check"></a>
                     <span class="name">
-                        <span ><b>guid</b></span>
-                        <a href="#guid"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>check</b></span>
+                        <a href="#check"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsString()<br />@IsUUID(Constants.UUID_VERSION)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/users/dto/guid.dto.ts:13</a></div>
-                        </td>
-                    </tr>
-
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>An uuid in version 4.</p>
-</div>
+<code>check()</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get()<br />@HealthCheck()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/health/health.controller.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Execute health checks for the application.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;HealthCheckResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The health status of the server.</p>
+
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
-</section>
-
-
-
-
-
-
-
-    </div>
+</section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsString, IsUUID } from &#x27;class-validator&#x27;;
-import { Constants } from &#x27;../../validation/constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Inject } from &#x27;@nestjs/common&#x27;;
+import {
+  MongooseHealthIndicator,
+  HealthCheckService,
+  HttpHealthIndicator,
+  HealthCheck,
+  MicroserviceHealthIndicator,
+  HealthCheckResult,
+} from &#x27;@nestjs/terminus&#x27;;
+import { HeaderNames } from &#x27;../header-names&#x27;;
+import { UsersGrpcHealthCheck } from &#x27;../health-checks/users-grpc-health-check&#x27;;
+import { InjectionNames } from &#x27;../configuration/InjectionNames.enum&#x27;;
 
 /**
- * DTO for a single guid.
+ * A controller for checking the application health.
  */
-export default class GuidDto {
+@Controller(&#x27;health&#x27;)
+export class HealthController {
   /**
-   * An uuid in version 4.
+   * Creates a new instance of HealthController.
+   * @param healthCheckService Service for checking the application health.
+   * @param httpHealthIndicator Http-based health checks.
+   * @param microserviceHealthIndicator Check the health of microservices.
+   * @param mongooseHealthIndicator Check the health of the mongodb.
+   * @param usersGrpcHealthCheck Check the health of the user service using grpc.
+   * @param tcpConfig The tcp cofiguration of the users service.
+   * @param apiKey The api key that used for requests.
    */
-  @IsString()
-  @IsUUID(Constants.UUID_VERSION)
-  guid: string;
+  constructor(
+    private healthCheckService: HealthCheckService,
+    private httpHealthIndicator: HttpHealthIndicator,
+    private microserviceHealthIndicator: MicroserviceHealthIndicator,
+    private mongooseHealthIndicator: MongooseHealthIndicator,
+    private usersGrpcHealthCheck: UsersGrpcHealthCheck,
+    @Inject(InjectionNames.TCP_CONFIG) private readonly tcpConfig: any,
+    @Inject(InjectionNames.API_KEY) private readonly apiKey: string,
+  ) {}
+
+  /**
+   * Execute health checks for the application.
+   * @returns The health status of the server.
+   */
+  @Get()
+  @HealthCheck()
+  check(): Promise&lt;HealthCheckResult&gt; {
+    const options &#x3D; { headers: {} };
+    options.headers[HeaderNames.X_API_KEY] &#x3D; this.apiKey;
+
+    return this.healthCheckService.check([
+      async () &#x3D;&gt;
+        this.microserviceHealthIndicator.pingCheck(&#x27;tcp&#x27;, this.tcpConfig),
+      () &#x3D;&gt;
+        this.httpHealthIndicator.pingCheck(
+          &#x27;Users Service API Doc&#x27;,
+          &#x27;https://michaeldiers.github.io/users-service&#x27;,
+        ),
+      async () &#x3D;&gt; this.mongooseHealthIndicator.pingCheck(&#x27;mongoose&#x27;),
+      async () &#x3D;&gt;
+        this.httpHealthIndicator.pingCheck(
+          &#x27;Users Service&#x27;,
+          &#x27;http://localhost:3000/users/health/check&#x27;,
+          options,
+        ),
+      async () &#x3D;&gt; this.usersGrpcHealthCheck.isHealthy(&#x27;Grpc Users&#x27;),
+    ]);
+  }
 }
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -215,8 +277,8 @@ export default class GuidDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'GuidDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'HealthController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

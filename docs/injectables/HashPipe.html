@@ -106,12 +106,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
+<code>constructor(hashRounds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/pipes/hash-pipe.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/pipes/hash-pipe.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -132,10 +132,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>hashRounds</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -143,7 +143,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Access the application configuration.</p>
+                                                                <p>The number of used hash rounds.</p>
 
                                                         </td>
                                                 </tr>
@@ -181,8 +181,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/pipes/hash-pipe.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/pipes/hash-pipe.ts:23</a></div>
                 </td>
             </tr>
 
@@ -244,10 +244,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConfigService } from &#x27;@nestjs/config&#x27;;
-import { PipeTransform, Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PipeTransform, Injectable, Inject } from &#x27;@nestjs/common&#x27;;
 import { hashSync } from &#x27;bcrypt&#x27;;
-import { EnvNames } from &#x27;../env-names&#x27;;
+import { InjectionNames } from &#x27;../configuration/InjectionNames.enum&#x27;;
 
 /**
  * Transform the email and password of the given object into its hashes.
@@ -256,9 +255,11 @@ import { EnvNames } from &#x27;../env-names&#x27;;
 export class HashPipe implements PipeTransform {
   /**
    * Creates a new instance of HashPipe.
-   * @param configService Access the application configuration.
+   * @param hashRounds The number of used hash rounds.
    */
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    @Inject(InjectionNames.HASH_ROUNDS) private readonly hashRounds: number,
+  ) {}
 
   /**
    * Create hashes for email and password if the fields exists in the given value.
@@ -268,13 +269,12 @@ export class HashPipe implements PipeTransform {
   transform(value: any) {
     const data &#x3D; value as { email; password };
 
-    const hashRounds &#x3D; parseInt(this.configService.get(EnvNames.HASH_ROUNDS));
     if (data.email) {
-      data.email &#x3D; hashSync(data.email, hashRounds);
+      data.email &#x3D; hashSync(data.email, this.hashRounds);
     }
 
     if (data.password) {
-      data.password &#x3D; hashSync(data.password, hashRounds);
+      data.password &#x3D; hashSync(data.password, this.hashRounds);
     }
 
     return value;

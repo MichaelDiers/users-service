@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content guard">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,11 +38,9 @@
 
 
 
-
-
 <ol class="breadcrumb">
-    <li>Guards</li>
-    <li >ApiKeyHttpGuard</li>
+  <li>Injectables</li>
+  <li >UsersGrpcHealthCheck</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,45 +53,35 @@
 </ul>
 
 <div class="tab-content">
-        <div class="tab-pane fade active in" id="c-info">
-            <p class="comment">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
             <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/health-checks/users-grpc-health-check.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
             </p>
             <p class="comment">
-                <code>src/guards/api-key-http.guard.ts</code>
+                <p>A custom health indicator for the grpc users service.</p>
+
+            </p>
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                    <code>HealthIndicator</code>
             </p>
 
 
-                <p class="comment">
-                <h3>Description</h3>
-                </p>
-                <p class="comment">
-                    <p>Guard for validating the provided api key for http services.</p>
-
-                </p>
-
-
-
-
-                <section>
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#serviceApiKey" >serviceApiKey</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -104,11 +92,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#canActivate" >canActivate</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#readApiKey" >readApiKey</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#isHealthy" >isHealthy</a>
                             </li>
                         </ul>
                     </td>
@@ -122,24 +107,24 @@
     </table>
 </section>
 
-                <section>
+            <section>
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
+<code>constructor(grpcUsersClient: <a href="../interfaces/IUsersClient.html" target="_self">IUsersClient</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/guards/api-key-http.guard.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/health-checks/users-grpc-health-check.ts:14</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Create a new instance of ApiKeyGuard.</p>
+                            <div class="io-description"><p>Creates a new instance of UsersGrpcHealthCheck.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -154,10 +139,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>grpcUsersClient</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
+                                                                        <code><a href="../interfaces/IUsersClient.html" target="_self" >IUsersClient</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -165,7 +150,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Access to the application configuration.</p>
+                                                                <p>The grpc client for the users service.</p>
 
                                                         </td>
                                                 </tr>
@@ -178,7 +163,7 @@
         </table>
 </section>
 
-                <section>
+            <section>
     
     <h3 id="methods">
         Methods
@@ -187,110 +172,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="canActivate"></a>
+                    <a name="isHealthy"></a>
                     <span class="name">
-                        <span ><b>canActivate</b></span>
-                        <a href="#canActivate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>canActivate(context: ExecutionContext)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/guards/api-key-http.guard.ts:28</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Validate the provided api key of the request.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>context</td>
-                                    <td>
-                                            <code>ExecutionContext</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The current execution context.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>boolean | Promise | Observable</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>True if the api key is valid and false otherwise.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="readApiKey"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>readApiKey</b></span>
-                        <a href="#readApiKey"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>isHealthy</b></span>
+                        <a href="#isHealthy"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>readApiKey(context: ExecutionContext)</code>
+                    <code>isHealthy(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/guards/api-key-http.guard.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/health-checks/users-grpc-health-check.ts:31</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Read the api key from http and rcp requests.</p>
+                    <div class="io-description"><p>Execute a health check for the grpc users service.</p>
 </div>
 
                     <div class="io-description">
@@ -307,9 +215,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>context</td>
+                                    <td>key</td>
                                     <td>
-                                            <code>ExecutionContext</code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -318,7 +226,7 @@
 
 
                                     <td>
-                                        <p>The current execution context.</p>
+                                        <p>The key which will be used as key for the result object.</p>
 
                                     </td>
                                 </tr>
@@ -328,11 +236,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>string | undefined</code>
+                        <b>Returns : </b>    <code>Promise&lt;HealthIndicatorResult&gt;</code>
 
                     </div>
                     <div class="io-description">
-                        <p>The api key if it is included in the request and undefined otherwise.</p>
+                        <p>The health status of the service.</p>
 
                     </div>
                 </td>
@@ -340,72 +248,62 @@
         </tbody>
     </table>
 </section>
-        </div>
+
+    </div>
 
 
-        <div class="tab-pane fade  tab-source-code" id="c-source">
-            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, CanActivate, ExecutionContext } from &#x27;@nestjs/common&#x27;;
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { EnvNames } from &#x27;../env-names&#x27;;
-import { HeaderNames } from &#x27;../header-names&#x27;;
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;;
+import {
+  HealthCheckError,
+  HealthIndicator,
+  HealthIndicatorResult,
+} from &#x27;@nestjs/terminus&#x27;;
+import { InjectionNames } from &#x27;../configuration/InjectionNames.enum&#x27;;
+import IUsersClient from &#x27;../users/interfaces/users-client.interface&#x27;;
 
 /**
- * Guard for validating the provided api key for http services.
+ * A custom health indicator for the grpc users service.
  */
 @Injectable()
-export class ApiKeyHttpGuard implements CanActivate {
+export class UsersGrpcHealthCheck extends HealthIndicator {
   /**
-   * The expected api key for the service.
+   * Creates a new instance of UsersGrpcHealthCheck.
+   * @param grpcUsersClient The grpc client for the users service.
    */
-  private serviceApiKey: string;
-
-  /**
-   * Create a new instance of ApiKeyGuard.
-   * @param configService Access to the application configuration.
-   */
-  constructor(private readonly configService: ConfigService) {}
-
-  /**
-   * Validate the provided api key of the request.
-   * @param context The current execution context.
-   * @returns True if the api key is valid and false otherwise.
-   */
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
-    const apiKey &#x3D; this.readApiKey(context);
-
-    if (!apiKey) {
-      return false;
-    }
-
-    if (!this.serviceApiKey) {
-      this.serviceApiKey &#x3D; this.configService.get(EnvNames.API_KEY);
-    }
-
-    return this.serviceApiKey &#x3D;&#x3D;&#x3D; apiKey;
+  constructor(
+    @Inject(InjectionNames.GRPC_USERS_CLIENT)
+    private readonly grpcUsersClient: IUsersClient,
+  ) {
+    super();
   }
 
   /**
-   * Read the api key from http and rcp requests.
-   * @param context The current execution context.
-   * @returns The api key if it is included in the request and undefined otherwise.
+   * Execute a health check for the grpc users service.
+   * @param key The key which will be used as key for the result object.
+   * @returns The health status of the service.
    */
-  private readApiKey(context: ExecutionContext): string | undefined {
-    const request &#x3D; context.switchToHttp().getRequest();
-    const headers &#x3D; request?.headers;
-
-    if (!headers) {
-      return;
+  async isHealthy(key: string): Promise&lt;HealthIndicatorResult&gt; {
+    try {
+      await this.grpcUsersClient.healthCheck();
+      return this.getStatus(key, true, { info: &#x27;Up and running&#x27; });
+    } catch (err) {
+      throw new HealthCheckError(
+        &#x27;Custom health check failed&#x27;,
+        this.getStatus(key, false, {
+          info: &#x27;service is down&#x27;,
+          error: err.message,
+        }),
+      );
     }
-
-    return headers[HeaderNames.X_API_KEY];
   }
 }
 </code></pre>
-        </div>
+    </div>
+
 </div>
+
+
 
 
 
@@ -442,8 +340,8 @@ export class ApiKeyHttpGuard implements CanActivate {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'guard';
-            var COMPODOC_CURRENT_PAGE_URL = 'ApiKeyHttpGuard.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersGrpcHealthCheck.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

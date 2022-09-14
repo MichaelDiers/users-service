@@ -109,6 +109,12 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="#healthCheck" 
+>
+                                        healthCheck
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="#remove" 
 >
                                         remove
@@ -409,6 +415,99 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="healthCheck"></a>
+                    <span class="name">
+                        <span ><b>healthCheck</b></span>
+                        <a href="#healthCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>healthCheck(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, metadata: Metadata)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/users/interfaces/users-grpc-controller.interface.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Execute a simple health check.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The data is not processed.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>metadata</td>
+                                    <td>
+                                            <code>Metadata</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The request metadata that includes the api key.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A Promise<T> with an empty result.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
                         <span ><b>remove</b></span>
@@ -641,6 +740,14 @@ export interface IGrpcUsersService {
    * @returns A Promise&lt;T&gt; with an empty result.
    */
   remove(data: GuidDto, metadata: Metadata): Observable&lt;any&gt;;
+
+  /**
+   * Execute a simple health check.
+   * @param data The data is not processed.
+   * @param metadata The request metadata that includes the api key.
+   * @returns A Promise&lt;T&gt; with an empty result.
+   */
+  healthCheck(data: any, metadata: Metadata): Observable&lt;any&gt;;
 }
 </code></pre>
     </div>

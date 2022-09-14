@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >MongodbConfigService</li>
+  <li >ApiKeyHttpGuard</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/services/mongodb-config.service.ts</code>
+            <code>src/guards/api-key-http.guard.ts</code>
         </p>
 
 
@@ -66,10 +66,16 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>A MongooseOptionsFactory for creating the options for connecting to mongodb.</p>
+                <p>Guard for validating the provided api key for http services.</p>
 
             </p>
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../guards/ApiKeyGuard.html" target="_self" >ApiKeyGuard</a></code>
+            </p>
 
 
             <section>
@@ -86,8 +92,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#createMongooseOptions" >createMongooseOptions</a>
+                                    <span class="modifier">Protected</span>
+                                <a href="#readApiKey" >readApiKey</a>
                             </li>
                         </ul>
                     </td>
@@ -107,18 +113,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(secretManagerService: <a href="../injectables/SecretManagerService.html" target="_self">ISecretManagerService</a>)</code>
+<code>constructor(serviceApiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/services/mongodb-config.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/guards/api-key-http.guard.ts:10</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Create a new instance of MongodbConfigService.</p>
+                            <div class="io-description"><p>Create a new instance of ApiKeyGuard.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -128,25 +134,20 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>secretManagerService</td>
+                                                        <td>serviceApiKey</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/SecretManagerService.html" target="_self" >ISecretManagerService</a></code>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
                                                   
                                                     <td>
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>Access google clouds secret manager.</p>
-
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -166,43 +167,75 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createMongooseOptions"></a>
+                    <a name="readApiKey"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span ><b>createMongooseOptions</b></span>
-                        <a href="#createMongooseOptions"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Protected</span>
+                        <span ><b>readApiKey</b></span>
+                        <a href="#readApiKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createMongooseOptions()</code>
+                    <code>readApiKey(context: ExecutionContext)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/services/mongodb-config.service.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/guards/api-key-http.guard.ts:24</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Create the options for connecting to mongodb.</p>
+                    <div class="io-description"><p>Read the api key from http and rcp requests.</p>
 </div>
 
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>context</td>
+                                    <td>
+                                            <code>ExecutionContext</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The current execution context.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;MongooseModuleOptions&gt;</code>
+                        <b>Returns : </b>    <code>string | undefined</code>
 
                     </div>
                     <div class="io-description">
-                        <p>A Promise<T> whose result are the MongooseModuleOptions.</p>
+                        <p>The api key if it is included in the request and undefined otherwise.</p>
 
                     </div>
                 </td>
@@ -215,49 +248,38 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;;
-import {
-  MongooseModuleOptions,
-  MongooseOptionsFactory,
-} from &#x27;@nestjs/mongoose&#x27;;
-import {
-  ISecretManagerService,
-  SECRET_MANAGER_SERVICE,
-} from &#x27;./secret-manager.interface&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ExecutionContext, Inject } from &#x27;@nestjs/common&#x27;;
+import { InjectionNames } from &#x27;../configuration/InjectionNames.enum&#x27;;
+import { HeaderNames } from &#x27;../header-names&#x27;;
+import { ApiKeyGuard } from &#x27;./api-key.guard&#x27;;
 
 /**
- * A MongooseOptionsFactory for creating the options for connecting to mongodb.
+ * Guard for validating the provided api key for http services.
  */
 @Injectable()
-export class MongodbConfigService implements MongooseOptionsFactory {
+export class ApiKeyHttpGuard extends ApiKeyGuard {
   /**
-   * Create a new instance of MongodbConfigService.
-   * @param secretManagerService Access google clouds secret manager.
+   * Create a new instance of ApiKeyGuard.
+   * @param apiKey A valid api key.
    */
-  constructor(
-    @Inject(SECRET_MANAGER_SERVICE)
-    private readonly secretManagerService: ISecretManagerService,
-  ) {}
+  constructor(@Inject(InjectionNames.API_KEY) serviceApiKey: string) {
+    super(serviceApiKey);
+  }
 
   /**
-   * Create the options for connecting to mongodb.
-   * @returns A Promise&lt;T&gt; whose result are the MongooseModuleOptions.
+   * Read the api key from http and rcp requests.
+   * @param context The current execution context.
+   * @returns The api key if it is included in the request and undefined otherwise.
    */
-  public createMongooseOptions(): Promise&lt;MongooseModuleOptions&gt; {
-    return new Promise((resolve, reject) &#x3D;&gt; {
-      this.secretManagerService
-        .getConnectionString()
-        .then((connectionString: string) &#x3D;&gt; {
-          const options &#x3D; {
-            uri: connectionString,
-          };
+  protected readApiKey(context: ExecutionContext): string | undefined {
+    const request &#x3D; context.switchToHttp().getRequest();
+    const headers &#x3D; request?.headers;
 
-          resolve(options);
-        })
-        .catch((err) &#x3D;&gt; {
-          reject(err);
-        });
-    });
+    if (!headers) {
+      return;
+    }
+
+    return headers[HeaderNames.X_API_KEY];
   }
 }
 </code></pre>
@@ -303,7 +325,7 @@ export class MongodbConfigService implements MongooseOptionsFactory {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'MongodbConfigService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ApiKeyHttpGuard.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

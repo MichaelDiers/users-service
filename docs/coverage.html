@@ -70,61 +70,109 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/functions.html#grpcConfig">src/configs/grpc-config.ts</a>
+                <a href="./injectables/GrpcUsersClient.html">src/clients/grpc-users-client.ts</a>
             </td>
-            <td>function</td>
-            <td>grpcConfig</td>
+            <td>injectable</td>
+            <td>GrpcUsersClient</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
+                <span class="coverage-count">(11/11)</span>
             </td>
         </tr>
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/functions.html#tcpConfig">src/configs/tcp-config.ts</a>
+                <a href="./injectables/TcpUsersClient.html">src/clients/tcp-users-client.ts</a>
             </td>
-            <td>function</td>
-            <td>tcpConfig</td>
+            <td>injectable</td>
+            <td>TcpUsersClient</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
+                <span class="coverage-count">(11/11)</span>
             </td>
         </tr>
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./guards/ApiKeyGrpcGuard.html">src/guards/api-key-grpc.guard.ts</a>
+                <a href="./injectables/SecretManagerService.html">src/configuration/secret-manager.service.ts</a>
             </td>
-            <td>guard</td>
+            <td>injectable</td>
+            <td>SecretManagerService</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ApiKeyGrpcGuard.html">src/guards/api-key-grpc.guard.ts</a>
+            </td>
+            <td>injectable</td>
             <td>ApiKeyGrpcGuard</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
+                <span class="coverage-count">(3/3)</span>
             </td>
         </tr>
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./guards/ApiKeyHttpGuard.html">src/guards/api-key-http.guard.ts</a>
+                <a href="./injectables/ApiKeyHttpGuard.html">src/guards/api-key-http.guard.ts</a>
             </td>
-            <td>guard</td>
+            <td>injectable</td>
             <td>ApiKeyHttpGuard</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
+                <span class="coverage-count">(3/3)</span>
             </td>
         </tr>
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./guards/ApiKeyTcpGuard.html">src/guards/api-key-tcp.guard.ts</a>
+                <a href="./injectables/ApiKeyTcpGuard.html">src/guards/api-key-tcp.guard.ts</a>
             </td>
-            <td>guard</td>
+            <td>injectable</td>
             <td>ApiKeyTcpGuard</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./guards/ApiKeyGuard.html">src/guards/api-key.guard.ts</a>
+            </td>
+            <td>guard</td>
+            <td>ApiKeyGuard</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/UsersGrpcHealthCheck.html">src/health-checks/users-grpc-health-check.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>UsersGrpcHealthCheck</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/HealthController.html">src/health/health.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>HealthController</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -202,18 +250,6 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./injectables/MongodbConfigService.html">src/services/mongodb-config.service.ts</a>
-            </td>
-            <td>injectable</td>
-            <td>MongodbConfigService</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(3/3)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
                 <a href="./interfaces/ISecretManagerService.html">src/services/secret-manager.interface.ts</a>
             </td>
             <td>interface</td>
@@ -238,13 +274,37 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./injectables/SecretManagerService.html">src/services/secret-manager.service.ts</a>
+                <a href="./controllers/GrpcUsersService.html">src/users/controllers/users-grpc.controller.ts</a>
             </td>
-            <td>injectable</td>
-            <td>SecretManagerService</td>
+            <td>controller</td>
+            <td>GrpcUsersService</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
+                <span class="coverage-count">(7/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/UsersHttpController.html">src/users/controllers/users-http.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>UsersHttpController</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(7/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/UsersTcpController.html">src/users/controllers/users-tcp.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>UsersTcpController</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(7/7)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -346,6 +406,18 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
+                <a href="./interfaces/IUsersClient.html">src/users/interfaces/users-client.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>IUsersClient</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(8/8)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
                 <a href="./interfaces/IUsersDatabaseService.html">src/users/interfaces/users-database.interface.ts</a>
             </td>
             <td>interface</td>
@@ -376,7 +448,7 @@
             <td>IGrpcUsersService</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(6/6)</span>
+                <span class="coverage-count">(7/7)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -418,42 +490,6 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./controllers/GrpcUsersService.html">src/users/users-grpc.controller.ts</a>
-            </td>
-            <td>controller</td>
-            <td>GrpcUsersService</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(6/6)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./controllers/UsersController.html">src/users/users-http.controller.ts</a>
-            </td>
-            <td>controller</td>
-            <td>UsersController</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(6/6)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./controllers/UsersTcpController.html">src/users/users-tcp.controller.ts</a>
-            </td>
-            <td>controller</td>
-            <td>UsersTcpController</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(6/6)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/UsersService.html">src/users/users.service.ts</a>
             </td>
             <td>injectable</td>
@@ -470,6 +506,18 @@
             </td>
             <td>variable</td>
             <td>Constants</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#clientTest">test/client.tester.ts</a>
+            </td>
+            <td>function</td>
+            <td>clientTest</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(1/1)</span>

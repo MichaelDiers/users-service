@@ -68,7 +68,7 @@
                 <h3>Description</h3>
                 </p>
                 <p class="comment">
-                    <p>Guard for validating the provided api key.</p>
+                    <p>Base guard for validating api keys.</p>
 
                 </p>
 
@@ -79,21 +79,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#serviceApiKey" >serviceApiKey</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -107,7 +92,8 @@
                                 <a href="#canActivate" >canActivate</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Abstract</span>
                                 <a href="#readApiKey" >readApiKey</a>
                             </li>
                         </ul>
@@ -128,12 +114,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
+<code>constructor(serviceApiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/guards/api-key.guard.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/guards/api-key.guard.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -149,25 +135,20 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>serviceApiKey</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
                                                   
                                                     <td>
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>Access to the application configuration.</p>
-
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -203,8 +184,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/guards/api-key.guard.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/guards/api-key.guard.ts:20</a></div>
                 </td>
             </tr>
 
@@ -266,7 +247,8 @@
                 <td class="col-md-4">
                     <a name="readApiKey"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                        <span class="modifier">Protected</span>
+                        <span class="modifier">Abstract</span>
                         <span ><b>readApiKey</b></span>
                         <a href="#readApiKey"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -282,15 +264,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/guards/api-key.guard.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/guards/api-key.guard.ts:37</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Read the api key from http and rcp requests.</p>
+                    <div class="io-description"><p>Read the api key from requests.</p>
 </div>
 
                     <div class="io-description">
@@ -345,27 +327,18 @@
 
         <div class="tab-pane fade  tab-source-code" id="c-source">
             <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, CanActivate, ExecutionContext } from &#x27;@nestjs/common&#x27;;
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
-import { EnvNames } from &#x27;../env-names&#x27;;
-import { HeaderNames } from &#x27;../header-names&#x27;;
-import { Metadata } from &#x27;@grpc/grpc-js&#x27;;
 
 /**
- * Guard for validating the provided api key.
+ * Base guard for validating api keys.
  */
 @Injectable()
-export class ApiKeyGuard implements CanActivate {
-  /**
-   * The expected api key for the service.
-   */
-  private serviceApiKey: string;
-
+export abstract class ApiKeyGuard implements CanActivate {
   /**
    * Create a new instance of ApiKeyGuard.
-   * @param configService Access to the application configuration.
+   * @param apiKey A valid api key.
    */
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly serviceApiKey: string) {}
 
   /**
    * Validate the provided api key of the request.
@@ -381,46 +354,15 @@ export class ApiKeyGuard implements CanActivate {
       return false;
     }
 
-    if (!this.serviceApiKey) {
-      this.serviceApiKey &#x3D; this.configService.get(EnvNames.API_KEY);
-    }
-
     return this.serviceApiKey &#x3D;&#x3D;&#x3D; apiKey;
   }
 
   /**
-   * Read the api key from http and rcp requests.
+   * Read the api key from requests.
    * @param context The current execution context.
    * @returns The api key if it is included in the request and undefined otherwise.
    */
-  private readApiKey(context: ExecutionContext): string | undefined {
-    if (context.getType() &#x3D;&#x3D;&#x3D; &#x27;http&#x27;) {
-      const request &#x3D; context.switchToHttp().getRequest();
-      const headers &#x3D; request?.headers;
-
-      if (!headers) {
-        return;
-      }
-
-      return headers[HeaderNames.X_API_KEY];
-    } else if (context.getType() &#x3D;&#x3D;&#x3D; &#x27;rpc&#x27;) {
-      const metadata: Metadata &#x3D; context
-        .getArgs()
-        .find((arg) &#x3D;&gt; arg instanceof Metadata);
-      if (!metadata) {
-        return;
-      }
-
-      const apiKeys &#x3D; metadata.get(HeaderNames.X_API_KEY);
-      if (!apiKeys || apiKeys.length !&#x3D;&#x3D; 1) {
-        return;
-      }
-
-      return apiKeys[0].toString();
-    }
-
-    return;
-  }
+  protected abstract readApiKey(context: ExecutionContext): string | undefined;
 }
 </code></pre>
         </div>

@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >GrpcUsersService</li>
+  <li >UsersHttpController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,16 +55,22 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/controllers/users-grpc.controller.ts</code>
+            <code>src/users/controllers/users-http.controller.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>users</code>
+            </p>
 
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>GRPC CRUD Controller for users.</p>
+                <p>CRUD Controller for users.</p>
 
             </p>
 
@@ -88,7 +94,6 @@
                                 <a href="#create" >create</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
@@ -133,7 +138,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>create(data: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+<code>create(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
@@ -141,14 +146,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@Post()<br />@HttpCode(201)<br />@ApiOperation({description: &#x27;Create a new user.&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The new user is created.&#x27;, type: User})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;An user with given displayName or email already exists.&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -167,11 +172,12 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>createUserDto</td>
                                     <td>
                                                 <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
                                     </td>
@@ -181,6 +187,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>DTO that contains the validated user data.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -205,7 +215,6 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -213,8 +222,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+<code>findAll()</code>
                 </td>
             </tr>
 
@@ -222,14 +230,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@Get()<br />@ApiOperation({description: &#x27;List all existing users.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;All users are listed.&#x27;, type: undefined})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:75</a></div>
                 </td>
             </tr>
 
@@ -242,7 +250,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;UserListDto&gt;</code>
+                        <b>Returns : </b>    <code>Promise&lt;User[]&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -266,7 +274,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>findOne(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -274,14 +282,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@Get(&#x27;:guid&#x27;)<br />@ApiOperation({description: &#x27;Read the data of a certain user.&#x27;})<br />@ApiParam({name: &#x27;guid&#x27;, example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;, description: &#x27;The id of the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The user is found and data is returned.&#x27;, type: User})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;No user with given id is found.&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:99</a></div>
                 </td>
             </tr>
 
@@ -300,13 +308,14 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>guid</td>
                                     <td>
-                                                <code><a href="../classes/GuidDto.html" target="_self" >GuidDto</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -314,6 +323,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>The id of the user.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -353,14 +366,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@Get(&#x27;health/check&#x27;)<br />@ApiOperation({description: &#x27;Execute a simple health check.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The service is healthy.&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:162</a></div>
                 </td>
             </tr>
 
@@ -370,14 +383,8 @@
                     <div class="io-description"><p>Execute a simple health check.</p>
 </div>
 
-                    <div>
-                    </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A Promise<T> with an empty result.</p>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                 </td>
@@ -397,7 +404,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>remove(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>remove(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -405,14 +412,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@Delete(&#x27;:guid&#x27;)<br />@ApiOperation({description: &#x27;Delete a certain user.&#x27;})<br />@ApiParam({name: &#x27;guid&#x27;, example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;, description: &#x27;The id of the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The user is deleted.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;No user with given id is found.&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:149</a></div>
                 </td>
             </tr>
 
@@ -431,13 +438,14 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>guid</td>
                                     <td>
-                                                <code><a href="../classes/GuidDto.html" target="_self" >GuidDto</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -445,6 +453,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>The id of the user.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -476,7 +488,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(data)</code>
+<code>update(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateUserDto: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
@@ -484,14 +496,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@GrpcMethod()<br /></code>
+                    <code>@Patch(&#x27;:guid&#x27;)<br />@ApiOperation({description: &#x27;Update the data of a certain user.&#x27;})<br />@ApiParam({name: &#x27;guid&#x27;, example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;, description: &#x27;The id of the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The user is updated.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;No user with given id is found.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;An user with updated displayName or email already exists.&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:126</a></div>
                 </td>
             </tr>
 
@@ -508,18 +520,43 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>guid</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
                                     <td>
                                         No
                                     </td>
 
 
+                                    <td>
+                                        <p>The id of the user.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>updateUserDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The data that should be updated.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -544,37 +581,34 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
   Inject,
-  UseGuards,
-  UseInterceptors,
-  UsePipes,
-  ValidationPipe,
+  ParseUUIDPipe,
+  HttpCode,
 } from &#x27;@nestjs/common&#x27;;
-import { GrpcMethod } from &#x27;@nestjs/microservices&#x27;;
+import {
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiSecurity,
+} from &#x27;@nestjs/swagger&#x27;;
+import { HeaderNames } from &#x27;../../header-names&#x27;;
 import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
 import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
 import { User } from &#x27;../entities/user.entity&#x27;;
 import { IUsersService, USERS_SERVICE } from &#x27;../interfaces/users.interface&#x27;;
-import GuidDto from &#x27;../dto/guid.dto&#x27;;
-import UserListDto from &#x27;../dto/user-list.dto&#x27;;
-import { HttpExceptionInterceptor } from &#x27;../../interceptors/http-exception.interceptor&#x27;;
-import { ApiKeyGrpcGuard } from &#x27;../../guards/api-key-grpc.guard&#x27;;
-import { HashPipe } from &#x27;../../pipes/hash-pipe&#x27;;
 
 /**
- * GRPC CRUD Controller for users.
+ * CRUD Controller for users.
  */
-@UsePipes(
-  new ValidationPipe({
-    stopAtFirstError: true,
-    whitelist: true, // remove all unknown fields
-  }),
-  HashPipe,
-)
-@UseInterceptors(new HttpExceptionInterceptor())
-@UseGuards(ApiKeyGrpcGuard)
-@Controller()
-export class GrpcUsersService {
+@ApiSecurity(HeaderNames.X_API_KEY)
+@Controller(&#x27;users&#x27;)
+export class UsersHttpController {
   /**
    * Creates a new instance of UserController.
    * @param usersService Service that provides crud operations on users.
@@ -589,20 +623,38 @@ export class GrpcUsersService {
    * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  create(data: CreateUserDto): Promise&lt;User&gt; {
-    return this.usersService.create(data);
+  @Post()
+  @HttpCode(201)
+  @ApiOperation({ description: &#x27;Create a new user.&#x27; })
+  @ApiResponse({
+    status: 201,
+    description: &#x27;The new user is created.&#x27;,
+    type: User,
+  })
+  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
+  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
+  @ApiResponse({
+    status: 409,
+    description: &#x27;An user with given displayName or email already exists.&#x27;,
+  })
+  create(@Body() createUserDto: CreateUserDto): Promise&lt;User&gt; {
+    return this.usersService.create(createUserDto);
   }
 
   /**
    * Find all users of the application.
    * @returns A Promise&lt;T&gt; whose result is an array of User.
    */
-  @GrpcMethod()
-  async findAll(): Promise&lt;UserListDto&gt; {
-    const dto &#x3D; new UserListDto();
-    dto.users &#x3D; await this.usersService.findAll();
-    return dto;
+  @Get()
+  @ApiOperation({ description: &#x27;List all existing users.&#x27; })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;All users are listed.&#x27;,
+    type: [User],
+  })
+  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
+  findAll(): Promise&lt;User[]&gt; {
+    return this.usersService.findAll();
   }
 
   /**
@@ -610,9 +662,25 @@ export class GrpcUsersService {
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  findOne(data: GuidDto): Promise&lt;User&gt; {
-    return this.usersService.findOne(data.guid);
+  @Get(&#x27;:guid&#x27;)
+  @ApiOperation({ description: &#x27;Read the data of a certain user.&#x27; })
+  @ApiParam({
+    name: &#x27;guid&#x27;,
+    example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;,
+    description: &#x27;The id of the user.&#x27;,
+  })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;The user is found and data is returned.&#x27;,
+    type: User,
+  })
+  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
+  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;No user with given id is found.&#x27; })
+  findOne(
+    @Param(&#x27;guid&#x27;, new ParseUUIDPipe({ version: &#x27;4&#x27; })) guid: string,
+  ): Promise&lt;User&gt; {
+    return this.usersService.findOne(guid);
   }
 
   /**
@@ -621,9 +689,26 @@ export class GrpcUsersService {
    * @param updateUserDto The data that should be updated.
    * @returns A Promise with an empty result.
    */
-  @GrpcMethod()
-  update(data: UpdateUserDto &amp; GuidDto): Promise&lt;void&gt; {
-    return this.usersService.update(data.guid, data);
+  @Patch(&#x27;:guid&#x27;)
+  @ApiOperation({ description: &#x27;Update the data of a certain user.&#x27; })
+  @ApiParam({
+    name: &#x27;guid&#x27;,
+    example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;,
+    description: &#x27;The id of the user.&#x27;,
+  })
+  @ApiResponse({ status: 200, description: &#x27;The user is updated.&#x27; })
+  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
+  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;No user with given id is found.&#x27; })
+  @ApiResponse({
+    status: 409,
+    description: &#x27;An user with updated displayName or email already exists.&#x27;,
+  })
+  update(
+    @Param(&#x27;guid&#x27;, new ParseUUIDPipe({ version: &#x27;4&#x27; })) guid: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise&lt;void&gt; {
+    return this.usersService.update(guid, updateUserDto);
   }
 
   /**
@@ -631,19 +716,31 @@ export class GrpcUsersService {
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; with an empty result.
    */
-  @GrpcMethod()
-  remove(data: GuidDto): Promise&lt;void&gt; {
-    return this.usersService.remove(data.guid);
+  @Delete(&#x27;:guid&#x27;)
+  @ApiOperation({ description: &#x27;Delete a certain user.&#x27; })
+  @ApiParam({
+    name: &#x27;guid&#x27;,
+    example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;,
+    description: &#x27;The id of the user.&#x27;,
+  })
+  @ApiResponse({ status: 200, description: &#x27;The user is deleted.&#x27; })
+  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
+  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;No user with given id is found.&#x27; })
+  remove(
+    @Param(&#x27;guid&#x27;, new ParseUUIDPipe({ version: &#x27;4&#x27; })) guid: string,
+  ): Promise&lt;void&gt; {
+    return this.usersService.remove(guid);
   }
 
   /**
    * Execute a simple health check.
-   * @returns A Promise&lt;T&gt; with an empty result.
    */
-  @GrpcMethod()
-  healthCheck(): Promise&lt;void&gt; {
-    return new Promise((resolve) &#x3D;&gt; resolve());
-  }
+  @Get(&#x27;health/check&#x27;)
+  @ApiOperation({ description: &#x27;Execute a simple health check.&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;The service is healthy.&#x27; })
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  healthCheck(): void {}
 }
 </code></pre>
     </div>
@@ -690,7 +787,7 @@ export class GrpcUsersService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'GrpcUsersService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersHttpController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

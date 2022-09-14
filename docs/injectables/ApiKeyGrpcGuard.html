@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content guard">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,11 +38,9 @@
 
 
 
-
-
 <ol class="breadcrumb">
-    <li>Guards</li>
-    <li >ApiKeyTcpGuard</li>
+  <li>Injectables</li>
+  <li >ApiKeyGrpcGuard</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,45 +53,35 @@
 </ul>
 
 <div class="tab-content">
-        <div class="tab-pane fade active in" id="c-info">
-            <p class="comment">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
             <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/guards/api-key-grpc.guard.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
             </p>
             <p class="comment">
-                <code>src/guards/api-key-tcp.guard.ts</code>
+                <p>Guard for validating the provided api key in GRPC context.</p>
+
+            </p>
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../guards/ApiKeyGuard.html" target="_self" >ApiKeyGuard</a></code>
             </p>
 
 
-                <p class="comment">
-                <h3>Description</h3>
-                </p>
-                <p class="comment">
-                    <p>Guard for validating the provided api key for tcp services.</p>
-
-                </p>
-
-
-
-
-                <section>
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#serviceApiKey" >serviceApiKey</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -104,10 +92,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#canActivate" >canActivate</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Protected</span>
                                 <a href="#readApiKey" >readApiKey</a>
                             </li>
                         </ul>
@@ -122,18 +107,18 @@
     </table>
 </section>
 
-                <section>
+            <section>
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
+<code>constructor(serviceApiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/guards/api-key-tcp.guard.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/guards/api-key-grpc.guard.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -149,25 +134,20 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>serviceApiKey</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
                                                   
                                                     <td>
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>Access to the application configuration.</p>
-
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -178,7 +158,7 @@
         </table>
 </section>
 
-                <section>
+            <section>
     
     <h3 id="methods">
         Methods
@@ -187,86 +167,9 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="canActivate"></a>
-                    <span class="name">
-                        <span ><b>canActivate</b></span>
-                        <a href="#canActivate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>canActivate(context: ExecutionContext)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/guards/api-key-tcp.guard.ts:28</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Validate the provided api key of the request.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>context</td>
-                                    <td>
-                                            <code>ExecutionContext</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The current execution context.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>boolean | Promise | Observable</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>True if the api key is valid and false otherwise.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="readApiKey"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                        <span class="modifier">Protected</span>
                         <span ><b>readApiKey</b></span>
                         <a href="#readApiKey"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -282,8 +185,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/guards/api-key-tcp.guard.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/guards/api-key-grpc.guard.ts:25</a></div>
                 </td>
             </tr>
 
@@ -340,51 +243,28 @@
         </tbody>
     </table>
 </section>
-        </div>
+
+    </div>
 
 
-        <div class="tab-pane fade  tab-source-code" id="c-source">
-            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, CanActivate, ExecutionContext } from &#x27;@nestjs/common&#x27;;
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { EnvNames } from &#x27;../env-names&#x27;;
-import ApiKeyDto from &#x27;src/users/dto/api-key.dto&#x27;;
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ExecutionContext, Inject } from &#x27;@nestjs/common&#x27;;
+import { HeaderNames } from &#x27;../header-names&#x27;;
+import { Metadata } from &#x27;@grpc/grpc-js&#x27;;
+import { InjectionNames } from &#x27;../configuration/InjectionNames.enum&#x27;;
+import { ApiKeyGuard } from &#x27;./api-key.guard&#x27;;
 
 /**
- * Guard for validating the provided api key for tcp services.
+ * Guard for validating the provided api key in GRPC context.
  */
 @Injectable()
-export class ApiKeyTcpGuard implements CanActivate {
-  /**
-   * The expected api key for the service.
-   */
-  private serviceApiKey: string;
-
+export class ApiKeyGrpcGuard extends ApiKeyGuard {
   /**
    * Create a new instance of ApiKeyGuard.
-   * @param configService Access to the application configuration.
+   * @param apiKey A valid api key.
    */
-  constructor(private readonly configService: ConfigService) {}
-
-  /**
-   * Validate the provided api key of the request.
-   * @param context The current execution context.
-   * @returns True if the api key is valid and false otherwise.
-   */
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
-    const apiKey &#x3D; this.readApiKey(context);
-
-    if (!apiKey) {
-      return false;
-    }
-
-    if (!this.serviceApiKey) {
-      this.serviceApiKey &#x3D; this.configService.get(EnvNames.API_KEY);
-    }
-
-    return this.serviceApiKey &#x3D;&#x3D;&#x3D; apiKey;
+  constructor(@Inject(InjectionNames.API_KEY) serviceApiKey: string) {
+    super(serviceApiKey);
   }
 
   /**
@@ -392,18 +272,28 @@ export class ApiKeyTcpGuard implements CanActivate {
    * @param context The current execution context.
    * @returns The api key if it is included in the request and undefined otherwise.
    */
-  private readApiKey(context: ExecutionContext): string | undefined {
-    const data &#x3D; context.getArgs().find((args) &#x3D;&gt; (args as ApiKeyDto).apiKey);
-    if (data) {
-      return (data as ApiKeyDto).apiKey;
+  protected readApiKey(context: ExecutionContext): string | undefined {
+    const metadata: Metadata &#x3D; context
+      .getArgs()
+      .find((arg) &#x3D;&gt; arg instanceof Metadata);
+    if (!metadata) {
+      return;
     }
 
-    return;
+    const apiKeys &#x3D; metadata.get(HeaderNames.X_API_KEY);
+    if (!apiKeys || apiKeys.length !&#x3D;&#x3D; 1) {
+      return;
+    }
+
+    return apiKeys[0].toString();
   }
 }
 </code></pre>
-        </div>
+    </div>
+
 </div>
+
+
 
 
 
@@ -440,8 +330,8 @@ export class ApiKeyTcpGuard implements CanActivate {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'guard';
-            var COMPODOC_CURRENT_PAGE_URL = 'ApiKeyTcpGuard.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ApiKeyGrpcGuard.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

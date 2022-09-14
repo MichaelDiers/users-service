@@ -28,16 +28,26 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content interface">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >GrpcUsersService</li>
+  <li>Interfaces</li>
+  <li
+  >
+  IUsersClient</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,71 +65,124 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/controllers/users-grpc.controller.ts</code>
+            <code>src/users/interfaces/users-client.interface.ts</code>
         </p>
-
 
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>GRPC CRUD Controller for users.</p>
+                <p>Interface that describes operations on users for controller and client.</p>
 
             </p>
 
 
-
-
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#create" >create</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
-                            </li>
-                            <li>
-                                <a href="#findOne" >findOne</a>
-                            </li>
-                            <li>
-                                <a href="#healthCheck" >healthCheck</a>
-                            </li>
-                            <li>
-                                <a href="#remove" >remove</a>
-                            </li>
-                            <li>
-                                <a href="#update" >update</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Methods</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#close" 
+>
+                                        close
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#create" 
+>
+                                        create
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#findAll" 
+>
+                                        findAll
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#findOne" 
+>
+                                        findOne
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#healthCheck" 
+>
+                                        healthCheck
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#remove" 
+>
+                                        remove
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#update" 
+>
+                                        update
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
             <section>
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="close"></a>
+                    <span class="name">
+                        <span ><b>close</b></span>
+                        <a href="#close"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>close()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/users/interfaces/users-client.interface.ts:53</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close the client connection.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -137,18 +200,11 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/users/interfaces/users-client.interface.ts:14</a></div>
                 </td>
             </tr>
 
@@ -205,7 +261,6 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -213,23 +268,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+<code>findAll()</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/users/interfaces/users-client.interface.ts:20</a></div>
                 </td>
             </tr>
 
@@ -242,7 +289,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;UserListDto&gt;</code>
+                        <b>Returns : </b>    <code>Promise&lt;User[]&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -266,22 +313,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>findOne(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/users/interfaces/users-client.interface.ts:27</a></div>
                 </td>
             </tr>
 
@@ -300,13 +340,14 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>guid</td>
                                     <td>
-                                                <code><a href="../classes/GuidDto.html" target="_self" >GuidDto</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -314,6 +355,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>The id of the user.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -349,18 +394,11 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/users/interfaces/users-client.interface.ts:48</a></div>
                 </td>
             </tr>
 
@@ -397,22 +435,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>remove(data: <a href="../classes/GuidDto.html" target="_self">GuidDto</a>)</code>
+<code>remove(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/users/interfaces/users-client.interface.ts:42</a></div>
                 </td>
             </tr>
 
@@ -431,13 +462,14 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>guid</td>
                                     <td>
-                                                <code><a href="../classes/GuidDto.html" target="_self" >GuidDto</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -445,6 +477,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>The id of the user.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -476,22 +512,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(data)</code>
+<code>update(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@GrpcMethod()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/users/controllers/users-grpc.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/users/interfaces/users-client.interface.ts:35</a></div>
                 </td>
             </tr>
 
@@ -508,18 +537,41 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>guid</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
                                     <td>
                                         No
                                     </td>
 
 
+                                    <td>
+                                        <p>The id of the user.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -538,82 +590,39 @@
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Inject,
-  UseGuards,
-  UseInterceptors,
-  UsePipes,
-  ValidationPipe,
-} from &#x27;@nestjs/common&#x27;;
-import { GrpcMethod } from &#x27;@nestjs/microservices&#x27;;
-import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
 import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
 import { User } from &#x27;../entities/user.entity&#x27;;
-import { IUsersService, USERS_SERVICE } from &#x27;../interfaces/users.interface&#x27;;
-import GuidDto from &#x27;../dto/guid.dto&#x27;;
-import UserListDto from &#x27;../dto/user-list.dto&#x27;;
-import { HttpExceptionInterceptor } from &#x27;../../interceptors/http-exception.interceptor&#x27;;
-import { ApiKeyGrpcGuard } from &#x27;../../guards/api-key-grpc.guard&#x27;;
-import { HashPipe } from &#x27;../../pipes/hash-pipe&#x27;;
 
 /**
- * GRPC CRUD Controller for users.
+ * Interface that describes operations on users for controller and client.
  */
-@UsePipes(
-  new ValidationPipe({
-    stopAtFirstError: true,
-    whitelist: true, // remove all unknown fields
-  }),
-  HashPipe,
-)
-@UseInterceptors(new HttpExceptionInterceptor())
-@UseGuards(ApiKeyGrpcGuard)
-@Controller()
-export class GrpcUsersService {
-  /**
-   * Creates a new instance of UserController.
-   * @param usersService Service that provides crud operations on users.
-   */
-  constructor(
-    @Inject(USERS_SERVICE)
-    private readonly usersService: IUsersService,
-  ) {}
-
+export default interface IUsersClient {
   /**
    * Create a new user.
    * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  create(data: CreateUserDto): Promise&lt;User&gt; {
-    return this.usersService.create(data);
-  }
+  create(data: CreateUserDto): Promise&lt;User&gt;;
 
   /**
    * Find all users of the application.
    * @returns A Promise&lt;T&gt; whose result is an array of User.
    */
-  @GrpcMethod()
-  async findAll(): Promise&lt;UserListDto&gt; {
-    const dto &#x3D; new UserListDto();
-    dto.users &#x3D; await this.usersService.findAll();
-    return dto;
-  }
+  findAll(): Promise&lt;User[]&gt;;
 
   /**
    * Get a user by its id.
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @GrpcMethod()
-  findOne(data: GuidDto): Promise&lt;User&gt; {
-    return this.usersService.findOne(data.guid);
-  }
+  findOne(guid: string): Promise&lt;User&gt;;
 
   /**
    * Update the data of a user.
@@ -621,41 +630,29 @@ export class GrpcUsersService {
    * @param updateUserDto The data that should be updated.
    * @returns A Promise with an empty result.
    */
-  @GrpcMethod()
-  update(data: UpdateUserDto &amp; GuidDto): Promise&lt;void&gt; {
-    return this.usersService.update(data.guid, data);
-  }
+  update(guid: string, data: UpdateUserDto): Promise&lt;void&gt;;
 
   /**
    * Delete a user by its id.
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; with an empty result.
    */
-  @GrpcMethod()
-  remove(data: GuidDto): Promise&lt;void&gt; {
-    return this.usersService.remove(data.guid);
-  }
+  remove(guid: string): Promise&lt;void&gt;;
 
   /**
    * Execute a simple health check.
    * @returns A Promise&lt;T&gt; with an empty result.
    */
-  @GrpcMethod()
-  healthCheck(): Promise&lt;void&gt; {
-    return new Promise((resolve) &#x3D;&gt; resolve());
-  }
+  healthCheck(): Promise&lt;void&gt;;
+
+  /**
+   * Close the client connection.
+   */
+  close(): Promise&lt;void&gt;;
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -689,8 +686,8 @@ export class GrpcUsersService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'GrpcUsersService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'IUsersClient.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >UsersService</li>
+  <li >TcpUsersClient</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/users.service.ts</code>
+            <code>src/clients/tcp-users-client.ts</code>
         </p>
 
 
@@ -66,7 +66,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Service that provides CRUD logic for Users.</p>
+                <p>Client for the users service using tcp.</p>
 
             </p>
 
@@ -76,6 +76,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isConnected" >isConnected</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -87,14 +102,28 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#close" >close</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#connect" >connect</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#healthCheck" >healthCheck</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -122,18 +151,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(databaseService: <a href="../injectables/UsersDatabaseService.html" target="_self">IUsersDatabaseService</a>)</code>
+<code>constructor(client: ClientProxy, apiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/users/users.service.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/clients/tcp-users-client.ts:19</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Ceeates a new UsersService instance.</p>
+                            <div class="io-description"><p>Creates a new instance of the TcpUsersClient.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -148,10 +177,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>databaseService</td>
+                                                        <td>client</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/UsersDatabaseService.html" target="_self" >IUsersDatabaseService</a></code>
+                                                                    <code>ClientProxy</code>
                                                         </td>
                                                   
                                                     <td>
@@ -159,7 +188,23 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Service for accessing the database.</p>
+                                                                <p>A client proxy that is configured to use tcp.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>apiKey</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The api key that is sent to the server.</p>
 
                                                         </td>
                                                 </tr>
@@ -181,6 +226,95 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="close"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>close</b></span>
+                        <a href="#close"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>close()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/clients/tcp-users-client.ts:127</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close the client.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connect"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>connect</b></span>
+                        <a href="#connect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>connect()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/clients/tcp-users-client.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Establish a connection to the server.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;ClientProxy&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The proxy client that is connected to the server.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="create"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -192,7 +326,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+                    <code>create(data: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
@@ -200,7 +334,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/users/users.service.ts:37</a></div>
+                            class="link-to-prism">src/clients/tcp-users-client.ts:37</a></div>
                 </td>
             </tr>
 
@@ -219,12 +353,11 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>createUserDto</td>
+                                    <td>data</td>
                                     <td>
                                                 <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
                                     </td>
@@ -234,10 +367,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>The data of the new user.</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -262,6 +391,7 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -269,22 +399,23 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findAll()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/users/users.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/clients/tcp-users-client.ts:57</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Find all users.</p>
+                    <div class="io-description"><p>Find all users of the application.</p>
 </div>
 
                     <div>
@@ -323,15 +454,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/users/users.service.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/clients/tcp-users-client.ts:71</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Find a User by its id.</p>
+                    <div class="io-description"><p>Get a user by its id.</p>
 </div>
 
                     <div class="io-description">
@@ -384,6 +515,53 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="healthCheck"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>healthCheck</b></span>
+                        <a href="#healthCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>healthCheck()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/clients/tcp-users-client.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Execute a simple health check.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A Promise<T> with an empty result.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -402,15 +580,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/users/users.service.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/clients/tcp-users-client.ts:105</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Delete a user.</p>
+                    <div class="io-description"><p>Delete a user by its id.</p>
 </div>
 
                     <div class="io-description">
@@ -452,7 +630,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>A Promise<T> with an empty result.</p>
+
                     </div>
                 </td>
             </tr>
@@ -473,22 +652,22 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateUserDto: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
+                    <code>update(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/users/users.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/clients/tcp-users-client.ts:86</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Update a user.</p>
+                    <div class="io-description"><p>Update the data of a user.</p>
 </div>
 
                     <div class="io-description">
@@ -521,7 +700,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>updateUserDto</td>
+                                    <td>data</td>
                                     <td>
                                                 <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
                                     </td>
@@ -532,8 +711,6 @@
 
 
                                     <td>
-                                        <p>The data of the user to be updated.</p>
-
                                     </td>
                                 </tr>
                             </tbody>
@@ -546,10 +723,49 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>A Promise with an empty result.</p>
+
                     </div>
                 </td>
             </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isConnected"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isConnected</b></span>
+                        <a href="#isConnected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/clients/tcp-users-client.ts:19</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indicates if the client is connected.</p>
+</div>
+                </td>
+            </tr>
+
         </tbody>
     </table>
 </section>
@@ -558,114 +774,146 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  BadRequestException,
-  ConflictException,
-  Inject,
-  Injectable,
-  NotFoundException,
-} from &#x27;@nestjs/common&#x27;;
-import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
-import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
-import { User } from &#x27;./entities/user.entity&#x27;;
-import {
-  IUsersDatabaseService,
-  USERS_DATABASE_SERVICE,
-} from &#x27;./interfaces/users-database.interface&#x27;;
-import { IUsersService } from &#x27;./interfaces/users.interface&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;;
+import { ClientProxy } from &#x27;@nestjs/microservices&#x27;;
+import { firstValueFrom } from &#x27;rxjs&#x27;;
+import { InjectionNames } from &#x27;../configuration/InjectionNames.enum&#x27;;
+import { CreateUserDto } from &#x27;../users/dto/create-user.dto&#x27;;
+import { UpdateUserDto } from &#x27;../users/dto/update-user.dto&#x27;;
+import UserListDto from &#x27;../users/dto/user-list.dto&#x27;;
+import { User } from &#x27;../users/entities/user.entity&#x27;;
+import IUsersClient from &#x27;../users/interfaces/users-client.interface&#x27;;
 
 /**
- * Service that provides CRUD logic for Users.
+ * Client for the users service using tcp.
  */
 @Injectable()
-export class UsersService implements IUsersService {
+export class TcpUsersClient implements IUsersClient {
   /**
-   * Ceeates a new UsersService instance.
-   * @param databaseService Service for accessing the database.
+   * Indicates if the client is connected.
+   */
+  private isConnected &#x3D; false;
+
+  /**
+   * Creates a new instance of the TcpUsersClient.
+   * @param client A client proxy that is configured to use tcp.
+   * @param apiKey The api key that is sent to the server.
    */
   constructor(
-    @Inject(USERS_DATABASE_SERVICE)
-    private readonly databaseService: IUsersDatabaseService,
+    @Inject(InjectionNames.CLIENT_TCP_PROXY)
+    private readonly client: ClientProxy,
+    @Inject(InjectionNames.API_KEY) private readonly apiKey: string,
   ) {}
 
   /**
    * Create a new user.
-   * @param createUserDto The data of the new user.
+   * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise&lt;T&gt; whose result is a User.
-   * @throws {ConflictException} Is thrown if a user with the id already exists.
    */
-  async create(createUserDto: CreateUserDto): Promise&lt;User&gt; {
-    const user &#x3D; new User(createUserDto);
-    const result &#x3D; await this.databaseService.create(user);
-    if (!result) {
-      throw new ConflictException();
-    }
+  async create(data: CreateUserDto): Promise&lt;User&gt; {
+    const user &#x3D; await firstValueFrom&lt;User&gt;(
+      await (
+        await this.connect()
+      ).send(
+        { cmd: &#x27;create&#x27; },
+        {
+          ...data,
+          apiKey: this.apiKey,
+        },
+      ),
+    );
 
-    return result;
+    return user;
   }
 
   /**
-   * Find all users.
+   * Find all users of the application.
    * @returns A Promise&lt;T&gt; whose result is an array of User.
    */
-  findAll(): Promise&lt;User[]&gt; {
-    return this.databaseService.findAll();
+  async findAll(): Promise&lt;User[]&gt; {
+    const response &#x3D; await (
+      await this.connect()
+    ).send({ cmd: &#x27;findAll&#x27; }, { apiKey: this.apiKey });
+
+    const userListDto &#x3D; await firstValueFrom&lt;UserListDto&gt;(response);
+    return userListDto.users;
   }
 
   /**
-   * Find a User by its id.
+   * Get a user by its id.
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; whose result is a User.
-   * @throws {NotFoundException} Is thrown if no user with the given guid exists.
    */
   async findOne(guid: string): Promise&lt;User&gt; {
-    const result &#x3D; await this.databaseService.findOne(guid);
-    if (!result) {
-      throw new NotFoundException();
-    }
+    const response &#x3D; await (
+      await this.connect()
+    ).send({ cmd: &#x27;findOne&#x27; }, { guid, apiKey: this.apiKey });
 
-    return result;
+    const user &#x3D; await firstValueFrom&lt;User&gt;(response);
+    return user;
   }
 
   /**
-   * Update a user.
+   * Update the data of a user.
    * @param guid The id of the user.
-   * @param updateUserDto The data of the user to be updated.
-   * @throws {BadRequestException} Is thrown if no update data is provided.
-   * @throws {NotFoundException} Is thrown if no user with the given guid exists.
+   * @param updateUserDto The data that should be updated.
+   * @returns A Promise with an empty result.
    */
-  async update(guid: string, updateUserDto: UpdateUserDto): Promise&lt;void&gt; {
-    const data: any &#x3D; {};
-    let hasUpdate &#x3D; false;
-
-    Object.entries(updateUserDto).forEach(([key, value]) &#x3D;&gt; {
-      if (value || value &#x3D;&#x3D;&#x3D; false) {
-        data[key] &#x3D; value;
-        hasUpdate &#x3D; true;
-      }
-    });
-
-    if (!hasUpdate) {
-      throw new BadRequestException();
-    }
-
-    const result &#x3D; await this.databaseService.update(guid, data);
-
-    if (!result) {
-      throw new NotFoundException();
-    }
+  async update(guid: string, data: UpdateUserDto): Promise&lt;void&gt; {
+    const response &#x3D; await (
+      await this.connect()
+    ).send(
+      { cmd: &#x27;update&#x27; },
+      {
+        guid,
+        ...data,
+        apiKey: this.apiKey,
+      },
+    );
+    await firstValueFrom(response, { defaultValue: true });
   }
 
   /**
-   * Delete a user.
+   * Delete a user by its id.
    * @param guid The id of the user.
-   * @throws {NotFoundException} Is thrown if no user with the given id exists.
+   * @returns A Promise&lt;T&gt; with an empty result.
    */
   async remove(guid: string): Promise&lt;void&gt; {
-    const result &#x3D; await this.databaseService.remove(guid);
-    if (!result) {
-      throw new NotFoundException();
+    const response &#x3D; await (
+      await this.connect()
+    ).send({ cmd: &#x27;remove&#x27; }, { guid, apiKey: this.apiKey });
+
+    await firstValueFrom(response, { defaultValue: true });
+  }
+
+  /**
+   * Execute a simple health check.
+   * @returns A Promise&lt;T&gt; with an empty result.
+   */
+  async healthCheck(): Promise&lt;void&gt; {
+    const response &#x3D; await (
+      await this.connect()
+    ).send({ cmd: &#x27;healthCheck&#x27; }, { apiKey: this.apiKey });
+    await firstValueFrom(response, { defaultValue: true });
+  }
+
+  /**
+   * Close the client.
+   */
+  async close(): Promise&lt;void&gt; {
+    this.client.close();
+  }
+
+  /**
+   * Establish a connection to the server.
+   * @returns The proxy client that is connected to the server.
+   */
+  private async connect(): Promise&lt;ClientProxy&gt; {
+    if (!this.isConnected) {
+      await this.client.connect();
     }
+
+    return this.client;
   }
 }
 </code></pre>
@@ -711,7 +959,7 @@ export class UsersService implements IUsersService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'UsersService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'TcpUsersClient.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -28,16 +28,19 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >UsersController</li>
+  <li>Injectables</li>
+  <li >GrpcUsersClient</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,25 +58,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/users-http.controller.ts</code>
+            <code>src/clients/grpc-users-client.ts</code>
         </p>
-
-            <p class="comment">
-                <h3>Prefix</h3>
-            </p>
-            <p class="comment">
-                <code>users</code>
-            </p>
 
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>CRUD Controller for users.</p>
+                <p>Client for the users service using grpc.</p>
 
             </p>
-
 
 
 
@@ -81,6 +76,27 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#clientService" >clientService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#metadata" >metadata</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -91,18 +107,31 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#close" >close</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#healthCheck" >healthCheck</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#remove" >remove</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#update" >update</a>
                             </li>
                         </ul>
@@ -118,6 +147,78 @@
 </section>
 
             <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(client: ClientGrpcProxy, apiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/clients/grpc-users-client.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates a new instance of GrpcUsersClient.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>client</td>
+                                                  
+                                                        <td>
+                                                                    <code>ClientGrpcProxy</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The grpc client proxy that is configured to access the server by grpc.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>apiKey</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The api key that is sent to the server.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
     
     <h3 id="methods">
         Methods
@@ -126,8 +227,50 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="close"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>close</b></span>
+                        <a href="#close"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>close()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/clients/grpc-users-client.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close the client.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="create"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -135,22 +278,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>create(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(data: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post()<br />@HttpCode(201)<br />@ApiOperation({description: &#x27;Create a new user.&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The new user is created.&#x27;, type: User})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;An user with given displayName or email already exists.&#x27;})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/users/users-http.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/clients/grpc-users-client.ts:51</a></div>
                 </td>
             </tr>
 
@@ -169,12 +306,11 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>createUserDto</td>
+                                    <td>data</td>
                                     <td>
                                                 <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
                                     </td>
@@ -184,10 +320,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>DTO that contains the validated user data.</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -212,6 +344,7 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -219,22 +352,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findAll()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll()</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br />@ApiOperation({description: &#x27;List all existing users.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;All users are listed.&#x27;, type: undefined})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/users/users-http.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/clients/grpc-users-client.ts:60</a></div>
                 </td>
             </tr>
 
@@ -264,6 +391,7 @@
                 <td class="col-md-4">
                     <a name="findOne"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -271,22 +399,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;:guid&#x27;)<br />@ApiOperation({description: &#x27;Read the data of a certain user.&#x27;})<br />@ApiParam({name: &#x27;guid&#x27;, example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;, description: &#x27;The id of the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The user is found and data is returned.&#x27;, type: User})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;No user with given id is found.&#x27;})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/users/users-http.controller.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/clients/grpc-users-client.ts:71</a></div>
                 </td>
             </tr>
 
@@ -346,8 +468,56 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="healthCheck"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>healthCheck</b></span>
+                        <a href="#healthCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>healthCheck()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/clients/grpc-users-client.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Execute a simple health check.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A Promise<T> with an empty result.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>remove</b></span>
                         <a href="#remove"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -355,22 +525,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>remove(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Delete(&#x27;:guid&#x27;)<br />@ApiOperation({description: &#x27;Delete a certain user.&#x27;})<br />@ApiParam({name: &#x27;guid&#x27;, example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;, description: &#x27;The id of the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The user is deleted.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;No user with given id is found.&#x27;})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/users/users-http.controller.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/clients/grpc-users-client.ts:98</a></div>
                 </td>
             </tr>
 
@@ -432,6 +596,7 @@
                 <td class="col-md-4">
                     <a name="update"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -439,22 +604,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateUserDto: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(guid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Patch(&#x27;:guid&#x27;)<br />@ApiOperation({description: &#x27;Update the data of a certain user.&#x27;})<br />@ApiParam({name: &#x27;guid&#x27;, example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;, description: &#x27;The id of the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The user is updated.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;No user with given id is found.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;An user with updated displayName or email already exists.&#x27;})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/users/users-http.controller.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/clients/grpc-users-client.ts:84</a></div>
                 </td>
             </tr>
 
@@ -494,7 +653,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>updateUserDto</td>
+                                    <td>data</td>
                                     <td>
                                                 <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
                                     </td>
@@ -505,8 +664,6 @@
 
 
                                     <td>
-                                        <p>The data that should be updated.</p>
-
                                     </td>
                                 </tr>
                             </tbody>
@@ -526,86 +683,149 @@
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clientService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>clientService</b></span>
+                        <a href="#clientService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UsersService.html" target="_self" >IGrpcUsersService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/clients/grpc-users-client.ts:23</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Service for accessing the server.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="metadata"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>metadata</b></span>
+                        <a href="#metadata"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Metadata</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/clients/grpc-users-client.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The default metadata that is sent to the server.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Inject,
-  ParseUUIDPipe,
-  HttpCode,
-} from &#x27;@nestjs/common&#x27;;
-import {
-  ApiOperation,
-  ApiParam,
-  ApiResponse,
-  ApiSecurity,
-} from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Metadata } from &#x27;@grpc/grpc-js&#x27;;
+import { Inject, Injectable } from &#x27;@nestjs/common&#x27;;
+import { ClientGrpcProxy } from &#x27;@nestjs/microservices&#x27;;
+import { firstValueFrom } from &#x27;rxjs&#x27;;
 import { HeaderNames } from &#x27;../header-names&#x27;;
-import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
-import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
-import { User } from &#x27;./entities/user.entity&#x27;;
-import { IUsersService, USERS_SERVICE } from &#x27;./interfaces/users.interface&#x27;;
+import { CreateUserDto } from &#x27;../users/dto/create-user.dto&#x27;;
+import GuidDto from &#x27;../users/dto/guid.dto&#x27;;
+import { UpdateUserDto } from &#x27;../users/dto/update-user.dto&#x27;;
+import { User } from &#x27;../users/entities/user.entity&#x27;;
+import { IGrpcUsersService } from &#x27;../users/interfaces/users-grpc-controller.interface&#x27;;
+import IUsersClient from &#x27;../users/interfaces/users-client.interface&#x27;;
+import UserListDto from &#x27;../users/dto/user-list.dto&#x27;;
+import { InjectionNames } from &#x27;../configuration/InjectionNames.enum&#x27;;
 
 /**
- * CRUD Controller for users.
+ * Client for the users service using grpc.
  */
-@ApiSecurity(HeaderNames.X_API_KEY)
-@Controller(&#x27;users&#x27;)
-export class UsersController {
+@Injectable()
+export class GrpcUsersClient implements IUsersClient {
   /**
-   * Creates a new instance of UserController.
-   * @param usersService Service that provides crud operations on users.
+   * Service for accessing the server.
+   */
+  private readonly clientService: IGrpcUsersService;
+
+  /**
+   * The default metadata that is sent to the server.
+   */
+  private readonly metadata: Metadata;
+
+  /**
+   * Creates a new instance of GrpcUsersClient.
+   * @param client The grpc client proxy that is configured to access the server by grpc.
+   * @param apiKey The api key that is sent to the server.
    */
   constructor(
-    @Inject(USERS_SERVICE)
-    private readonly usersService: IUsersService,
-  ) {}
+    @Inject(InjectionNames.CLIENT_GRPC_PROXY)
+    private readonly client: ClientGrpcProxy,
+    @Inject(InjectionNames.API_KEY) apiKey: string,
+  ) {
+    this.clientService &#x3D;
+      client.getService&lt;IGrpcUsersService&gt;(&#x27;GrpcUsersService&#x27;);
+    this.metadata &#x3D; new Metadata();
+    this.metadata.add(HeaderNames.X_API_KEY, apiKey);
+  }
 
   /**
    * Create a new user.
    * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @Post()
-  @HttpCode(201)
-  @ApiOperation({ description: &#x27;Create a new user.&#x27; })
-  @ApiResponse({
-    status: 201,
-    description: &#x27;The new user is created.&#x27;,
-    type: User,
-  })
-  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
-  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
-  @ApiResponse({
-    status: 409,
-    description: &#x27;An user with given displayName or email already exists.&#x27;,
-  })
-  create(@Body() createUserDto: CreateUserDto): Promise&lt;User&gt; {
-    return this.usersService.create(createUserDto);
+  async create(data: CreateUserDto): Promise&lt;User&gt; {
+    const response &#x3D; await this.clientService.create(data, this.metadata);
+    return await firstValueFrom&lt;User&gt;(response);
   }
 
   /**
    * Find all users of the application.
    * @returns A Promise&lt;T&gt; whose result is an array of User.
    */
-  @Get()
-  @ApiOperation({ description: &#x27;List all existing users.&#x27; })
-  @ApiResponse({
-    status: 200,
-    description: &#x27;All users are listed.&#x27;,
-    type: [User],
-  })
-  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
-  findAll(): Promise&lt;User[]&gt; {
-    return this.usersService.findAll();
+  async findAll(): Promise&lt;User[]&gt; {
+    const response &#x3D; await this.clientService.findAll({}, this.metadata);
+    const userListDto &#x3D; await firstValueFrom&lt;UserListDto&gt;(response);
+    return userListDto.users;
   }
 
   /**
@@ -613,25 +833,11 @@ export class UsersController {
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @Get(&#x27;:guid&#x27;)
-  @ApiOperation({ description: &#x27;Read the data of a certain user.&#x27; })
-  @ApiParam({
-    name: &#x27;guid&#x27;,
-    example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;,
-    description: &#x27;The id of the user.&#x27;,
-  })
-  @ApiResponse({
-    status: 200,
-    description: &#x27;The user is found and data is returned.&#x27;,
-    type: User,
-  })
-  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
-  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
-  @ApiResponse({ status: 404, description: &#x27;No user with given id is found.&#x27; })
-  findOne(
-    @Param(&#x27;guid&#x27;, new ParseUUIDPipe({ version: &#x27;4&#x27; })) guid: string,
-  ): Promise&lt;User&gt; {
-    return this.usersService.findOne(guid);
+  async findOne(guid: string): Promise&lt;User&gt; {
+    const dto: GuidDto &#x3D; { guid };
+    const response &#x3D; await this.clientService.findOne(dto, this.metadata);
+    const user &#x3D; await firstValueFrom&lt;User&gt;(response);
+    return user;
   }
 
   /**
@@ -640,26 +846,13 @@ export class UsersController {
    * @param updateUserDto The data that should be updated.
    * @returns A Promise with an empty result.
    */
-  @Patch(&#x27;:guid&#x27;)
-  @ApiOperation({ description: &#x27;Update the data of a certain user.&#x27; })
-  @ApiParam({
-    name: &#x27;guid&#x27;,
-    example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;,
-    description: &#x27;The id of the user.&#x27;,
-  })
-  @ApiResponse({ status: 200, description: &#x27;The user is updated.&#x27; })
-  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
-  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
-  @ApiResponse({ status: 404, description: &#x27;No user with given id is found.&#x27; })
-  @ApiResponse({
-    status: 409,
-    description: &#x27;An user with updated displayName or email already exists.&#x27;,
-  })
-  update(
-    @Param(&#x27;guid&#x27;, new ParseUUIDPipe({ version: &#x27;4&#x27; })) guid: string,
-    @Body() updateUserDto: UpdateUserDto,
-  ): Promise&lt;void&gt; {
-    return this.usersService.update(guid, updateUserDto);
+  async update(guid: string, data: UpdateUserDto): Promise&lt;void&gt; {
+    const dto: UpdateUserDto &amp; GuidDto &#x3D; {
+      guid,
+      ...data,
+    };
+    const response &#x3D; await this.clientService.update(dto, this.metadata);
+    await firstValueFrom(response);
   }
 
   /**
@@ -667,29 +860,34 @@ export class UsersController {
    * @param guid The id of the user.
    * @returns A Promise&lt;T&gt; with an empty result.
    */
-  @Delete(&#x27;:guid&#x27;)
-  @ApiOperation({ description: &#x27;Delete a certain user.&#x27; })
-  @ApiParam({
-    name: &#x27;guid&#x27;,
-    example: &#x27;efb10bbb-9871-4c2a-ab9d-34c277d61480&#x27;,
-    description: &#x27;The id of the user.&#x27;,
-  })
-  @ApiResponse({ status: 200, description: &#x27;The user is deleted.&#x27; })
-  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
-  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
-  @ApiResponse({ status: 404, description: &#x27;No user with given id is found.&#x27; })
-  remove(
-    @Param(&#x27;guid&#x27;, new ParseUUIDPipe({ version: &#x27;4&#x27; })) guid: string,
-  ): Promise&lt;void&gt; {
-    return this.usersService.remove(guid);
+  async remove(guid: string): Promise&lt;void&gt; {
+    const dto: GuidDto &#x3D; {
+      guid,
+    };
+    const response &#x3D; await this.clientService.remove(dto, this.metadata);
+    await firstValueFrom(response);
+  }
+
+  /**
+   * Execute a simple health check.
+   * @returns A Promise&lt;T&gt; with an empty result.
+   */
+  async healthCheck(): Promise&lt;void&gt; {
+    const response &#x3D; await this.clientService.healthCheck({}, this.metadata);
+    await firstValueFrom(response);
+  }
+
+  /**
+   * Close the client.
+   */
+  async close(): Promise&lt;void&gt; {
+    this.client.close();
   }
 }
 </code></pre>
     </div>
+
 </div>
-
-
-
 
 
 
@@ -728,8 +926,8 @@ export class UsersController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'UsersController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'GrpcUsersClient.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

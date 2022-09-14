@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/users-tcp.controller.ts</code>
+            <code>src/users/controllers/users-tcp.controller.ts</code>
         </p>
 
 
@@ -93,6 +93,9 @@
                             </li>
                             <li>
                                 <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                <a href="#healthCheck" >healthCheck</a>
                             </li>
                             <li>
                                 <a href="#remove" >remove</a>
@@ -145,7 +148,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/users/users-tcp.controller.ts:50</a></div>
+                            class="link-to-prism">src/users/controllers/users-tcp.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -222,7 +225,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/users/users-tcp.controller.ts:60</a></div>
+                            class="link-to-prism">src/users/controllers/users-tcp.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -301,7 +304,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/users/users-tcp.controller.ts:72</a></div>
+                            class="link-to-prism">src/users/controllers/users-tcp.controller.ts:72</a></div>
                 </td>
             </tr>
 
@@ -352,6 +355,58 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="healthCheck"></a>
+                    <span class="name">
+                        <span ><b>healthCheck</b></span>
+                        <a href="#healthCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>healthCheck()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@MessagePattern({cmd: &#x27;healthCheck&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/users/controllers/users-tcp.controller.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Execute a simple health check.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A Promise<T> with an empty result.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
                         <span ><b>remove</b></span>
@@ -376,7 +431,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/users/users-tcp.controller.ts:93</a></div>
+                            class="link-to-prism">src/users/controllers/users-tcp.controller.ts:93</a></div>
                 </td>
             </tr>
 
@@ -451,7 +506,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/users/users-tcp.controller.ts:83</a></div>
+                            class="link-to-prism">src/users/controllers/users-tcp.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -511,16 +566,16 @@
   ValidationPipe,
 } from &#x27;@nestjs/common&#x27;;
 import { MessagePattern } from &#x27;@nestjs/microservices&#x27;;
-import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
-import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
-import { User } from &#x27;./entities/user.entity&#x27;;
-import { IUsersService, USERS_SERVICE } from &#x27;./interfaces/users.interface&#x27;;
-import GuidDto from &#x27;./dto/guid.dto&#x27;;
-import UserListDto from &#x27;./dto/user-list.dto&#x27;;
-import { HttpExceptionInterceptor } from &#x27;../interceptors/http-exception.interceptor&#x27;;
-import { ApiKeyTcpGuard } from &#x27;../guards/api-key-tcp.guard&#x27;;
-import { HashPipe } from &#x27;../pipes/hash-pipe&#x27;;
-import ApiKeyDto from &#x27;./dto/api-key.dto&#x27;;
+import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
+import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
+import { User } from &#x27;../entities/user.entity&#x27;;
+import { IUsersService, USERS_SERVICE } from &#x27;../interfaces/users.interface&#x27;;
+import GuidDto from &#x27;../dto/guid.dto&#x27;;
+import UserListDto from &#x27;../dto/user-list.dto&#x27;;
+import { HttpExceptionInterceptor } from &#x27;../../interceptors/http-exception.interceptor&#x27;;
+import { ApiKeyTcpGuard } from &#x27;../../guards/api-key-tcp.guard&#x27;;
+import { HashPipe } from &#x27;../../pipes/hash-pipe&#x27;;
+import ApiKeyDto from &#x27;../dto/api-key.dto&#x27;;
 
 /**
  * TCP CRUD Controller for users.
@@ -597,6 +652,14 @@ export class UsersTcpController {
   remove(data: GuidDto &amp; ApiKeyDto): Promise&lt;void&gt; {
     return this.usersService.remove(data.guid);
   }
+
+  /**
+   * Execute a simple health check.
+   * @returns A Promise&lt;T&gt; with an empty result.
+   */
+  @MessagePattern({ cmd: &#x27;healthCheck&#x27; })
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  healthCheck(): void {}
 }
 </code></pre>
     </div>

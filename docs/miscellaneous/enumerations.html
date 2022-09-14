@@ -61,13 +61,19 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#EnvNames" title="src/env-names.ts" ><b>EnvNames</b>&nbsp;&nbsp;&nbsp;(src/.../env-names.ts)</a>
+                            <a href="#EnvNames" title="src/configuration/env-names.ts" ><b>EnvNames</b>&nbsp;&nbsp;&nbsp;(src/.../env-names.ts)</a>
                         </li>
                         <li>
                             <a href="#HeaderNames" title="src/header-names.ts" ><b>HeaderNames</b>&nbsp;&nbsp;&nbsp;(src/.../header-names.ts)</a>
                         </li>
                         <li>
-                            <a href="#SecretNames" title="src/services/secret-manager.service.ts" ><b>SecretNames</b>&nbsp;&nbsp;&nbsp;(src/.../secret-manager.service.ts)</a>
+                            <a href="#InjectionNames" title="src/configuration/InjectionNames.enum.ts" ><b>InjectionNames</b>&nbsp;&nbsp;&nbsp;(src/.../InjectionNames.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SecretNames" title="src/configuration/secret-manager.service.ts" ><b>SecretNames</b>&nbsp;&nbsp;&nbsp;(src/.../secret-manager.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ServiceNames" title="src/service-names.ts" ><b>ServiceNames</b>&nbsp;&nbsp;&nbsp;(src/.../service-names.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -76,7 +82,7 @@
     </table>
 </section>
 
-    <h3>src/env-names.ts</h3>
+    <h3>src/configuration/env-names.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -92,6 +98,16 @@
 </div>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CONNECTION_STRING
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CONNECTION_STRING</code>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col-md-4">
                                 &nbsp;HASH_ROUNDS
@@ -194,7 +210,150 @@
             </tbody>
         </table>
 </section>
-    <h3>src/services/secret-manager.service.ts</h3>
+    <h3>src/configuration/InjectionNames.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="InjectionNames"></a>
+                        <span class="name "><b>InjectionNames</b><a href="#InjectionNames"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;API_KEY
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>API_KEY</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;GRPC_USERS_CLIENT
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>GRPC_USERS_CLIENT</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CLIENT_GRPC_PROXY
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CLIENT_GRPC_PROXY</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CLIENT_TCP_PROXY
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CLIENT_TCP_PROXY</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;TCP_USERS_CLIENT
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>TCP_USERS_CLIENT</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;GRPC_CONFIG
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>GRPC_CONFIG</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;TCP_CONFIG
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>TCP_CONFIG</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;USE_SWAGGER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>USE_SWAGGER</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;HASH_ROUNDS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>HASH_ROUNDS</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;SECRETS_FROM_ENV
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>SECRETS_FROM_ENV</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;PROJECT_NAME
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>PROJECT_NAME</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CONNECTION_STRING
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CONNECTION_STRING</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;SWAGGER_CONFIG
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>SWAGGER_CONFIG</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/configuration/secret-manager.service.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -218,6 +377,35 @@
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>UsersServiceConnectionString</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/service-names.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ServiceNames"></a>
+                        <span class="name "><b>ServiceNames</b><a href="#ServiceNames"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Names of services.</p>
+</div>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;GRPC_USERS_SERVICE
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>GrpcUsersService</code>
                             </td>
                         </tr>
             </tbody>
