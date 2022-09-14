@@ -15,6 +15,10 @@ describe('AppController (validation)', () => {
     await app.init();
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
+
   describe('validation should fail for invalid guid', () => {
     it('/users (GET)', () => {
       return request(app.getHttpServer()).get('/users/foobar').expect(400);
