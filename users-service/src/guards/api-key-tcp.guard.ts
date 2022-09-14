@@ -22,7 +22,6 @@ export class ApiKeyTcpGuard extends ApiKeyGuard {
    * @returns The api key if it is included in the request and undefined otherwise.
    */
   protected readApiKey(context: ExecutionContext): string | undefined {
-    console.log(context.getArgs());
     const data = context.getArgs().find((args) => (args as ApiKeyDto).apiKey);
     if (data) {
       return (data as ApiKeyDto).apiKey;

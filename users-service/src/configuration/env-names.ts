@@ -41,4 +41,14 @@ export enum EnvNames {
    * The port for the tcp service.
    */
   TCP_PORT = 'USERS_TCP_PORT',
+
+  /**
+   * The address for the rest health check.
+   */
+  HEALTH_CHECK_REST_ADDRESS = 'HEALTH_CHECK_REST_ADDRESS',
+
+  /**
+   * The address of the documentation.
+   */
+  HEALTH_CHECK_DOCUMENTATION_ADDRESS = 'HEALTH_CHECK_DOCUMENTATION_ADDRESS',
 }

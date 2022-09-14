@@ -20,6 +20,8 @@ import { HeaderNames } from '../header-names';
     InjectionNames.SECRETS_FROM_ENV,
     InjectionNames.CONNECTION_STRING,
     InjectionNames.SWAGGER_CONFIG,
+    InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS,
+    InjectionNames.HEALTH_CHECK_REST_ADDRESS,
   ],
   imports: [ConfigModule.forRoot({}), ServicesModule],
   providers: [
@@ -70,6 +72,22 @@ import { HeaderNames } from '../header-names';
       useFactory: (configService: ConfigService): number => {
         const rounds = configService.getOrThrow(EnvNames.HASH_ROUNDS);
         return parseInt(rounds);
+      },
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS,
+      useFactory: (configService: ConfigService): number => {
+        return configService.getOrThrow(
+          EnvNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS,
+        );
+      },
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionNames.HEALTH_CHECK_REST_ADDRESS,
+      useFactory: (configService: ConfigService): number => {
+        return configService.getOrThrow(EnvNames.HEALTH_CHECK_REST_ADDRESS);
       },
       inject: [ConfigService],
     },

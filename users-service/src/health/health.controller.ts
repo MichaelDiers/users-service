@@ -25,6 +25,8 @@ export class HealthController {
    * @param usersGrpcHealthCheck Check the health of the user service using grpc.
    * @param tcpConfig The tcp cofiguration of the users service.
    * @param apiKey The api key that used for requests.
+   * @param healthCheckRestAddress The address for the rest health check.
+   * @param healthCheckDocumentationAddress The address of the users service documentation.
    */
   constructor(
     private healthCheckService: HealthCheckService,
@@ -34,6 +36,10 @@ export class HealthController {
     private usersGrpcHealthCheck: UsersGrpcHealthCheck,
     @Inject(InjectionNames.TCP_CONFIG) private readonly tcpConfig: any,
     @Inject(InjectionNames.API_KEY) private readonly apiKey: string,
+    @Inject(InjectionNames.HEALTH_CHECK_REST_ADDRESS)
+    private readonly healthCheckRestAddress: string,
+    @Inject(InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS)
+    private readonly healthCheckDocumentationAddress: string,
   ) {}
 
   /**
@@ -52,13 +58,13 @@ export class HealthController {
       () =>
         this.httpHealthIndicator.pingCheck(
           'Users Service API Doc',
-          'https://michaeldiers.github.io/users-service',
+          this.healthCheckDocumentationAddress,
         ),
       async () => this.mongooseHealthIndicator.pingCheck('mongoose'),
       async () =>
         this.httpHealthIndicator.pingCheck(
           'Users Service',
-          'http://localhost:3000/users/health/check',
+          this.healthCheckRestAddress,
           options,
         ),
       async () => this.usersGrpcHealthCheck.isHealthy('Grpc Users'),
