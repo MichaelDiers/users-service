@@ -151,4 +151,13 @@ export class UsersHttpController {
   ): Promise<void> {
     return this.usersService.remove(guid);
   }
+
+  /**
+   * Execute a simple health check.
+   */
+  @Get('health/check')
+  @ApiOperation({ description: 'Execute a simple health check.' })
+  @ApiResponse({ status: 200, description: 'The service is healthy.' })
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  healthCheck(): void {}
 }

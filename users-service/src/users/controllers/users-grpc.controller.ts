@@ -91,4 +91,13 @@ export class GrpcUsersService {
   remove(data: GuidDto): Promise<void> {
     return this.usersService.remove(data.guid);
   }
+
+  /**
+   * Execute a simple health check.
+   * @returns A Promise<T> with an empty result.
+   */
+  @GrpcMethod()
+  healthCheck(): Promise<void> {
+    return new Promise((resolve) => resolve());
+  }
 }

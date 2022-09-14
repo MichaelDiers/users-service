@@ -8,6 +8,7 @@ service GrpcUsersService {
   rpc FindOne (Guid) returns (User) {}
   rpc Update (UpdateUserDto) returns (Empty) {}
   rpc Remove (Guid) returns (Empty) {}
+  rpc HealthCheck (Empty) returns (Empty) {}
 }
 
 message CreateUserDto {

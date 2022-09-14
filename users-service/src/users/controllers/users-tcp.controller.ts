@@ -93,4 +93,12 @@ export class UsersTcpController {
   remove(data: GuidDto & ApiKeyDto): Promise<void> {
     return this.usersService.remove(data.guid);
   }
+
+  /**
+   * Execute a simple health check.
+   * @returns A Promise<T> with an empty result.
+   */
+  @MessagePattern({ cmd: 'healthCheck' })
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  healthCheck(): void {}
 }

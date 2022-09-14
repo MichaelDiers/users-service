@@ -12,12 +12,13 @@ import {
   IUsersDatabaseService,
   USERS_DATABASE_SERVICE,
 } from './interfaces/users-database.interface';
+import { IUsersService } from './interfaces/users.interface';
 
 /**
  * Service that provides CRUD logic for Users.
  */
 @Injectable()
-export class UsersService {
+export class UsersService implements IUsersService {
   /**
    * Ceeates a new UsersService instance.
    * @param databaseService Service for accessing the database.

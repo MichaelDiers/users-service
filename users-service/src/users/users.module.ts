@@ -8,11 +8,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './database/user.schema';
 import { GrpcUsersService } from './controllers/users-grpc.controller';
 import { UsersTcpController } from './controllers/users-tcp.controller';
+import { GuardsModule } from '../guards/guards.module';
+import { ConfigurationModule } from '../configuration/configuration.module';
 
 @Module({
   controllers: [UsersHttpController, GrpcUsersService, UsersTcpController],
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    GuardsModule,
+    ConfigurationModule,
   ],
   providers: [
     {
