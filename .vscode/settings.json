@@ -10,6 +10,7 @@
   },
   "files.eol": "\n",
   "typescript.preferences.quoteStyle": "single",
+  "typescript.preferences.importModuleSpecifier": "relative",
   "autoDocstring.quoteStyle": "'''",
   "autoDocstring.docstringFormat": "google",
   "autoDocstring.startOnNewLine": true,
