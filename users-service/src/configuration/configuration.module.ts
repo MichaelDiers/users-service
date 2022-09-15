@@ -69,7 +69,7 @@ import { HeaderNames } from '../header-names';
           options: {
             package: ['users'],
             protoPath: [join(__dirname, '../proto/users.proto')],
-            url: `localhost:${port}`,
+            url: `0.0.0.0:${port}`,
           },
         };
       },
