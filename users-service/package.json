@@ -1,10 +1,10 @@
 {
   "name": "users-service",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "description": "A service that provides CRUD operations on users.",
+  "author": "Michael Diers",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
