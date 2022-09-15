@@ -1,0 +1,23 @@
+FROM node:lts-alpine as setup
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM node:lts-alpine as runner
+WORKDIR /app
+COPY . .
+COPY --from=setup /app/dist ./dist/
+RUN npm ci --omit=dev
+
+ENV USERS_HASH_ROUNDS=10
+ENV USERS_PROJECT_NAME=miracle-hides
+ENV USERS_USE_SWAGGER=TRUE
+ENV USERS_GRPC_PORT=3010
+ENV USERS_TCP_PORT=3011
+ENV HEALTH_CHECK_REST_ADDRESS=http://localhost:3000/users/health/check
+ENV HEALTH_CHECK_DOCUMENTATION_ADDRESS=https://michaeldiers.github.io/users-service
+
+EXPOSE 3010
+
+CMD ["node", "dist/main"]

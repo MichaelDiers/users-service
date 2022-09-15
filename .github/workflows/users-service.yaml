@@ -20,7 +20,11 @@ jobs:
           id_token_audience: '${{ secrets.gcloud_workload_identity_provider }}'
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0'
-      - name: Copy Dockerfile-rest
+      - name: Copy Dockerfile-REST
         run: cp docker/services/Dockerfile-REST users-service/Dockerfile
-      - name: 'Use gcloud CLI'
+      - name: 'Use gcloud CLI REST'
         run: 'gcloud run deploy users-service-rest --source users-service --allow-unauthenticated --description="user service rest" --region=us-central1 --port=3000 --service-account=${{ secrets.gcloud_users_service_account }}'
+      - name: Copy Dockerfile-GRPC
+        run: cp docker/services/Dockerfile-GRPC users-service/Dockerfile
+      - name: 'Use gcloud CLI GRPC'
+        run: 'gcloud run deploy users-service-grpc --source users-service --allow-unauthenticated --description="user service grpc" --region=us-central1 --port=3010 --service-account=${{ secrets.gcloud_users_service_account }}'
