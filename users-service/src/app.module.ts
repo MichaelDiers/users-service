@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
-import { ServicesModule } from './services/services.module';
+import { LoggingModule } from './logging/logging.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { HealthModule } from './health/health.module';
@@ -21,7 +21,7 @@ import { InjectionNames } from './configuration/InjectionNames.enum';
       inject: [InjectionNames.CONNECTION_STRING],
       imports: [ConfigurationModule],
     }),
-    ServicesModule,
+    LoggingModule,
     UsersModule,
     HealthModule,
     HealthChecksModule,
