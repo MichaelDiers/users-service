@@ -1,5 +1,5 @@
 import { IsString, IsUUID } from 'class-validator';
-import { Constants } from '../../validation/constants';
+import { Constants } from '../constants';
 
 /**
  * DTO for a single guid.

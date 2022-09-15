@@ -2,7 +2,7 @@ import { testDtoValidation } from '../../../test/test-helper';
 import { UpdateUserDto } from './update-user.dto';
 import plain from './create-user.dto.spec';
 import * as tests from '../../../test/test-helper';
-import { Constants } from '../../validation/constants';
+import { Constants } from '../constants';
 
 describe('validate UpdateUserDto', () => {
   describe('validate empty object', () => {

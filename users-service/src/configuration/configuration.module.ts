@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { EnvNames } from './env-names';
-import { ServicesModule } from '../services/services.module';
+import { LoggingModule } from '../logging/logging.module';
 import { InjectionNames } from './InjectionNames.enum';
 import { SecretManagerService } from './secret-manager.service';
 import { DocumentBuilder } from '@nestjs/swagger';
@@ -23,7 +23,7 @@ import { HeaderNames } from '../header-names';
     InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS,
     InjectionNames.HEALTH_CHECK_REST_ADDRESS,
   ],
-  imports: [ConfigModule.forRoot({}), ServicesModule],
+  imports: [ConfigModule.forRoot({}), LoggingModule],
   providers: [
     SecretManagerService,
     {

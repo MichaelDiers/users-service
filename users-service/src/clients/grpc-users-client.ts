@@ -13,6 +13,11 @@ import UserListDto from '../users/dto/user-list.dto';
 import { InjectionNames } from '../configuration/InjectionNames.enum';
 
 /**
+ * The name of the grpc users service.
+ */
+const GRPC_USERS_SERVICE_NAME = 'GrpcUsersService';
+
+/**
  * Client for the users service using grpc.
  */
 @Injectable()
@@ -37,8 +42,9 @@ export class GrpcUsersClient implements IUsersClient {
     private readonly client: ClientGrpcProxy,
     @Inject(InjectionNames.API_KEY) apiKey: string,
   ) {
-    this.clientService =
-      client.getService<IGrpcUsersService>('GrpcUsersService');
+    this.clientService = client.getService<IGrpcUsersService>(
+      GRPC_USERS_SERVICE_NAME,
+    );
     this.metadata = new Metadata();
     this.metadata.add(HeaderNames.X_API_KEY, apiKey);
   }

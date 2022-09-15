@@ -1,6 +1,6 @@
 import { IsEmail, IsString, Length } from 'class-validator';
 import { Transform } from 'class-transformer';
-import { Constants } from '../../validation/constants';
+import { Constants } from '../constants';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**

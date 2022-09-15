@@ -11,4 +11,4 @@ import LoggingService from './logging.service';
     },
   ],
 })
-export class ServicesModule {}
+export class LoggingModule {}

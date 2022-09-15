@@ -1,10 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
-import { ISecretManagerService } from '../services/secret-manager.interface';
-import {
-  ILoggingService,
-  LOGGING_SERVICE,
-} from '../services/logging.interface';
+import { ILoggingService, LOGGING_SERVICE } from '../logging/logging.interface';
 import { InjectionNames } from './InjectionNames.enum';
 
 /**
@@ -18,7 +14,7 @@ const enum SecretNames {
  * Access for the google cloud secret manager.
  */
 @Injectable()
-export class SecretManagerService implements ISecretManagerService {
+export class SecretManagerService {
   /**
    * Creates a new SecretManagerService instance.
    * @param loggingService An error logger.

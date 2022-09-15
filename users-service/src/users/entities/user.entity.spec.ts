@@ -2,7 +2,7 @@ import * as uuid from 'uuid';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from './user.entity';
 import { User as UserDatabase } from '../database/user.schema';
-import { Constants } from '../../validation/constants';
+import { Constants } from '../constants';
 
 describe('user', () => {
   it('constructor should create an empty object', () => {

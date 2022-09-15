@@ -1,6 +1,6 @@
 import * as tests from '../../../test/test-helper';
 import { CreateUserDto } from './create-user.dto';
-import { Constants } from '../../validation/constants';
+import { Constants } from '../constants';
 
 const plain = (
   obj: {

@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import { AppModule } from '../src/app.module';
 import { CreateUserDto } from '../src/users/dto/create-user.dto';
 import * as uuid from 'uuid';
-import { Constants } from '../src/validation/constants';
+import { Constants } from '../src/users/constants';
 import IUsersClient from '../src/users/interfaces/users-client.interface';
 import { InjectionNames } from '../src/configuration/InjectionNames.enum';
 
