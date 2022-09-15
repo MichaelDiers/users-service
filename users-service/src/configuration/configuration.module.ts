@@ -101,7 +101,7 @@ import { HeaderNames } from '../header-names';
     {
       provide: InjectionNames.SECRETS_FROM_ENV,
       useFactory: (configService: ConfigService): boolean => {
-        const value = configService.getOrThrow(EnvNames.SECRETS_FROM_ENV);
+        const value = configService.get(EnvNames.SECRETS_FROM_ENV);
         return value ? true : false;
       },
       inject: [ConfigService],
