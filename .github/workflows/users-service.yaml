@@ -10,11 +10,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: Set up secret file
-        env:
-          gcloud_workload_identity_provider: ${{ secrets.gcloud_workload_identity_provider }}        
-        run: |
-          echo ${{env.gcloud_workload_identity_provider}} | sed 's/./& /g'
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0'
@@ -23,3 +18,7 @@ jobs:
           workload_identity_provider: '${{ secrets.gcloud_workload_identity_provider }}'
           service_account: '${{ secrets.gcloud_service_account }}'
           id_token_audience: '${{ secrets.gcloud_workload_identity_provider }}'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+      - name: 'Use gcloud CLI'
+        run: 'gcloud run deploy users-service --source users-service --allow-unauthenticated --description="user service" --region=us-central1 --port=3000'
