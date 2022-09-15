@@ -28,10 +28,18 @@ import { HeaderNames } from '../header-names';
     SecretManagerService,
     {
       provide: InjectionNames.API_KEY,
-      useFactory: (configService: ConfigService): string => {
-        return configService.getOrThrow(EnvNames.API_KEY);
+      useFactory: async (
+        secretsFromEnv: boolean,
+        configService: ConfigService,
+        secretManagerService: SecretManagerService,
+      ): Promise<string> => {
+        if (secretsFromEnv) {
+          return configService.getOrThrow(EnvNames.API_KEY);
+        }
+
+        return secretManagerService.getApiKey();
       },
-      inject: [ConfigService],
+      inject: [InjectionNames.SECRETS_FROM_ENV, ConfigService, SecretManagerService],
     },
     {
       provide: InjectionNames.CONNECTION_STRING,

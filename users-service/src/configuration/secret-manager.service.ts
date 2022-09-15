@@ -7,6 +7,7 @@ import { InjectionNames } from './InjectionNames.enum';
  * The names of secrets.
  */
 const enum SecretNames {
+  API_KEY = 'UsersServiceApiKey',
   CONNECTION_STRING = 'UsersServiceConnectionString',
 }
 
@@ -28,6 +29,14 @@ export class SecretManagerService {
    * The client for accessing the google secret manager.
    */
   private client: SecretManagerServiceClient;
+
+  /**
+   * Gets the api key for the users service.
+   * @returns The api key.
+   */
+  async getApiKey(): Promise<string | undefined> {
+    return this.getSecretAsync(SecretNames.API_KEY);
+  }
 
   /**
    * Gets the mongodb connection string.
