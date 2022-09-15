@@ -21,4 +21,4 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0'
       - name: 'Use gcloud CLI'
-        run: 'gcloud run deploy users-service --source users-service --allow-unauthenticated --description="user service" --region=us-central1 --port=3000'
+        run: 'gcloud run deploy users-service --source users-service --allow-unauthenticated --description="user service" --region=us-central1 --port=3000 --service-account=${{ secrets.gcloud_users_service_account }}'
