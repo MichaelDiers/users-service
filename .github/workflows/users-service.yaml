@@ -27,4 +27,4 @@ jobs:
       - name: Copy Dockerfile-GRPC
         run: cp docker/services/Dockerfile-GRPC users-service/Dockerfile
       - name: 'Use gcloud CLI GRPC'
-        run: 'gcloud run deploy users-service-grpc --source users-service --allow-unauthenticated --description="user service grpc" --region=us-central1 --port=3010 --service-account=${{ secrets.gcloud_users_service_account }}'
+        run: 'gcloud run deploy users-service-grpc --source users-service --allow-unauthenticated --description="user service grpc" --region=us-central1 --port=3010 --service-account=${{ secrets.gcloud_users_service_account }}' --use-http2
