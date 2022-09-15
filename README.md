@@ -7,8 +7,8 @@ A [NestJs](https://nestjs.com/) hybrid app for creating, reading, updating and d
   - microservice using GRPC
   - microservice using TCP
 - database
-  - MongoDB Atlas Cloud Database for production
-  - MongoDB docker container for local development
+  - [MongoDB Atlas Cloud](https://www.mongodb.com/cloud/atlas) Database for production
+  - [MongoDB docker image](https://hub.docker.com/_/mongo) for local development
 - [NestJs features](https://nestjs.com/)
   - [guards](https://docs.nestjs.com/guards) for validating api keys
   - [interceptors](https://docs.nestjs.com/interceptors): The REST Api and microservices share the same business logic and therefore http exceptions have to be transformed into rpc exceptions for microservices.
