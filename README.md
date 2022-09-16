@@ -11,7 +11,7 @@ A [NestJs](https://nestjs.com/) hybrid app for creating, reading, updating and d
   - [MongoDB docker image](https://hub.docker.com/_/mongo) for local development
 - Deployment via [GitHub workflow](https://github.com/MichaelDiers/users-service/blob/main/.github/workflows/users-service.yaml)
   - The service is hosted on [Google Cloud Run](https://cloud.google.com/run) in a [Docker container](https://www.docker.com/resources/what-container/)
-- additional [Swagger](https://swagger.io/) endpoint for accessing the rest api: [Production Link](https://users-service-prdsggicqa-uc.a.run.app/api)
+- additional [Swagger](https://swagger.io/) endpoint for accessing the rest api: [Production Link](https://users-service-rest-prdsggicqa-uc.a.run.app/api)
 - [NestJs features](https://nestjs.com/)
   - [guards](https://docs.nestjs.com/guards) for validating api keys
   - [interceptors](https://docs.nestjs.com/interceptors): The REST Api and microservices share the same business logic and therefore http exceptions have to be transformed into rpc exceptions for microservices.
