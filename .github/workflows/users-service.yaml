@@ -1,5 +1,8 @@
 name: Users Service
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   main:
@@ -27,4 +30,16 @@ jobs:
       - name: Copy Dockerfile-GRPC
         run: cp docker/services/Dockerfile-GRPC users-service/Dockerfile
       - name: 'Use gcloud CLI GRPC'
-        run: 'gcloud run deploy users-service-grpc --source users-service --allow-unauthenticated --description="user service grpc" --region=us-central1 --port=443 --service-account=${{ secrets.gcloud_users_service_account }} --use-http2' 
+        run: 'gcloud run deploy users-service-grpc --source users-service --allow-unauthenticated --description="user service grpc" --region=us-central1 --port=443 --service-account=${{ secrets.gcloud_users_service_account }} --use-http2'
+      - name: install gh-pages and compodoc
+        run: npm install gh-pages @compodoc/compodoc --prefix users-service
+      - name: create docs
+        run: npx @compodoc/compodoc -p tsconfig.json -n "Users Service API Documentation (v${{ github.run_number }})" -d docs
+        working-directory: users-service
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages -d docs -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: users-service
