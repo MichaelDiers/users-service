@@ -4,7 +4,6 @@ import { LoggingModule } from './logging/logging.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { HealthModule } from './health/health.module';
-import { HealthChecksModule } from './health-checks/health-checks.module';
 import { ClientsModule } from './clients/clients.module';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { GuardsModule } from './guards/guards.module';
@@ -24,7 +23,6 @@ import { InjectionNames } from './configuration/InjectionNames.enum';
     LoggingModule,
     UsersModule,
     HealthModule,
-    HealthChecksModule,
     ClientsModule,
     ConfigurationModule,
     GuardsModule,

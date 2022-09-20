@@ -51,4 +51,9 @@ export enum EnvNames {
    * The address of the documentation.
    */
   HEALTH_CHECK_DOCUMENTATION_ADDRESS = 'HEALTH_CHECK_DOCUMENTATION_ADDRESS',
+
+  /**
+   * The port used by the rest service.
+   */
+  USERS_REST_PORT = "USERS_REST_PORT"
 }

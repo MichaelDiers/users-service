@@ -4,11 +4,9 @@ import {
   HealthCheckService,
   HttpHealthIndicator,
   HealthCheck,
-  MicroserviceHealthIndicator,
   HealthCheckResult,
 } from '@nestjs/terminus';
 import { HeaderNames } from '../header-names';
-import { UsersGrpcHealthCheck } from '../health-checks/users-grpc-health-check';
 import { InjectionNames } from '../configuration/InjectionNames.enum';
 
 /**
@@ -20,10 +18,7 @@ export class HealthController {
    * Creates a new instance of HealthController.
    * @param healthCheckService Service for checking the application health.
    * @param httpHealthIndicator Http-based health checks.
-   * @param microserviceHealthIndicator Check the health of microservices.
    * @param mongooseHealthIndicator Check the health of the mongodb.
-   * @param usersGrpcHealthCheck Check the health of the user service using grpc.
-   * @param tcpConfig The tcp cofiguration of the users service.
    * @param apiKey The api key that used for requests.
    * @param healthCheckRestAddress The address for the rest health check.
    * @param healthCheckDocumentationAddress The address of the users service documentation.
@@ -31,10 +26,7 @@ export class HealthController {
   constructor(
     private healthCheckService: HealthCheckService,
     private httpHealthIndicator: HttpHealthIndicator,
-    private microserviceHealthIndicator: MicroserviceHealthIndicator,
     private mongooseHealthIndicator: MongooseHealthIndicator,
-    private usersGrpcHealthCheck: UsersGrpcHealthCheck,
-    @Inject(InjectionNames.TCP_CONFIG) private readonly tcpConfig: any,
     @Inject(InjectionNames.API_KEY) private readonly apiKey: string,
     @Inject(InjectionNames.HEALTH_CHECK_REST_ADDRESS)
     private readonly healthCheckRestAddress: string,
@@ -54,20 +46,18 @@ export class HealthController {
 
     return this.healthCheckService.check([
       async () =>
-        this.microserviceHealthIndicator.pingCheck('tcp', this.tcpConfig),
-      () =>
         this.httpHealthIndicator.pingCheck(
-          'Users Service API Doc',
-          this.healthCheckDocumentationAddress,
-        ),
-      async () => this.mongooseHealthIndicator.pingCheck('mongoose'),
-      async () =>
-        this.httpHealthIndicator.pingCheck(
-          'Users Service',
+          'Users Service REST',
           this.healthCheckRestAddress,
           options,
         ),
-      async () => this.usersGrpcHealthCheck.isHealthy('Grpc Users'),
+      async () =>
+        this.mongooseHealthIndicator.pingCheck('Users Service Database'),
+      () =>
+        this.httpHealthIndicator.pingCheck(
+          'Users Service Documenation',
+          this.healthCheckDocumentationAddress,
+        ),
     ]);
   }
 }

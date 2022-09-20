@@ -22,6 +22,7 @@ import { HeaderNames } from '../header-names';
     InjectionNames.SWAGGER_CONFIG,
     InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS,
     InjectionNames.HEALTH_CHECK_REST_ADDRESS,
+    InjectionNames.USERS_REST_PORT,
   ],
   imports: [ConfigModule.forRoot({}), LoggingModule],
   providers: [
@@ -39,7 +40,11 @@ import { HeaderNames } from '../header-names';
 
         return secretManagerService.getApiKey();
       },
-      inject: [InjectionNames.SECRETS_FROM_ENV, ConfigService, SecretManagerService],
+      inject: [
+        InjectionNames.SECRETS_FROM_ENV,
+        ConfigService,
+        SecretManagerService,
+      ],
     },
     {
       provide: InjectionNames.CONNECTION_STRING,
@@ -151,6 +156,13 @@ import { HeaderNames } from '../header-names';
       },
       inject: [ConfigService],
     },
+    {
+      provide: InjectionNames.USERS_REST_PORT,
+      useFactory: (configService: ConfigService): number => {
+        return parseInt(configService.getOrThrow(EnvNames.USERS_REST_PORT));
+      },
+      inject: [ConfigService],
+    }
   ],
 })
 export class ConfigurationModule {}
