@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Users Service API Documentation (v22)</title>
+        <title>Users Service API Documentation (v23)</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Users Service API Documentation (v22)</a>
+            <a href="../" class="navbar-brand">Users Service API Documentation (v23)</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -383,13 +383,15 @@
 import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
 import { Transport } from &#x27;@nestjs/microservices&#x27;;
 import { join } from &#x27;path&#x27;;
-import { EnvNames } from &#x27;./env-names&#x27;;
 import { LoggingModule } from &#x27;../logging/logging.module&#x27;;
 import { InjectionNames } from &#x27;./InjectionNames.enum&#x27;;
 import { SecretManagerService } from &#x27;./secret-manager.service&#x27;;
 import { DocumentBuilder } from &#x27;@nestjs/swagger&#x27;;
 import { HeaderNames } from &#x27;../header-names&#x27;;
 
+/**
+ * Prefix for environment variables.
+ */
 const USERS_SERVICE_PREFIX &#x3D; &#x27;USERS_SERVICE_&#x27;;
 
 @Module({
@@ -414,14 +416,12 @@ const USERS_SERVICE_PREFIX &#x3D; &#x27;USERS_SERVICE_&#x27;;
     SecretManagerService,
     {
       provide: InjectionNames.API_KEY,
-      useFactory: async (
-        configService: ConfigService,
-      ): Promise&lt;string&gt; &#x3D;&gt; {
-        return configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.API_KEY}&#x60;);
+      useFactory: async (configService: ConfigService): Promise&lt;string&gt; &#x3D;&gt; {
+        return configService.getOrThrow(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.API_KEY}&#x60;,
+        );
       },
-      inject: [
-        ConfigService,
-      ],
+      inject: [ConfigService],
     },
     {
       provide: InjectionNames.CONNECTION_STRING,
@@ -431,7 +431,9 @@ const USERS_SERVICE_PREFIX &#x3D; &#x27;USERS_SERVICE_&#x27;;
         secretManagerService: SecretManagerService,
       ): Promise&lt;string&gt; &#x3D;&gt; {
         if (secretsFromEnv) {
-          return configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.CONNECTION_STRING}&#x60;);
+          return configService.getOrThrow(
+            &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.CONNECTION_STRING}&#x60;,
+          );
         }
 
         return secretManagerService.getConnectionString();
@@ -445,7 +447,9 @@ const USERS_SERVICE_PREFIX &#x3D; &#x27;USERS_SERVICE_&#x27;;
     {
       provide: InjectionNames.HASH_ROUNDS,
       useFactory: (configService: ConfigService): number &#x3D;&gt; {
-        const rounds &#x3D; configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HASH_ROUNDS}&#x60;);
+        const rounds &#x3D; configService.getOrThrow(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HASH_ROUNDS}&#x60;,
+        );
         return parseInt(rounds);
       },
       inject: [ConfigService],
@@ -453,14 +457,18 @@ const USERS_SERVICE_PREFIX &#x3D; &#x27;USERS_SERVICE_&#x27;;
     {
       provide: InjectionNames.PROJECT_NAME,
       useFactory: (configService: ConfigService): string &#x3D;&gt; {
-        return configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.PROJECT_NAME}&#x60;);
+        return configService.getOrThrow(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.PROJECT_NAME}&#x60;,
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.SECRETS_FROM_ENV,
       useFactory: (configService: ConfigService): boolean &#x3D;&gt; {
-        const value &#x3D; configService.get(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.SECRETS_FROM_ENV}&#x60;);
+        const value &#x3D; configService.get(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.SECRETS_FROM_ENV}&#x60;,
+        );
         return value ? true : false;
       },
       inject: [ConfigService],
@@ -468,29 +476,45 @@ const USERS_SERVICE_PREFIX &#x3D; &#x27;USERS_SERVICE_&#x27;;
     {
       provide: InjectionNames.REST_PORT,
       useFactory: (configService: ConfigService): number &#x3D;&gt; {
-        return parseInt(configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.REST_PORT}&#x60;));
+        return parseInt(
+          configService.getOrThrow(
+            &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.REST_PORT}&#x60;,
+          ),
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.GRPC_PORT,
       useFactory: (configService: ConfigService): number &#x3D;&gt; {
-        return parseInt(configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.GRPC_PORT}&#x60;));
+        return parseInt(
+          configService.getOrThrow(
+            &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.GRPC_PORT}&#x60;,
+          ),
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.TCP_PORT,
       useFactory: (configService: ConfigService): number &#x3D;&gt; {
-        return parseInt(configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.TCP_PORT}&#x60;));
+        return parseInt(
+          configService.getOrThrow(
+            &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.TCP_PORT}&#x60;,
+          ),
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.HEALTH_CHECK_REST_ADDRESS,
       useFactory: (configService: ConfigService, restPort: number): string &#x3D;&gt; {
-        const pre &#x3D; configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_PRE&#x60;);
-        const post &#x3D; configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_POST&#x60;);
+        const pre &#x3D; configService.getOrThrow(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_PRE&#x60;,
+        );
+        const post &#x3D; configService.getOrThrow(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_POST&#x60;,
+        );
         return &#x60;${pre}${restPort}${post}&#x60;;
       },
       inject: [ConfigService, InjectionNames.REST_PORT],
@@ -498,14 +522,18 @@ const USERS_SERVICE_PREFIX &#x3D; &#x27;USERS_SERVICE_&#x27;;
     {
       provide: InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS,
       useFactory: (configService: ConfigService): string &#x3D;&gt; {
-        return configService.getOrThrow(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS}&#x60;);
+        return configService.getOrThrow(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS}&#x60;,
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.USE_SWAGGER,
       useFactory: (configService: ConfigService): boolean &#x3D;&gt; {
-        const value &#x3D; configService.get(&#x60;${USERS_SERVICE_PREFIX}${InjectionNames.USE_SWAGGER}&#x60;);
+        const value &#x3D; configService.get(
+          &#x60;${USERS_SERVICE_PREFIX}${InjectionNames.USE_SWAGGER}&#x60;,
+        );
         return value ? true : false;
       },
       inject: [ConfigService],
