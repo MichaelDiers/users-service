@@ -15,7 +15,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
         <nav>
             <ul class="list">
                 <li class="title">
-                    <a href="index.html" data-type="index-link">Users Service API Documentation (v19)</a>
+                    <a href="index.html" data-type="index-link">Users Service API Documentation (v22)</a>
                 </li>
 
                 <li class="divider"></li>
@@ -60,13 +60,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ConfigurationModule.html" data-type="entity-link" >ConfigurationModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-ConfigurationModule-4fb7c030d37c2ee2370cf6f9a2b7db052403ea6ec99e3e773c9ab19a51363931b5b7492c8766a58b0dbcbcf13521a987a0f5833806abbb8ca34af4b31be6ea9b"' : 'data-target="#xs-injectables-links-module-ConfigurationModule-4fb7c030d37c2ee2370cf6f9a2b7db052403ea6ec99e3e773c9ab19a51363931b5b7492c8766a58b0dbcbcf13521a987a0f5833806abbb8ca34af4b31be6ea9b"' }>
+                                        'data-target="#injectables-links-module-ConfigurationModule-b3017d866a8514460d1c3bfeb419eeb8a98cb21b2496dd3996f57c593fd186bcf45902d63a59d72421d38004c8335943ca29cf336f22340b577261c011f43725"' : 'data-target="#xs-injectables-links-module-ConfigurationModule-b3017d866a8514460d1c3bfeb419eeb8a98cb21b2496dd3996f57c593fd186bcf45902d63a59d72421d38004c8335943ca29cf336f22340b577261c011f43725"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-ConfigurationModule-4fb7c030d37c2ee2370cf6f9a2b7db052403ea6ec99e3e773c9ab19a51363931b5b7492c8766a58b0dbcbcf13521a987a0f5833806abbb8ca34af4b31be6ea9b"' :
-                                        'id="xs-injectables-links-module-ConfigurationModule-4fb7c030d37c2ee2370cf6f9a2b7db052403ea6ec99e3e773c9ab19a51363931b5b7492c8766a58b0dbcbcf13521a987a0f5833806abbb8ca34af4b31be6ea9b"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-ConfigurationModule-b3017d866a8514460d1c3bfeb419eeb8a98cb21b2496dd3996f57c593fd186bcf45902d63a59d72421d38004c8335943ca29cf336f22340b577261c011f43725"' :
+                                        'id="xs-injectables-links-module-ConfigurationModule-b3017d866a8514460d1c3bfeb419eeb8a98cb21b2496dd3996f57c593fd186bcf45902d63a59d72421d38004c8335943ca29cf336f22340b577261c011f43725"' }>
                                         <li class="link">
                                             <a href="injectables/SecretManagerService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SecretManagerService</a>
                                         </li>
