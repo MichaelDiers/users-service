@@ -2,13 +2,15 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Transport } from '@nestjs/microservices';
 import { join } from 'path';
-import { EnvNames } from './env-names';
 import { LoggingModule } from '../logging/logging.module';
 import { InjectionNames } from './InjectionNames.enum';
 import { SecretManagerService } from './secret-manager.service';
 import { DocumentBuilder } from '@nestjs/swagger';
 import { HeaderNames } from '../header-names';
 
+/**
+ * Prefix for environment variables.
+ */
 const USERS_SERVICE_PREFIX = 'USERS_SERVICE_';
 
 @Module({
@@ -33,14 +35,12 @@ const USERS_SERVICE_PREFIX = 'USERS_SERVICE_';
     SecretManagerService,
     {
       provide: InjectionNames.API_KEY,
-      useFactory: async (
-        configService: ConfigService,
-      ): Promise<string> => {
-        return configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.API_KEY}`);
+      useFactory: async (configService: ConfigService): Promise<string> => {
+        return configService.getOrThrow(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.API_KEY}`,
+        );
       },
-      inject: [
-        ConfigService,
-      ],
+      inject: [ConfigService],
     },
     {
       provide: InjectionNames.CONNECTION_STRING,
@@ -50,7 +50,9 @@ const USERS_SERVICE_PREFIX = 'USERS_SERVICE_';
         secretManagerService: SecretManagerService,
       ): Promise<string> => {
         if (secretsFromEnv) {
-          return configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.CONNECTION_STRING}`);
+          return configService.getOrThrow(
+            `${USERS_SERVICE_PREFIX}${InjectionNames.CONNECTION_STRING}`,
+          );
         }
 
         return secretManagerService.getConnectionString();
@@ -64,7 +66,9 @@ const USERS_SERVICE_PREFIX = 'USERS_SERVICE_';
     {
       provide: InjectionNames.HASH_ROUNDS,
       useFactory: (configService: ConfigService): number => {
-        const rounds = configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.HASH_ROUNDS}`);
+        const rounds = configService.getOrThrow(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.HASH_ROUNDS}`,
+        );
         return parseInt(rounds);
       },
       inject: [ConfigService],
@@ -72,14 +76,18 @@ const USERS_SERVICE_PREFIX = 'USERS_SERVICE_';
     {
       provide: InjectionNames.PROJECT_NAME,
       useFactory: (configService: ConfigService): string => {
-        return configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.PROJECT_NAME}`);
+        return configService.getOrThrow(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.PROJECT_NAME}`,
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.SECRETS_FROM_ENV,
       useFactory: (configService: ConfigService): boolean => {
-        const value = configService.get(`${USERS_SERVICE_PREFIX}${InjectionNames.SECRETS_FROM_ENV}`);
+        const value = configService.get(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.SECRETS_FROM_ENV}`,
+        );
         return value ? true : false;
       },
       inject: [ConfigService],
@@ -87,29 +95,45 @@ const USERS_SERVICE_PREFIX = 'USERS_SERVICE_';
     {
       provide: InjectionNames.REST_PORT,
       useFactory: (configService: ConfigService): number => {
-        return parseInt(configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.REST_PORT}`));
+        return parseInt(
+          configService.getOrThrow(
+            `${USERS_SERVICE_PREFIX}${InjectionNames.REST_PORT}`,
+          ),
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.GRPC_PORT,
       useFactory: (configService: ConfigService): number => {
-        return parseInt(configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.GRPC_PORT}`));
+        return parseInt(
+          configService.getOrThrow(
+            `${USERS_SERVICE_PREFIX}${InjectionNames.GRPC_PORT}`,
+          ),
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.TCP_PORT,
       useFactory: (configService: ConfigService): number => {
-        return parseInt(configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.TCP_PORT}`));
+        return parseInt(
+          configService.getOrThrow(
+            `${USERS_SERVICE_PREFIX}${InjectionNames.TCP_PORT}`,
+          ),
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.HEALTH_CHECK_REST_ADDRESS,
       useFactory: (configService: ConfigService, restPort: number): string => {
-        const pre = configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_PRE`);
-        const post = configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_POST`);
+        const pre = configService.getOrThrow(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_PRE`,
+        );
+        const post = configService.getOrThrow(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_REST_ADDRESS}_POST`,
+        );
         return `${pre}${restPort}${post}`;
       },
       inject: [ConfigService, InjectionNames.REST_PORT],
@@ -117,14 +141,18 @@ const USERS_SERVICE_PREFIX = 'USERS_SERVICE_';
     {
       provide: InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS,
       useFactory: (configService: ConfigService): string => {
-        return configService.getOrThrow(`${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS}`);
+        return configService.getOrThrow(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.HEALTH_CHECK_DOCUMENTATION_ADDRESS}`,
+        );
       },
       inject: [ConfigService],
     },
     {
       provide: InjectionNames.USE_SWAGGER,
       useFactory: (configService: ConfigService): boolean => {
-        const value = configService.get(`${USERS_SERVICE_PREFIX}${InjectionNames.USE_SWAGGER}`);
+        const value = configService.get(
+          `${USERS_SERVICE_PREFIX}${InjectionNames.USE_SWAGGER}`,
+        );
         return value ? true : false;
       },
       inject: [ConfigService],
