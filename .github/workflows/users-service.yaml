@@ -8,6 +8,23 @@ jobs:
   main:
     runs-on: ubuntu-latest
     permissions: write-all
+    environment: production
+    env:
+      DOCS_DIRECTORY: docs
+      SOURCE: users-service
+      SERVICE_NAME: users-service
+      GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT }}
+      GCLOUD_RUNNER_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_RUNNER_SERVICE_ACCOUNT }}
+      GCLOUD_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.GCLOUD_WORKLOAD_IDENTITY_PROVIDER }}
+      USERS_SERVICE_API_KEY: ${{ secrets.USERS_SERVICE_API_KEY }}
+      USERS_SERVICE_HASH_ROUNDS: ${{ secrets.USERS_SERVICE_HASH_ROUNDS }}
+      USERS_SERVICE_PROJECT_NAME: ${{ secrets.USERS_SERVICE_PROJECT_NAME }}      
+      USERS_SERVICE_REST_PORT: ${{ secrets.USERS_SERVICE_REST_PORT }}
+      USERS_SERVICE_GRPC_PORT: ${{ secrets.USERS_SERVICE_GRPC_PORT }}
+      USERS_SERVICE_TCP_PORT: ${{ secrets.USERS_SERVICE_TCP_PORT }}
+      USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_PRE: ${{ secrets.USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_PRE }}
+      USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_POST: ${{ secrets.USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_POST }}
+      USERS_SERVICE_HEALTH_CHECK_DOCUMENTATION_ADDRESS: ${{ secrets.USERS_SERVICE_HEALTH_CHECK_DOCUMENTATION_ADDRESS }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -16,28 +33,54 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           token_format: 'id_token'
-          workload_identity_provider: '${{ secrets.gcloud_workload_identity_provider }}'
-          service_account: '${{ secrets.gcloud_service_account }}'
-          id_token_audience: '${{ secrets.gcloud_workload_identity_provider }}'
+          workload_identity_provider: '${{ env.GCLOUD_WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: '${{ env.GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT }}'
+          id_token_audience: '${{ env.GCLOUD_WORKLOAD_IDENTITY_PROVIDER }}'
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0'
       - name: Copy Dockerfile-REST
-        run: cp docker/services/Dockerfile-REST users-service/Dockerfile
+        run: cp docker/services/Dockerfile-REST ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile
+        run: |
+          echo 'ENV USERS_SERVICE_API_KEY=${{ env.USERS_SERVICE_API_KEY }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HASH_ROUNDS=${{ env.USERS_SERVICE_HASH_ROUNDS }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_PROJECT_NAME=${{ env.USERS_SERVICE_PROJECT_NAME }}' >> ${{ env.SOURCE }}/Dockerfile          
+          echo 'ENV USERS_SERVICE_REST_PORT=${{ env.USERS_SERVICE_REST_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_GRPC_PORT=${{ env.USERS_SERVICE_GRPC_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_TCP_PORT=${{ env.USERS_SERVICE_TCP_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_PRE=${{ env.USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_PRE }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_POST=${{ env.USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_POST }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HEALTH_CHECK_DOCUMENTATION_ADDRESS=${{ env.USERS_SERVICE_HEALTH_CHECK_DOCUMENTATION_ADDRESS }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'EXPOSE ${{ env.USERS_SERVICE_REST_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'CMD ["node", "dist/main"]' >> ${{ env.SOURCE }}/Dockerfile
       - name: 'Use gcloud CLI REST'
-        run: 'gcloud run deploy users-service-rest --source users-service --allow-unauthenticated --description="user service rest" --region=us-central1 --port=3002 --service-account=${{ secrets.gcloud_users_service_account }}'
+        run: 'gcloud run deploy ${{ env.SERVICE_NAME }}-rest --source ${{ env.SOURCE }} --allow-unauthenticated --description="user service rest" --region=us-central1 --port=3002 --service-account=${{ env.GCLOUD_RUNNER_SERVICE_ACCOUNT }}'
       - name: Copy Dockerfile-GRPC
-        run: cp docker/services/Dockerfile-GRPC users-service/Dockerfile
+        run: cp docker/services/Dockerfile-GRPC ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile
+        run: |
+          echo 'ENV USERS_SERVICE_API_KEY=${{ env.USERS_SERVICE_API_KEY }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HASH_ROUNDS=${{ env.USERS_SERVICE_HASH_ROUNDS }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_PROJECT_NAME=${{ env.USERS_SERVICE_PROJECT_NAME }}' >> ${{ env.SOURCE }}/Dockerfile          
+          echo 'ENV USERS_SERVICE_REST_PORT=${{ env.USERS_SERVICE_REST_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_GRPC_PORT=${{ env.USERS_SERVICE_GRPC_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_TCP_PORT=${{ env.USERS_SERVICE_TCP_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_PRE=${{ env.USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_PRE }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_POST=${{ env.USERS_SERVICE_HEALTH_CHECK_REST_ADDRESS_POST }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'ENV USERS_SERVICE_HEALTH_CHECK_DOCUMENTATION_ADDRESS=${{ env.USERS_SERVICE_HEALTH_CHECK_DOCUMENTATION_ADDRESS }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'EXPOSE ${{ env.USERS_SERVICE_GRPC_PORT }}' >> ${{ env.SOURCE }}/Dockerfile
+          echo 'CMD ["node", "dist/main"]' >> ${{ env.SOURCE }}/Dockerfile
       - name: 'Use gcloud CLI GRPC'
-        run: 'gcloud run deploy users-service-grpc --source users-service --allow-unauthenticated --description="user service grpc" --region=us-central1 --port=443 --service-account=${{ secrets.gcloud_users_service_account }} --use-http2'
+        run: 'gcloud run deploy ${{ env.SERVICE_NAME }}-grpc --source ${{ env.SOURCE }} --allow-unauthenticated --description="user service grpc" --region=us-central1 --port=443 --service-account=${{ env.GCLOUD_RUNNER_SERVICE_ACCOUNT }} --use-http2'
       - name: install gh-pages and compodoc
-        run: npm install gh-pages @compodoc/compodoc --prefix users-service
+        run: npm install gh-pages @compodoc/compodoc --prefix ${{ env.SOURCE }}
       - name: create docs
-        run: npx @compodoc/compodoc -p tsconfig.json -n "Users Service API Documentation (v${{ github.run_number }})" -d docs
-        working-directory: users-service
+        run: npx @compodoc/compodoc -p tsconfig.json -n "Users Service API Documentation (v${{ github.run_number }})" -d ${{ env.DOCS_DIRECTORY }}
+        working-directory: ${{ env.SOURCE }}
       - name: Deploy with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d docs -u "github-actions-bot <support+actions@github.com>"
+          npx gh-pages -d ${{ env.DOCS_DIRECTORY }} -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: users-service
+        working-directory: ${{ env.SOURCE }}

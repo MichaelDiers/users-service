@@ -34,7 +34,7 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, document);
   }
 
-  await app.listen(app.get(InjectionNames.USERS_REST_PORT));
+  await app.listen(app.get(InjectionNames.REST_PORT));
 }
 
 bootstrap();
