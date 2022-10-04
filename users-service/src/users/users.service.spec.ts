@@ -34,6 +34,12 @@ export class UsersDatabaseService implements IUsersDatabaseService {
     throw new Error('Method not implemented.');
   }
 
+  findOneByPredicate(
+    predicate: (user: User) => Promise<boolean>, // eslint-disable-line @typescript-eslint/no-unused-vars
+  ): Promise<User> {
+    throw new Error('Method not implemented.');
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(guid: string, data: any): Promise<boolean> {
     throw new Error('Method not implemented.');

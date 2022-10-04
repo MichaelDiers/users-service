@@ -32,6 +32,16 @@ export interface IUsersDatabaseService {
   findOne(guid: string): Promise<User | undefined>;
 
   /**
+   * Find a user that matches the given predicate.
+   * @param predicate A function that checks for a matching user.
+   * @returns A Promise<T> whose result is the the matching user or undefined if no
+   *  match is found.
+   */
+  findOneByPredicate(
+    predicate: (user: User) => Promise<boolean>,
+  ): Promise<User | undefined>;
+
+  /**
    * Update an existing user.
    * @param guid The id of the user.
    * @param data The data that will be updated.

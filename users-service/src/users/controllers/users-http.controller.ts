@@ -17,7 +17,9 @@ import {
   ApiSecurity,
 } from '@nestjs/swagger';
 import { HeaderNames } from '../../header-names';
+import { HashPipe } from '../../pipes/hash-pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { ReadUserDto } from '../dto/read-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from '../entities/user.entity';
 import { IUsersService, USERS_SERVICE } from '../interfaces/users.interface';
@@ -42,7 +44,7 @@ export class UsersHttpController {
    * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise<T> whose result is a User.
    */
-  @Post()
+  @Post('/create')
   @HttpCode(201)
   @ApiOperation({ description: 'Create a new user.' })
   @ApiResponse({
@@ -56,7 +58,7 @@ export class UsersHttpController {
     status: 409,
     description: 'An user with given displayName or email already exists.',
   })
-  create(@Body() createUserDto: CreateUserDto): Promise<User> {
+  create(@Body(HashPipe) createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.create(createUserDto);
   }
 
@@ -103,6 +105,33 @@ export class UsersHttpController {
   }
 
   /**
+   * Get a user by its email and password.
+   * @returns A Promise<T> whose result is a User.
+   */
+  @Post('/read')
+  @ApiOperation({
+    description: 'Read the data of a certain user by email and password.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'The user is found and data is returned.',
+    type: User,
+  })
+  @ApiResponse({ status: 400, description: 'The request is invalid.' })
+  @ApiResponse({ status: 403, description: 'The access is forbidden.' })
+  @ApiResponse({
+    status: 404,
+    description: 'No user with given email and password is found.',
+  })
+  @HttpCode(200)
+  findOneByEmailAndPassword(@Body() readUserDto: ReadUserDto): Promise<User> {
+    return this.usersService.findOneByEmailAndPassword(
+      readUserDto.email,
+      readUserDto.password,
+    );
+  }
+
+  /**
    * Update the data of a user.
    * @param guid The id of the user.
    * @param updateUserDto The data that should be updated.
@@ -125,7 +154,7 @@ export class UsersHttpController {
   })
   update(
     @Param('guid', new ParseUUIDPipe({ version: '4' })) guid: string,
-    @Body() updateUserDto: UpdateUserDto,
+    @Body(HashPipe) updateUserDto: UpdateUserDto,
   ): Promise<void> {
     return this.usersService.update(guid, updateUserDto);
   }

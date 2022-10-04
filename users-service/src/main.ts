@@ -3,7 +3,6 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { ApiKeyHttpGuard } from './guards/api-key-http.guard';
-import { HashPipe } from './pipes/hash-pipe';
 import { InjectionNames } from './configuration/InjectionNames.enum';
 
 /**
@@ -22,7 +21,6 @@ async function bootstrap() {
       stopAtFirstError: true,
       whitelist: true, // remove all unknown fields
     }),
-    app.get(HashPipe),
   );
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 

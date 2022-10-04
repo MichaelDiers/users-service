@@ -34,6 +34,17 @@ export interface IUsersService {
   findOne(guid: string): Promise<User>;
 
   /**
+   * Find a user by email and password.
+   * @param email The email of the user.
+   * @param password The password of the user.
+   * @returns A Promise<T> whose result is the matching user or undefined if no user matches.
+   */
+  findOneByEmailAndPassword(
+    email: string,
+    password: string,
+  ): Promise<User | undefined>;
+
+  /**
    * Update a user.
    * @param guid The id of the user.
    * @param updateUserDto The data of the user to be updated.

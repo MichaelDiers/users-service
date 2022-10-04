@@ -5,6 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { compare } from 'bcrypt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -65,6 +66,36 @@ export class UsersService implements IUsersService {
     }
 
     return result;
+  }
+
+  /**
+   * Find a user by email and password.
+   * @param email The email of the user.
+   * @param password The password of the user.
+   * @returns A Promise<T> whose result is the matching user or undefined if no user matches.
+   */
+  async findOneByEmailAndPassword(
+    email: string,
+    password: string,
+  ): Promise<User | undefined> {
+    const predicate = async (user: User) => {
+      try {
+        const result = await Promise.all([
+          compare(email, user.email),
+          compare(password, user.password),
+        ]);
+        return result.every((value) => value);
+      } catch {
+        return false;
+      }
+    };
+
+    const user = await this.databaseService.findOneByPredicate(predicate);
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    return user;
   }
 
   /**

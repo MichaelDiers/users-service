@@ -20,6 +20,11 @@ class UsersService implements IUsersService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  findOneByEmailAndPassword(email: string, password: string): Promise<User> {
+    throw new Error('Method not implemented.');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(guid: string, updateUserDto: UpdateUserDto): Promise<void> {
     throw new Error('Method not implemented.');
   }
