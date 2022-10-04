@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Users Service API Documentation (v24)</title>
+        <title>Users Service API Documentation (v25)</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Users Service API Documentation (v24)</a>
+            <a href="../" class="navbar-brand">Users Service API Documentation (v25)</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -100,6 +100,9 @@
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
+                                <a href="#findOneByEmailAndPassword" >findOneByEmailAndPassword</a>
+                            </li>
+                            <li>
                                 <a href="#healthCheck" >healthCheck</a>
                             </li>
                             <li>
@@ -146,14 +149,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@HttpCode(201)<br />@ApiOperation({description: &#x27;Create a new user.&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The new user is created.&#x27;, type: User})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;An user with given displayName or email already exists.&#x27;})<br /></code>
+                    <code>@Post(&#x27;/create&#x27;)<br />@HttpCode(201)<br />@ApiOperation({description: &#x27;Create a new user.&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The new user is created.&#x27;, type: User})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;An user with given displayName or email already exists.&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/users/controllers/users-http.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -236,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/users/controllers/users-http.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -288,8 +291,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/users/controllers/users-http.controller.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:101</a></div>
                 </td>
             </tr>
 
@@ -349,6 +352,85 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneByEmailAndPassword"></a>
+                    <span class="name">
+                        <span ><b>findOneByEmailAndPassword</b></span>
+                        <a href="#findOneByEmailAndPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findOneByEmailAndPassword(readUserDto: <a href="../classes/ReadUserDto.html" target="_self">ReadUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/read&#x27;)<br />@ApiOperation({description: &#x27;Read the data of a certain user by email and password.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;The user is found and data is returned.&#x27;, type: User})<br />@ApiResponse({status: 400, description: &#x27;The request is invalid.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;The access is forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;No user with given email and password is found.&#x27;})<br />@HttpCode(200)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:127</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get a user by its email and password.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>readUserDto</td>
+                                    <td>
+                                                <code><a href="../classes/ReadUserDto.html" target="_self" >ReadUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;User&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A Promise<T> whose result is a User.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="healthCheck"></a>
                     <span class="name">
                         <span ><b>healthCheck</b></span>
@@ -372,8 +454,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="162"
-                            class="link-to-prism">src/users/controllers/users-http.controller.ts:162</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:191</a></div>
                 </td>
             </tr>
 
@@ -418,8 +500,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/users/controllers/users-http.controller.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:178</a></div>
                 </td>
             </tr>
 
@@ -502,8 +584,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/users/controllers/users-http.controller.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/users/controllers/users-http.controller.ts:155</a></div>
                 </td>
             </tr>
 
@@ -598,7 +680,9 @@ import {
   ApiSecurity,
 } from &#x27;@nestjs/swagger&#x27;;
 import { HeaderNames } from &#x27;../../header-names&#x27;;
+import { HashPipe } from &#x27;../../pipes/hash-pipe&#x27;;
 import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
+import { ReadUserDto } from &#x27;../dto/read-user.dto&#x27;;
 import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
 import { User } from &#x27;../entities/user.entity&#x27;;
 import { IUsersService, USERS_SERVICE } from &#x27;../interfaces/users.interface&#x27;;
@@ -623,7 +707,7 @@ export class UsersHttpController {
    * @param createUserDto DTO that contains the validated user data.
    * @returns A Promise&lt;T&gt; whose result is a User.
    */
-  @Post()
+  @Post(&#x27;/create&#x27;)
   @HttpCode(201)
   @ApiOperation({ description: &#x27;Create a new user.&#x27; })
   @ApiResponse({
@@ -637,7 +721,7 @@ export class UsersHttpController {
     status: 409,
     description: &#x27;An user with given displayName or email already exists.&#x27;,
   })
-  create(@Body() createUserDto: CreateUserDto): Promise&lt;User&gt; {
+  create(@Body(HashPipe) createUserDto: CreateUserDto): Promise&lt;User&gt; {
     return this.usersService.create(createUserDto);
   }
 
@@ -684,6 +768,33 @@ export class UsersHttpController {
   }
 
   /**
+   * Get a user by its email and password.
+   * @returns A Promise&lt;T&gt; whose result is a User.
+   */
+  @Post(&#x27;/read&#x27;)
+  @ApiOperation({
+    description: &#x27;Read the data of a certain user by email and password.&#x27;,
+  })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;The user is found and data is returned.&#x27;,
+    type: User,
+  })
+  @ApiResponse({ status: 400, description: &#x27;The request is invalid.&#x27; })
+  @ApiResponse({ status: 403, description: &#x27;The access is forbidden.&#x27; })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;No user with given email and password is found.&#x27;,
+  })
+  @HttpCode(200)
+  findOneByEmailAndPassword(@Body() readUserDto: ReadUserDto): Promise&lt;User&gt; {
+    return this.usersService.findOneByEmailAndPassword(
+      readUserDto.email,
+      readUserDto.password,
+    );
+  }
+
+  /**
    * Update the data of a user.
    * @param guid The id of the user.
    * @param updateUserDto The data that should be updated.
@@ -706,7 +817,7 @@ export class UsersHttpController {
   })
   update(
     @Param(&#x27;guid&#x27;, new ParseUUIDPipe({ version: &#x27;4&#x27; })) guid: string,
-    @Body() updateUserDto: UpdateUserDto,
+    @Body(HashPipe) updateUserDto: UpdateUserDto,
   ): Promise&lt;void&gt; {
     return this.usersService.update(guid, updateUserDto);
   }

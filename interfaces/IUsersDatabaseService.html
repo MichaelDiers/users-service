@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Users Service API Documentation (v24)</title>
+        <title>Users Service API Documentation (v25)</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Users Service API Documentation (v24)</a>
+            <a href="../" class="navbar-brand">Users Service API Documentation (v25)</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -106,6 +106,12 @@
                                     <a href="#findOne" 
 >
                                         findOne
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#findOneByPredicate" 
+>
+                                        findOneByPredicate
                                     </a>
                                 </li>
                                 <li>
@@ -339,6 +345,85 @@ undefined otherwise.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneByPredicate"></a>
+                    <span class="name">
+                        <span ><b>findOneByPredicate</b></span>
+                        <a href="#findOneByPredicate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findOneByPredicate(predicate: (user: <a href="../classes/User.html">User</a>) => void)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/users/interfaces/users-database.interface.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Find a user that matches the given predicate.
+ match is found.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>predicate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A function that checks for a matching user.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;User | undefined&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A Promise<T> whose result is the the matching user or undefined if no
+match is found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
                         <span ><b>remove</b></span>
@@ -355,8 +440,8 @@ undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/users/interfaces/users-database.interface.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/users/interfaces/users-database.interface.ts:57</a></div>
                 </td>
             </tr>
 
@@ -432,8 +517,8 @@ undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/users/interfaces/users-database.interface.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/users/interfaces/users-database.interface.ts:50</a></div>
                 </td>
             </tr>
 
@@ -543,6 +628,16 @@ export interface IUsersDatabaseService {
    *  undefined otherwise.
    */
   findOne(guid: string): Promise&lt;User | undefined&gt;;
+
+  /**
+   * Find a user that matches the given predicate.
+   * @param predicate A function that checks for a matching user.
+   * @returns A Promise&lt;T&gt; whose result is the the matching user or undefined if no
+   *  match is found.
+   */
+  findOneByPredicate(
+    predicate: (user: User) &#x3D;&gt; Promise&lt;boolean&gt;,
+  ): Promise&lt;User | undefined&gt;;
 
   /**
    * Update an existing user.

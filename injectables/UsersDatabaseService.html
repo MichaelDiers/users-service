@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Users Service API Documentation (v24)</title>
+        <title>Users Service API Documentation (v25)</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Users Service API Documentation (v24)</a>
+            <a href="../" class="navbar-brand">Users Service API Documentation (v25)</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -96,6 +96,10 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOneByPredicate" >findOneByPredicate</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -391,6 +395,87 @@ undefined otherwise.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneByPredicate"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findOneByPredicate</b></span>
+                        <a href="#findOneByPredicate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByPredicate(predicate: (user: UserEntity) => void)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/users/users-database.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Find a user that matches the given predicate.
+ match is found.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>predicate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A function that checks for a matching user.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UserEntity | undefined&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A Promise<T> whose result is the the matching user or undefined if no
+match is found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -409,8 +494,8 @@ undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/users/users-database.service.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/users/users-database.service.ts:110</a></div>
                 </td>
             </tr>
 
@@ -488,8 +573,8 @@ undefined otherwise.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/users/users-database.service.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/users/users-database.service.ts:92</a></div>
                 </td>
             </tr>
 
@@ -627,6 +712,28 @@ export class UsersDatabaseService implements IUsersDatabaseService {
     const document &#x3D; await this.userModel.findOne({ guid }).exec();
     if (document) {
       return new UserEntity(document);
+    }
+  }
+
+  /**
+   * Find a user that matches the given predicate.
+   * @param predicate A function that checks for a matching user.
+   * @returns A Promise&lt;T&gt; whose result is the the matching user or undefined if no
+   *  match is found.
+   */
+  async findOneByPredicate(
+    predicate: (user: UserEntity) &#x3D;&gt; Promise&lt;boolean&gt;,
+  ): Promise&lt;UserEntity | undefined&gt; {
+    const cursor &#x3D; this.userModel.find().cursor();
+    let document &#x3D; await cursor.next();
+    while (document) {
+      const entity &#x3D; new UserEntity(document);
+      if (await predicate(entity)) {
+        cursor.close();
+        return entity;
+      }
+
+      document &#x3D; await cursor.next();
     }
   }
 
