@@ -70,17 +70,21 @@ export class UsersDatabaseService implements IUsersDatabaseService {
   async findOneByPredicate(
     predicate: (user: UserEntity) => Promise<boolean>,
   ): Promise<UserEntity | undefined> {
-    const cursor = this.userModel.find().cursor();
-    let document = await cursor.next();
-    while (document) {
-      const entity = new UserEntity(document);
-      if (await predicate(entity)) {
-        cursor.close();
-        return entity;
+    let start = 0;
+    const size = 100;
+    let documents = await this.userModel.find().skip(start).limit(size);
+    while (documents && documents.length !== 0) {
+      const results = await Promise.all(
+        documents.map((document) => predicate(new UserEntity(document))),
+      );
+      const index = results.findIndex((result) => result);
+      if (index > -1) {
+        return new UserEntity(documents[index]);
       }
-
-      document = await cursor.next();
     }
+
+    start += size;
+    documents = await this.userModel.find().skip(start).limit(size);
   }
 
   /**
