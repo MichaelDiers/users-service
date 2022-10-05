@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Users Service API Documentation (v25)</title>
+        <title>Users Service API Documentation (v26)</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Users Service API Documentation (v25)</a>
+            <a href="../" class="navbar-brand">Users Service API Documentation (v26)</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -494,8 +494,8 @@ match is found.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/users/users-database.service.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/users/users-database.service.ts:114</a></div>
                 </td>
             </tr>
 
@@ -573,8 +573,8 @@ match is found.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/users/users-database.service.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/users/users-database.service.ts:96</a></div>
                 </td>
             </tr>
 
@@ -724,17 +724,21 @@ export class UsersDatabaseService implements IUsersDatabaseService {
   async findOneByPredicate(
     predicate: (user: UserEntity) &#x3D;&gt; Promise&lt;boolean&gt;,
   ): Promise&lt;UserEntity | undefined&gt; {
-    const cursor &#x3D; this.userModel.find().cursor();
-    let document &#x3D; await cursor.next();
-    while (document) {
-      const entity &#x3D; new UserEntity(document);
-      if (await predicate(entity)) {
-        cursor.close();
-        return entity;
+    let start &#x3D; 0;
+    const size &#x3D; 100;
+    let documents &#x3D; await this.userModel.find().skip(start).limit(size);
+    while (documents &amp;&amp; documents.length !&#x3D;&#x3D; 0) {
+      const results &#x3D; await Promise.all(
+        documents.map((document) &#x3D;&gt; predicate(new UserEntity(document))),
+      );
+      const index &#x3D; results.findIndex((result) &#x3D;&gt; result);
+      if (index &gt; -1) {
+        return new UserEntity(documents[index]);
       }
-
-      document &#x3D; await cursor.next();
     }
+
+    start +&#x3D; size;
+    documents &#x3D; await this.userModel.find().skip(start).limit(size);
   }
 
   /**
